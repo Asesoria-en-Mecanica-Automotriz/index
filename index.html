@@ -17,13 +17,18 @@
       --radius:18px; --radius-sm:12px; --maxw:1100px;
     }
     *{box-sizing:border-box} html,body{height:100%}
-    body{margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;background:
-      radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);color:var(--ink);line-height:1.6}
+    body{
+      margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+      background: radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);
+      color:var(--ink); line-height:1.6;
+    }
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+
     .ribbon{
       margin:0 0 12px; padding:10px 14px; border-radius:12px; font-weight:700; font-size:14px; color:#0B2B6C;
       background:linear-gradient(180deg,#FFF7D6,#FFE58F); border:1px solid #FFE39C; display:inline-flex; gap:8px; align-items:center;
     }
+
     header.hero{
       position:relative;border-radius:calc(var(--radius) + 6px);
       background:linear-gradient(120deg,rgba(10,61,145,.95),rgba(14,98,255,.92));
@@ -44,12 +49,15 @@
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
       background:rgba(255,255,255,.14);color:#fff;font-size:13px;border:1px solid rgba(255,255,255,.25)}
-    main{margin-top:28px} section{margin:32px 0}
+
+    main{margin-top:28px}
+    section{margin:32px 0}
     .card{background:var(--card);border:1px solid #E6ECF5;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
     .section-title{font-size:clamp(22px,3vw,28px);margin:0 0 14px}
     .muted{color:var(--muted)}
     .grid{display:grid;gap:16px}
     @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}}
+
     .price-card{position:relative;padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,#fff,#FBFDFF);
       border:1px solid #E8EEF8;transition:.18s transform,.18s box-shadow}
     .price-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(2,23,80,.10)}
@@ -59,11 +67,26 @@
     .feat{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:15px}
     .check{width:18px;height:18px;border-radius:6px;background:var(--ok);display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
     .price-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .btn-pay{background:linear-gradient(180deg,var(--accent),#FFCF33);color:#1E293B;box-shadow:var(--shadow)}
     .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
-    .trial{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+
     .quote{background:#FFFDF4;border:1px solid #FFE39C;border-left:4px solid var(--accent);border-radius:16px;padding:14px}
     .stars{letter-spacing:1px}
+
+    /* ==== Testimonials: grid (desktop) + carousel (mobile) ==== */
+    .t-trust-msg { text-align:center; margin:16px 0 6px }
+    .t-trust-title { text-align:center; margin-top:0 }
+    .t-carousel{
+      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch; padding-bottom:6px; scroll-behavior:smooth;
+    }
+    .t-slide{ flex:0 0 85%; scroll-snap-align:center }
+    .t-carousel::-webkit-scrollbar{ height:8px }
+    .t-carousel::-webkit-scrollbar-thumb{ background:#CBD7FF; border-radius:8px }
+    @media (min-width:860px){
+      .t-carousel{ display:grid; grid-template-columns:repeat(3,1fr); overflow:visible }
+      .t-slide{ flex:unset; scroll-snap-align:unset }
+    }
+
     footer{margin:40px 0 12px;padding:18px;border-radius:var(--radius);
       background:linear-gradient(180deg,#0A3D91,#0A3D91 60%,#0E62FF);color:#fff}
     footer small a{color:#fff;opacity:.9}
@@ -73,7 +96,7 @@
   <div class="wrap">
     <div class="ribbon">📣 Atención 100% por WhatsApp del cliente • Sin apps ni chat web</div>
 
-    <header class="hero">
+    <header class="hero" aria-label="Encabezado principal">
       <div class="brand">
         <div class="logo" aria-hidden="true">AM</div>
         <div>
@@ -110,7 +133,7 @@
 
       <!-- Bloque: 7 días gratis (WhatsApp) -->
       <section class="card">
-        <div class="trial">
+        <div class="trial" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
           <div>
             <h2 class="section-title" style="margin-bottom:6px">Probar 7 días gratis</h2>
             <p class="muted" style="margin:4px 0">Actívalo por WhatsApp. Sujeto a disponibilidad. Atención dentro del horario operativo.</p>
@@ -125,7 +148,7 @@
         <p class="muted" style="margin-top:-6px">Elige un plan. Contratación y soporte se coordinan por WhatsApp.</p>
         <div class="grid grid-3" style="margin-top:12px">
           <!-- Básico -->
-          <div class="price-card">
+          <article class="price-card">
             <div class="price-h">
               <h3 style="margin:0">Básico</h3>
               <span class="pill">Hasta 6 consultas/mes</span>
@@ -138,10 +161,10 @@
               <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#">Iniciar por WhatsApp</a>
               <a class="btn btn-outline" href="YOUR_STRIPE_CHECKOUT_LINK_BASIC">Pagar en Stripe</a>
             </div>
-          </div>
+          </article>
 
           <!-- Avanzado -->
-          <div class="price-card" style="border:2px solid #FFD04D">
+          <article class="price-card" style="border:2px solid #FFD04D">
             <div class="price-h">
               <h3 style="margin:0">Avanzado</h3>
               <span class="pill" style="background:#FFF4D1;color:#8A5800;border-color:#FFE39C">Hasta 10 consultas/mes</span>
@@ -154,10 +177,10 @@
               <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
               <a class="btn btn-outline" href="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED">Pagar en Stripe</a>
             </div>
-          </div>
+          </article>
 
           <!-- PRO -->
-          <div class="price-card">
+          <article class="price-card">
             <div class="price-h">
               <h3 style="margin:0">PRO</h3>
               <span class="pill">Consultas ilimitadas</span>
@@ -170,28 +193,57 @@
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
               <a class="btn btn-outline" href="YOUR_STRIPE_CHECKOUT_LINK_PRO">Pagar en Stripe</a>
             </div>
-          </div>
+          </article>
         </div>
-        <small class="muted">La autogestión de cobros y cancelaciones se realiza en el <a href="YOUR_STRIPE_PORTAL_LINK" id="portal">Portal del Cliente</a>. Las consultas siguen por WhatsApp del cliente.</small>
-      </section>
 
-      <!-- Testimonios y confianza -->
-      <section class="grid grid-3">
-        <div class="quote">
-          <div class="stars">★★★★★</div>
-          <strong>Taller “El Pistón”</strong><br/>
-          “Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”
-        </div>
-        <div class="quote">
-          <div class="stars">★★★★★</div>
-          <strong>Autoeléctrico Rivera</strong><br/>
-          “Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas. Atención siempre en WhatsApp.”
-        </div>
-        <div class="quote">
-          <div class="stars">★★★★★</div>
-          <strong>Rectificadora Nayar</strong><br/>
-          “Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”
-        </div>
+        <small class="muted">
+          La autogestión de cobros y cancelaciones se realiza en el
+          <a href="YOUR_STRIPE_PORTAL_LINK" id="portal">Portal del Cliente</a>. Las consultas siguen por WhatsApp del cliente.
+        </small>
+
+        <!-- Confianza + Testimonios (6) -->
+        <p class="muted t-trust-msg">
+          "Miles de tecnicos, mecanicos y autodidactas propietarios de vehiculos y de talleres estan satisfechos con nuestro gran sistema"
+        </p>
+        <h3 class="section-title t-trust-title">TESTIMONIOS DE CONFIANZA</h3>
+
+        <section class="t-carousel" id="t-carousel" aria-label="Testimonios">
+          <article class="quote t-slide">
+            <div class="stars">★★★★★</div>
+            <strong>Taller “El Pistón”</strong><br/>
+            “Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”
+          </article>
+
+          <article class="quote t-slide">
+            <div class="stars">★★★★★</div>
+            <strong>Autoeléctrico Rivera</strong><br/>
+            “Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas. Atención siempre en WhatsApp.”
+          </article>
+
+          <article class="quote t-slide">
+            <div class="stars">★★★★★</div>
+            <strong>Rectificadora Nayar</strong><br/>
+            “Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”
+          </article>
+
+          <article class="quote t-slide">
+            <div class="stars">★★★★★</div>
+            <strong>Mecánica “La Chispa”</strong><br/>
+            “Nos ayudaron a aislar un P0335 con pasos simples. Cero adivinanzas, todo por WhatsApp.”
+          </article>
+
+          <article class="quote t-slide">
+            <div class="stars">★★★★★</div>
+            <strong>Electromecánica Gómez</strong><br/>
+            “Interpretación de DTC y pruebas guiadas que realmente funcionan. Muy recomendados.”
+          </article>
+
+          <article class="quote t-slide">
+            <div class="stars">★★★★★</div>
+            <strong>Flotas Jalisco</strong><br/>
+            “Para la flotilla fue clave: respuestas rápidas y consistentes, 100% por WhatsApp.”
+          </article>
+        </section>
       </section>
 
       <section class="card">
@@ -222,22 +274,15 @@
 
   <script>
     const PHONE = "523112242880"; // MX +52 311 224 2880
-
-    function waHref(text){
-      return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`;
-    }
+    function waHref(text){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`; }
 
     // Hero CTA
     const cta = document.getElementById('cta-whatsapp');
-    if(cta){
-      cta.href = waHref("Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC].");
-    }
+    if(cta){ cta.href = waHref("Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC]."); }
 
     // Trial CTA (WhatsApp)
     const trial = document.getElementById('cta-trial');
-    if(trial){
-      trial.href = waHref("Solicito PRUEBA 7 DIAS gratis. Mis datos: [Nombre/Taller] [Ciudad].");
-    }
+    if(trial){ trial.href = waHref("Solicito PRUEBA 7 DIAS gratis. Mis datos: [Nombre/Taller] [Ciudad]."); }
 
     // Planes → WhatsApp
     document.querySelectorAll('.wa-plan').forEach(btn=>{
@@ -248,6 +293,26 @@
         window.location.href = waHref(msg);
       });
     });
+
+    // ==== Auto-play del carrusel en móvil; grilla estática en escritorio ====
+    (function(){
+      const track = document.getElementById('t-carousel');
+      if(!track) return;
+      const slides = [...track.children];
+      let idx = -1, playing = true;
+      const isDesktop = () => matchMedia('(min-width: 860px)').matches;
+
+      function next(){
+        if(isDesktop() || !playing) return;
+        idx = (idx + 1) % slides.length;
+        slides[idx].scrollIntoView({behavior:'smooth', inline:'center'});
+      }
+      const timer = setInterval(next, 3500);
+      track.addEventListener('pointerenter', ()=>{ playing = false; });
+      track.addEventListener('pointerleave', ()=>{ playing = true;  });
+      window.addEventListener('visibilitychange', ()=>{ playing = !document.hidden; });
+      if(!isDesktop()) next();
+    })();
   </script>
 </body>
 </html>
