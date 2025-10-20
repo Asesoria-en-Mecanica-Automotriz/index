@@ -3,367 +3,279 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Asesor Automotriz Advisor — Diagnóstico experto por suscripción</title>
-  <meta name="description" content="Asesoría en mecánica automotriz en whatsapp por suscripción: TODA LA GAMA  MUNDIAL DE SISTEMAS Y MARCAS... Motores, transmisiones, eléctricos, enfriamiento, frenos y más. Atención por WhatsApp y seguimiento mensual.">
-  <meta name="theme-color" content="#0b3b8c">
-  <!-- Open Graph -->
-  <meta property="og:title" content="Asesor Automotriz Advisor" />
-  <meta property="og:description" content="Diagnóstico automotriz por suscripción. Expertos con atención por WhatsApp. A solo un click de distancia  HAZ TU PRUEBA GRATIS AHORA" />
+  <title>Asesoría en Mecánica Automotriz — Planes y Suscripción</title>
+  <meta name="description" content="Asesoría mecánica automotriz en línea. Diagnóstico OBD2, eléctricos, enfriamiento, frenos y más. Suscripciones mensuales vía Stripe." />
+  <meta property="og:title" content="Asesoría en Mecánica Automotriz" />
+  <meta property="og:description" content="Planes mensuales de asesoría técnica. Básico, Avanzado y PRO." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://tu-usuario.github.io/asesor-automotriz-stas" />
-  <meta property="og:image" content="https://tu-usuario.github.io/asesor-automotriz-stas/og-image.png" />
-  <link rel="icon" href="favicon.png">
+  <meta name="theme-color" content="#0B5FFF" />
 
   <style>
     :root{
-      --brand-900:#0b3b8c; /* azul institucional */
-      --brand-700:#1e40af;
-      --brand-600:#2563eb;
-      --brand-50:#eef2ff;
-      --ink:#0f172a;       /* gris muy oscuro */
-      --muted:#475569;     /* gris medio */
-      --bg:#f8fafc;        /* fondo claro */
-      --card:#ffffff;
-      --gold:#f59e0b;      /* ámbar/acento */
-      --ok:#10b981;
-      --danger:#ef4444;
+      --brand:#0B5FFF;      /* azul institucional */
+      --brand-2:#14B8A6;    /* teal acento */
+      --brand-3:#FFB000;    /* ámbar avisos */
+      --ink:#0F172A;        /* texto principal */
+      --muted:#667085;      /* texto secundario */
+      --bg:#F6F8FB;         /* fondo base */
+      --card:#FFFFFF;       /* fondo tarjetas */
+      --ring:rgba(11,95,255,.18);
+      --shadow:0 10px 30px rgba(2,6,23,.08);
       --radius:16px;
-      --shadow:0 10px 25px rgba(2,6,23,.08);
-      --ring:0 0 0 4px rgba(37,99,235,.15);
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
+    html,body{margin:0;padding:0}
     body{
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", sans-serif;
       color:var(--ink);
+      background:var(--bg);
+      line-height:1.6;
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:0 20px}
+
+    /* Topbar */
+    .topbar{
+      background:#0b5fff;
+      color:#fff;
+      font-size:.9rem;
+      padding:8px 0;
+      text-align:center;
+    }
+
+    /* Header / Hero */
+    header{
       background:
-        radial-gradient(1200px 600px at 10% -10%, #dbeafe 0, rgba(219,234,254,0) 60%),
-        radial-gradient(1200px 600px at 110% 10%, #fef3c7 0, rgba(254,243,199,0) 60%),
-        var(--bg);
-      margin:0;
+        radial-gradient(1200px 400px at 10% -10%, rgba(20,184,166,.25), transparent 60%),
+        radial-gradient(800px 300px at 90% 0%, rgba(255,176,0,.25), transparent 60%),
+        linear-gradient(180deg, #0b5fff 0%, #0b46cc 100%);
+      color:#fff;
+      padding:64px 0 48px;
+      position:relative;
+      overflow:hidden;
     }
+    .brand{
+      display:flex;align-items:center;gap:12px;margin-bottom:18px
+    }
+    .brand .logo{
+      width:44px;height:44px;border-radius:12px;
+      background:linear-gradient(135deg,#14B8A6 0%,#0B5FFF 100%);
+      box-shadow:0 6px 16px rgba(0,0,0,.25);
+      display:grid;place-items:center;font-weight:800
+    }
+    .brand .logo span{color:#fff}
+    h1{margin:0 0 12px;font-size:2.2rem;letter-spacing:.2px}
+    .lead{margin:0;color:#E7ECFF;max-width:820px}
 
-    /* Layout */
-    .container{max-width:1100px;margin:0 auto;padding:24px}
-    header.topbar{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:16px;padding:14px 0;
-    }
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--brand-900)}
-    .brand img{width:40px;height:40px}
-    .brand .title{font-weight:800;letter-spacing:.3px}
-    nav a{
-      text-decoration:none;color:var(--ink);font-weight:600;margin-left:18px;
-      padding:8px 12px;border-radius:10px;
-    }
-    nav a:hover{background:var(--brand-50);color:var(--brand-700)}
-
-    /* Hero */
-    .hero{
-      margin-top:16px;border-radius:24px;overflow:hidden;background:
-        linear-gradient(120deg, var(--brand-900), var(--brand-700) 50%, var(--brand-600));
-      color:#fff;position:relative;box-shadow:var(--shadow);
-    }
-    .hero::after{
-      content:"";position:absolute;inset:0;
-      background-image: radial-gradient(rgba(255,255,255,.12) 1px, transparent 1px);
-      background-size:18px 18px;mix-blend:overlay;
-    }
-    .hero-inner{padding:56px 28px}
-    .hero h1{margin:0 0 10px;font-size:clamp(28px,4vw,40px);line-height:1.15}
-    .hero p{margin:8px 0 18px;color:#e5edff;max-width:820px}
-    .badges{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0 22px}
-    .badge{
-      background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.25);
-      padding:8px 12px;border-radius:999px;font-size:14px;backdrop-filter:blur(4px)
-    }
-    .cta{display:flex;flex-wrap:wrap;gap:12px}
+    .hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
     .btn{
-      display:inline-flex;align-items:center;gap:10px;border:0;border-radius:12px;
-      padding:12px 18px;font-weight:800;text-decoration:none;cursor:pointer;
-      transition:.2s transform ease,.2s box-shadow ease;
-      box-shadow:0 6px 16px rgba(2,6,23,.24);
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:10px;padding:12px 18px;border-radius:12px;border:1px solid transparent;
+      font-weight:600;text-decoration:none;box-shadow:var(--shadow)
     }
-    .btn-primary{background:#fff;color:var(--brand-700)}
-    .btn-primary:hover{transform:translateY(-1px)}
-    .btn-ghost{
-      background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.6)
+    .btn-primary{background:#fff;color:#0b46cc}
+    .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+    .badge{
+      display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+      color:#fff;border-radius:999px;padding:6px 10px;font-size:.85rem;margin-top:16px
     }
-    .btn-ghost:hover{background:rgba(255,255,255,.08)}
 
-    /* Secciones */
-    section{padding:34px 0}
-    h2{margin:4px 0 14px;font-size:26px}
-    .grid{display:grid;gap:18px}
-    @media(min-width:880px){.grid.cols-3{grid-template-columns:repeat(3,1fr)}}
-    .card{
-      background:var(--card);border-radius:var(--radius);padding:18px;border:1px solid #e5e7eb;
-      box-shadow:var(--shadow)
-    }
-    .card h3{margin:4px 0 6px}
+    /* Sections */
+    section{padding:56px 0}
+    h2{font-size:1.6rem;margin:0 0 14px}
     .muted{color:var(--muted)}
-    .list{margin:10px 0 0;padding-left:18px}
-    .list li{margin-bottom:6px}
+    .grid{display:grid;gap:18px}
+    @media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)} .grid-2{grid-template-columns:repeat(2,1fr)}}
 
-    /* Precios */
-    .plan{position:relative;border:1.5px solid #e5e7eb}
-    .plan .ribbon{
-      position:absolute;top:12px;right:12px;background:var(--gold);color:#1f2937;
-      font-weight:900;padding:6px 10px;border-radius:999px;font-size:12px
-    }
-    .price{font-size:28px;font-weight:900;margin:10px 0}
-    .cta-plan{margin-top:10px}
-    .plan .cta-plan a{display:inline-block}
-    .pill{display:inline-block;border-radius:999px;padding:6px 10px;background:#f1f5f9;font-weight:700}
-
-    /* FAQ */
-    details{
-      background:var(--card);border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;
+    .card{
+      background:var(--card);border-radius:var(--radius);padding:20px;border:1px solid #E6EAF2;
       box-shadow:var(--shadow)
     }
-    details summary{cursor:pointer;font-weight:700}
-    details[open]{outline:var(--ring)}
+    .card h3{margin:0 0 8px}
+    .list{margin:10px 0 0;padding:0 0 0 18px}
+    .kpis{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+    .kpi{background:#fff;border:1px solid #E6EAF2;border-radius:14px;padding:10px 14px}
+    .pill{display:inline-block;background:rgba(20,184,166,.1);color:#0b3e3a;border:1px solid rgba(20,184,166,.3);border-radius:999px;padding:6px 10px;font-weight:600}
+
+    /* Pricing */
+    .pricing .card{position:relative}
+    .pricing .price{font-size:1.8rem;font-weight:800;margin:6px 0 2px}
+    .pricing small{color:var(--muted)}
+    .popular{position:absolute;top:12px;right:12px;background:var(--brand-2);color:#053B37;padding:6px 10px;border-radius:999px;font-size:.78rem;border:1px solid rgba(0,0,0,.05);box-shadow:var(--shadow)}
+    .cta-col{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+
+    /* Refund & Compliance */
+    .note{background:#FFF7E6;border:1px solid #FFE3A3;padding:14px;border-radius:12px;color:#7A5200}
 
     /* Footer */
-    footer{
-      border-top:1px solid #e5e7eb;background:#fff;margin-top:24px
-    }
-    .foot-cols{
-      display:grid;gap:18px;padding:22px 0
-    }
-    @media(min-width:800px){.foot-cols{grid-template-columns:2fr 1fr 1fr}}
-    .legal{font-size:13px;color:#64748b}
-    .tiny{font-size:12px;color:#64748b}
-
-    /* Accesibilidad */
-    a:focus,button:focus{outline:var(--ring)}
-    .skip{position:absolute;left:-9999px}
-    .skip:focus{left:12px;top:12px;z-index:99;background:#fff;border-radius:10px;padding:8px 10px;box-shadow:var(--shadow)}
+    footer{background:#0F172A;color:#C7D2FE;padding:28px 0}
+    .fgrid{display:grid;gap:14px}
+    @media(min-width:900px){.fgrid{grid-template-columns:2fr 1fr 1fr}}
+    .footnote{color:#94A3B8;font-size:.9rem;margin-top:8px}
+    .legal a{color:#C7D2FE}
   </style>
+
+  <!-- JSON-LD Organization (rellena con tus datos reales) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Asesoría en Mecánica Automotriz",
+    "url":"https://TU_USUARIO.github.io/Asesoria-en-Mecanica-Automotriz",
+    "contactPoint":[{
+      "@type":"ContactPoint",
+      "contactType":"customer support",
+      "email":"CONTACT_EMAIL",
+      "telephone":"+52WHATSAPP_E164"
+    }]
+  }
+  </script>
 </head>
+
 <body>
-<a class="skip" href="#contenido">Saltar al contenido</a>
+  <div class="topbar">Página oficial de planes — Cobro seguro con Stripe • Portal de cliente disponible</div>
 
-<!-- Topbar -->
-<div class="container">
-  <header class="topbar">
-    <a class="brand" href="#top" aria-label="Inicio">
-      <img src="logo.svg" alt="Logotipo Asesor Automotriz" onerror="this.style.display='none'">
-      <div class="title">Asesor Automotriz <span style="opacity:.8">Advisor</span></div>
-    </a>
-    <nav aria-label="Principal">
-      <a href="#como-funciona">Cómo funciona</a>
-      <a href="#planes">Planes</a>
-      <a href="#reembolsos">Reembolsos</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"><span>AM</span></div>
+        <div>
+          <strong style="font-size:1.15rem">Asesoría en Mecánica Automotriz</strong><br/>
+          <span class="muted" style="color:#E7ECFF">Diagnóstico experto remoto para tu taller o flotilla</span>
+        </div>
+      </div>
+
+      <h1>Asesor técnico automotriz por suscripción</h1>
+      <p class="lead">Te guiamos paso a paso en <b>OBD2</b>, fallas eléctricas, sistema de enfriamiento, frenos y más. Respuestas claras, pruebas sugeridas y recomendaciones accionables.</p>
+
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#planes">Ver planes</a>
+        <a class="btn btn-ghost" href="#">Portal del cliente</a>
+      </div>
+      <div class="badge">HTTPS • Página pública verificada • Stripe Checkout</div>
+    </div>
   </header>
-</div>
 
-<!-- Hero -->
-<section class="container hero" id="top">
-  <div class="hero-inner">
-    <div class="badges">
-      <span class="badge">Empresa verificada · HTTPS</span>
-      <span class="badge">Pagos y portal seguro: Stripe</span>
-      <span class="badge">Respuesta por WhatsApp</span>
-    </div>
-    <h1>Diagnóstico automotriz profesional por suscripción</h1>
-    <p>Expertos que te guían paso a paso: OBD-II, eléctricos, enfriamiento, frenos y más. Obtén soluciones claras, pruebas sugeridas y acompañamiento por WhatsApp.</p>
-    <div class="cta">
-      <a class="btn btn-primary" href="https://wa.me/52XXXXXXXXXX" target="_blank" rel="noopener">Comenzar por WhatsApp</a>
-      <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
-    </div>
-  </div>
-</section>
-
-<main id="contenido" class="container">
-  <!-- Cómo funciona -->
   <section id="como-funciona">
-    <h2>Cómo funciona</h2>
-    <div class="grid cols-3">
+    <div class="container grid grid-3">
       <div class="card">
-        <h3>1) Cuéntanos tu caso</h3>
-        <p class="muted">Año, marca, modelo y motor; síntomas y códigos de falla (si tienes escáner).</p>
+        <h3>1) Escríbenos por WhatsApp</h3>
+        <p class="muted">Describe año, marca, modelo y motor; agrega síntomas y DTC si ya los tienes.</p>
       </div>
       <div class="card">
-        <h3>2) Te guiamos</h3>
-        <p class="muted">Checklist de pruebas, lecturas OBD-II, inspecciones y rutas de diagnóstico.</p>
+        <h3>2) Te guiamos en pruebas</h3>
+        <p class="muted">Secuencia de diagnóstico (paso a paso) para confirmar causa raíz antes de comprar refacciones.</p>
       </div>
       <div class="card">
-        <h3>3) Solución y seguimiento</h3>
-        <p class="muted">Recomendaciones claras, estimaciones y seguimiento por WhatsApp.</p>
+        <h3>3) Seguimiento del caso</h3>
+        <p class="muted">Plan mensual para consultas recurrentes y acceso al portal del cliente.</p>
       </div>
     </div>
   </section>
 
-  <!-- Diferenciales -->
-  <section>
-    <h2>¿Por qué elegirnos?</h2>
-    <div class="grid cols-3">
-      <div class="card">
-        <h3 class="pill">+40 años de experiencia</h3>
-        <p class="muted">Metodología probada de taller: causas → pruebas → solución.</p>
+  <section id="planes" class="pricing">
+    <div class="container">
+      <h2>Planes y precios</h2>
+      <p class="muted">El cobro y la gestión de suscripción se realizan con Stripe. Puedes cancelar cuando quieras desde el <em>Portal del Cliente</em>.</p>
+
+      <div class="grid grid-3" style="margin-top:14px">
+        <!-- Básico -->
+        <article class="card">
+          <h3>Básico</h3>
+          <div class="price">$399 <small>MXN / mes</small></div>
+          <ul class="list">
+            <li>Hasta <b>6 consultas</b> al mes</li>
+            <li>Atención por WhatsApp</li>
+            <li>Guías rápidas de diagnóstico</li>
+          </ul>
+          <div class="cta-col">
+            <a class="btn" style="background:var(--brand);color:#fff" href="#">Contratar</a>
+            <span class="pill">Ideal talleres pequeños</span>
+          </div>
+        </article>
+
+        <!-- Avanzado -->
+        <article class="card" style="border-color:#CFF7F2">
+          <span class="popular">Más elegido</span>
+          <h3>Avanzado</h3>
+          <div class="price">$499 <small>MXN / mes</small></div>
+          <ul class="list">
+            <li>Hasta <b>10 consultas</b> al mes</li>
+            <li>Interpretación de DTC y pruebas</li>
+            <li>Revisión de diagramas/estrategias</li>
+          </ul>
+          <div class="cta-col">
+            <a class="btn" style="background:var(--brand-2);color:#053B37" href="#">Contratar</a>
+            <span class="pill" style="background:rgba(11,95,255,.08);border-color:var(--ring)">Costo–beneficio</span>
+          </div>
+        </article>
+
+        <!-- PRO -->
+        <article class="card">
+          <h3>PRO</h3>
+          <div class="price">$999 <small>MXN / mes</small></div>
+          <ul class="list">
+            <li><b>Consultas ilimitadas</b></li>
+            <li>Prioridad y escalamiento a experto</li>
+            <li>Historial de casos en portal</li>
+          </ul>
+          <div class="cta-col">
+            <a class="btn" style="background:#111827;color:#fff" href="#">Contratar</a>
+            <span class="pill" style="background:rgba(255,176,0,.15);border-color:#FCD34D">Para talleres con alto flujo</span>
+          </div>
+        </article>
       </div>
-      <div class="card">
-        <h3 class="pill">Atención humana + IA</h3>
-        <p class="muted">Combinamos criterio experto con flujos asistidos para acelerar el diagnóstico.</p>
-      </div>
-      <div class="card">
-        <h3 class="pill">Portal seguro</h3>
-        <p class="muted">Pagos recurrentes, facturas y cancelaciones desde el Portal del Cliente (Stripe).</p>
+
+      <div class="kpis">
+        <div class="kpi">⚡ Respuesta ágil</div>
+        <div class="kpi">🔒 Pago seguro (Stripe)</div>
+        <div class="kpi">📄 Facturable</div>
       </div>
     </div>
   </section>
 
-  <!-- Planes -->
-  <section id="planes">
-    <h2>Planes y precios</h2>
-    <div class="grid cols-3">
-      <div class="card plan">
-        <div class="ribbon">Popular</div>
-        <h3>Básico</h3>
-        <p class="muted">Hasta 6 consultas/mes.</p>
-        <div class="price">$399 MXN/mes</div>
-        <div class="cta-plan">
-          <a class="btn btn-primary" href="#" aria-label="Suscribirse al plan Básico">Suscribirme</a>
-        </div>
-        <ul class="list muted">
-          <li>Atención por WhatsApp</li>
-          <li>Orientación OBD-II</li>
-          <li>Soporte en horario laboral</li>
-        </ul>
-      </div>
-
-      <div class="card plan" style="border-color:#c7d2fe;outline:var(--ring)">
-        <div class="ribbon">Mejor valor</div>
-        <h3>Avanzado</h3>
-        <p class="muted">Hasta 10 consultas/mes.</p>
-        <div class="price">$499 MXN/mes</div>
-        <div class="cta-plan">
-          <a class="btn btn-primary" href="#" aria-label="Suscribirse al plan Avanzado">Suscribirme</a>
-        </div>
-        <ul class="list muted">
-          <li>Casos eléctricos y enfriamiento</li>
-          <li>Interpretación de lecturas</li>
-          <li>Seguimiento de caso</li>
-        </ul>
-      </div>
-
-      <div class="card plan" style="border-color:#fcd34d">
-        <h3>PRO</h3>
-        <p class="muted">Consultas ilimitadas.</p>
-        <div class="price">$999 MXN/mes</div>
-        <div class="cta-plan">
-          <a class="btn btn-primary" href="#" aria-label="Suscribirse al plan PRO">Suscribirme</a>
-        </div>
-        <ul class="list muted">
-          <li>Atención prioritaria</li>
-          <li>Escalamiento a técnico experto</li>
-          <li>Historial y reportes</li>
-        </ul>
-      </div>
-    </div>
-    <p class="muted" style="margin-top:10px">El cobro y el Portal del Cliente se realizan con Stripe. Puedes cancelar cuando quieras desde tu portal.</p>
-  </section>
-
-  <!-- Reembolsos -->
   <section id="reembolsos">
-    <h2>Política de reembolsos</h2>
-    <div class="card">
-      <p>Reembolso total dentro de los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas en el periodo). Solicítalo escribiendo a <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a>. Puedes cancelar cuando quieras desde el <em>Portal del Cliente</em>.</p>
-      <details style="margin-top:10px">
-        <summary>Ver términos resumidos</summary>
-        <ul class="list">
-          <li>El reembolso aplica solo al primer periodo de suscripción no utilizado.</li>
-          <li>Si existe uso (consulta atendida), no aplica el reembolso.</li>
-          <li>Las renovaciones pueden cancelarse en cualquier momento antes de la fecha de corte.</li>
-        </ul>
-      </details>
+    <div class="container">
+      <h2>Política de reembolsos</h2>
+      <p class="note"><strong>Reembolso total dentro de 7 días</strong> si el servicio no fue utilizado (sin consultas consumidas en el periodo). Solicítalo en <a href="mailto:CONTACT_EMAIL">CONTACT_EMAIL</a>. Puedes cancelar en cualquier momento desde el Portal del Cliente.</p>
     </div>
   </section>
 
-  <!-- Contacto -->
   <section id="contacto">
-    <h2>Contacto</h2>
-    <div class="grid cols-3">
+    <div class="container grid grid-2">
       <div class="card">
-        <h3>Soporte</h3>
-        <p>Email: <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a><br>
-           WhatsApp: <a href="https://wa.me/52XXXXXXXXXX" target="_blank" rel="noopener">+52 XXX XXX XXXX</a></p>
-      </div>
-      <div class="card">
-        <h3>Datos comerciales</h3>
-        <p class="muted">Nombre comercial: <strong>Asesor Automotriz Advisor</strong><br>
+        <h3>Contacto</h3>
+        <p class="muted">¿Dudas sobre qué plan elegir? Estamos para ayudarte.</p>
+        <p>
+          Email: <a href="mailto:CONTACT_EMAIL">CONTACT_EMAIL</a><br/>
+          WhatsApp: <a href="https://wa.me/WHATSAPP_E164" rel="noopener">+52 …</a>
         </p>
       </div>
       <div class="card">
-        <h3>Portal del Cliente</h3>
-        <p class="muted">Administra tu suscripción, facturas y pagos de forma segura.</p>
-        <a class="btn" style="background:var(--brand-600);color:#fff" href="#" rel="noopener">Abrir Portal</a>
+        <h3>Transparencia</h3>
+        <p class="muted">Esta página es pública, con HTTPS y describe claramente el servicio, los precios, la política de reembolso y los medios de contacto.</p>
       </div>
     </div>
   </section>
-</main>
 
-<footer>
-  <div class="container foot-cols">
-    <div>
-      <strong>Asesor Automotriz Advisor</strong>
-      <p class="legal">Servicio de asesoría técnica automotriz por suscripción. Atención por WhatsApp, diagnóstico asistido y seguimiento mensual. © <span id="y"></span></p>
+  <footer>
+    <div class="container fgrid">
+      <div>
+        <strong>Asesoría en Mecánica Automotriz</strong>
+        <div class="footnote">© 2025 — Todos los derechos reservados.</div>
+        <div class="footnote">Servicio de asesoría técnica remota. No sustituye una inspección presencial.</div>
+      </div>
+      <div class="legal">
+        <a href="#" aria-label="Términos del servicio">Términos del servicio</a><br/>
+        <a href="#" aria-label="Aviso de privacidad">Aviso de privacidad</a>
+      </div>
+      <div class="legal">
+        <div class="footnote">Razón social: [REEMPLAZA AQUI]</div>
+        <div class="footnote">RFC: [REEMPLAZA AQUI]</div>
+        <div class="footnote">Domicilio: [REEMPLAZA AQUI]</div>
+      </div>
     </div>
-    <div>
-      <h4>Empresa</h4>
-      <p><a href="#como-funciona">Cómo funciona</a><br>
-         <a href="#planes">Planes</a><br>
-         <a href="#reembolsos">Reembolsos</a></p>
-    </div>
-    <div>
-      <h4>Legal</h4>
-      <p><a href="#" rel="nofollow">Aviso de privacidad</a><br>
-         <a href="#" rel="nofollow">Términos y condiciones</a></p>
-      <p class="tiny">Última actualización: <span id="updated"></span></p>
-    </div>
-  </div>
-</footer>
-
-<!-- JSON-LD (opcional para SEO institucional) -->
-<script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Organization",
-  "name":"Asesor Automotriz Advisor",
-  "url":"https://tu-usuario.github.io/asesor-automotriz-stas",
-  "logo":"https://tu-usuario.github.io/asesor-automotriz-stas/logo.svg",
-  "contactPoint":[{
-    "@type":"ContactPoint",
-    "contactType":"customer support",
-    "email":"soporte@tuCorreo.com",
-    "telephone":"+52XXXXXXXXXX",
-    "areaServed":"MX"
-  }]
-}
-</script>
-
-<script>
-  // Año y fecha de actualización
-  const d = new Date();
-  document.getElementById('y').textContent = d.getFullYear();
-  document.getElementById('updated').textContent = d.toLocaleDateString('es-MX', {year:'numeric',month:'long',day:'2-digit'});
-
-  // Enlaces de suscripción (pon aquí tus URLs de Stripe Checkout)
-  // document.querySelectorAll('[aria-label^="Suscribirse"]').forEach((a)=>a.href='https://checkout.stripe.com/...');
-</script>
+  </footer>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
