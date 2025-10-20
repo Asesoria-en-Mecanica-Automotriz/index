@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Asesoria en Mecanica Automotriz Advisor</title>
+  <title>Asesoria en Mecanica Automotriz — Advisor</title>
   <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Toda la atención se realiza exclusivamente por WhatsApp del cliente." />
   <meta name="theme-color" content="#0A3D91" />
-  <meta property="og:title" content="Asesoria en Mecanica Automotriz Advisor" />
+  <meta property="og:title" content="Asesoria en Mecanica Automotriz — Advisor" />
   <meta property="og:description" content="Diagnóstico experto 100% por WhatsApp. Planes mensuales y soporte paso a paso." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Asesoria en Mecanica Automotriz" />
@@ -73,7 +73,14 @@
     .stars{letter-spacing:1px}
 
     /* ==== Testimonials: grid (desktop) + carousel (mobile) ==== */
-    .t-trust-msg { text-align:center; margin:16px 0 6px }
+    .t-trust-msg{
+      text-align:center; margin:16px 0 6px;
+      font-weight:800; font-size:200%; color:var(--ink);
+      text-decoration-line: underline;
+      text-decoration-color:#E03131;
+      text-decoration-thickness:3px;
+      text-underline-offset:4px;
+    }
     .t-trust-title { text-align:center; margin-top:0 }
     .t-carousel{
       display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
@@ -187,7 +194,7 @@
             </div>
             <div class="price">$999 MXN/mes</div>
             <div class="feat"><span class="check">✓</span> Soporte ilimitado mes a mes</div>
-            <div class="feat"><span class="check">✓</span> Escalamiento a asesor experto </div>
+            <div class="feat"><span class="check">✓</span> Escalamiento a asesor experto humano</div>
             <div class="feat"><span class="check">✓</span> Historial de casos y mejores prácticas</div>
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
@@ -202,19 +209,16 @@
         </small>
 
         <!-- Confianza + Testimonios (6) -->
-       <p class="t-trust-msg" style="font-weight:800;font-size:200%;
-   color:#0F172A;text-decoration:underline;text-decoration-color:#E03131;
-   text-decoration-thickness:3px;text-underline-offset:4px;">
-  "Miles de tecnicos, mecanicos y autodidactas propietarios de vehiculos y de talleres estan satisfechos con nuestro gran sistema"
-</p>
-
+        <p class="t-trust-msg">
+          "Miles de tecnicos, mecanicos y autodidactas propietarios de vehiculos y de talleres estan satisfechos con nuestro gran sistema"
+        </p>
         <h3 class="section-title t-trust-title">TESTIMONIOS DE CONFIANZA</h3>
 
         <section class="t-carousel" id="t-carousel" aria-label="Testimonios">
           <article class="quote t-slide">
             <div class="stars">★★★★★</div>
             <strong>Taller “El Pistón”</strong><br/>
-            “Nos resolvieron un P0340 terc@ en menos de 20 minutos  con pruebas claras por WhatsApp.”
+            “Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”
           </article>
 
           <article class="quote t-slide">
@@ -225,13 +229,13 @@
 
           <article class="quote t-slide">
             <div class="stars">★★★★★</div>
-            <strong>Taller Jalico</strong><br/>
+            <strong>Rectificadora Nayar</strong><br/>
             “Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”
           </article>
 
           <article class="quote t-slide">
             <div class="stars">★★★★★</div>
-            <strong>AutoMecánica “SUPER”</strong><br/>
+            <strong>Mecánica “La Chispa”</strong><br/>
             “Nos ayudaron a aislar un P0335 con pasos simples. Cero adivinanzas, todo por WhatsApp.”
           </article>
 
@@ -243,7 +247,7 @@
 
           <article class="quote t-slide">
             <div class="stars">★★★★★</div>
-            <strong>Mecanica de flotillas Monterrey</strong><br/>
+            <strong>Flotas Jalisco</strong><br/>
             “Para la flotilla fue clave: respuestas rápidas y consistentes, 100% por WhatsApp.”
           </article>
         </section>
@@ -297,24 +301,53 @@
       });
     });
 
-    // ==== Auto-play del carrusel en móvil; grilla estática en escritorio ====
+    // ==== Carrusel: sin salto inicial; autoplay solo si es visible (>=50%) ====
     (function(){
       const track = document.getElementById('t-carousel');
       if(!track) return;
-      const slides = [...track.children];
-      let idx = -1, playing = true;
-      const isDesktop = () => matchMedia('(min-width: 860px)').matches;
+
+      const slides = Array.from(track.children);
+      let idx = 0;
+      let playing = false; // Comienza en pausa
+      const mqlDesktop = matchMedia('(min-width: 860px)');
+      const mqlReduce  = matchMedia('(prefers-reduced-motion: reduce)');
+      const isDesktop = () => mqlDesktop.matches;
+
+      // Asegurar que no se mueva al cargar
+      track.scrollLeft = 0;
 
       function next(){
-        if(isDesktop() || !playing) return;
+        if(isDesktop() || !playing || mqlReduce.matches) return;
         idx = (idx + 1) % slides.length;
         slides[idx].scrollIntoView({behavior:'smooth', inline:'center'});
       }
+
       const timer = setInterval(next, 3500);
+
+      // Pausar con interacción
       track.addEventListener('pointerenter', ()=>{ playing = false; });
-      track.addEventListener('pointerleave', ()=>{ playing = true;  });
-      window.addEventListener('visibilitychange', ()=>{ playing = !document.hidden; });
-      if(!isDesktop()) next();
+      track.addEventListener('pointerleave', ()=>{ if(isInView(track)) playing = true; });
+
+      function isInView(el){
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        return r.top < vh*0.5 && r.bottom > vh*0.5; // centro del viewport
+      }
+
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            // Solo reproducir si el 50% del carrusel es visible
+            playing = entry.isIntersecting && entry.intersectionRatio >= 0.5;
+          });
+        }, {threshold:[0.5]});
+        io.observe(track);
+      } else {
+        // Fallback sin IO
+        const onScroll = ()=>{ playing = isInView(track); };
+        window.addEventListener('scroll', onScroll, {passive:true});
+        onScroll();
+      }
     })();
   </script>
 </body>
