@@ -108,6 +108,22 @@
       .t-slide{ flex:unset; scroll-snap-align:unset }
     }
 
+    /* ===== Dark mode automático ===== */
+    @media (prefers-color-scheme: dark){
+      :root{
+        --ink:#E5EAF5; --bg:#0b1220; --card:#0f1a2b; --muted:#94a3b8;
+        --brand:#1B63FF; --brand-2:#5491FF; --accent:#FFD24D; --ok:#17D39A;
+        --shadow: 0 6px 24px rgba(0,0,0,.45);
+      }
+      body{ background: radial-gradient(1200px 600px at 70% -100px,#0f1a2b,transparent 70%), var(--bg); }
+      header.hero{ background: linear-gradient(120deg, rgba(16,70,180,.96), rgba(14,98,255,.85)); }
+      .card{ border-color:#1f2d47; }
+      .badge{ background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color:#fff; }
+      .btn-outline{ background:#0f1a2b; color:#E5EAF5; border-color:#2a3b5e }
+      .quote{ background:#121d31; border-color:#2a3b5e }
+      footer{ background: linear-gradient(180deg,#0b1e52,#0b1e52 60%,#0E62FF) }
+    }
+
     footer{margin:40px 0 12px;padding:18px;border-radius:var(--radius);
       background:linear-gradient(180deg,#0A3D91,#0A3D91 60%,#0E62FF);color:#fff}
     footer small a{color:#fff;opacity:.9}
@@ -180,7 +196,9 @@
             <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#">Iniciar por WhatsApp</a>
-              <a class="btn btn-outline btn-secure"
+              <a class="btn btn-outline btn-secure btn-pay-stripe"
+                 data-price-id="price_basic_placeholder"
+                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_BASIC"
                  href="YOUR_STRIPE_CHECKOUT_LINK_BASIC"
                  aria-label="Suscribirme al plan Básico por $399 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
                  Suscribirme al Básico
@@ -201,7 +219,9 @@
             <div class="feat"><span class="check">✓</span> Seguimiento priorizado</div>
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
-              <a class="btn btn-outline btn-secure"
+              <a class="btn btn-outline btn-secure btn-pay-stripe"
+                 data-price-id="price_adv_placeholder"
+                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED"
                  href="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED"
                  aria-label="Suscribirme al plan Avanzado por $499 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
                  Suscribirme al Avanzado
@@ -222,7 +242,9 @@
             <div class="feat"><span class="check">✓</span> Historial de casos y mejores prácticas</div>
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
-              <a class="btn btn-outline btn-secure"
+              <a class="btn btn-outline btn-secure btn-pay-stripe"
+                 data-price-id="price_pro_placeholder"
+                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_PRO"
                  href="YOUR_STRIPE_CHECKOUT_LINK_PRO"
                  aria-label="Activar plan PRO por $999 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
                  Activar PRO
@@ -234,7 +256,7 @@
 
         <small class="muted">
           La autogestión de cobros y cancelaciones se realiza en el
-          <a href="YOUR_STRIPE_PORTAL_LINK" id="portal">Portal del Cliente</a>. Las consultas siguen por WhatsApp del cliente.
+          <a href="#portal" id="portal-link">Portal del Cliente</a>. Las consultas siguen por WhatsApp del cliente.
         </small>
 
         <!-- Confianza + Testimonios (6) -->
@@ -282,12 +304,22 @@
         </section>
       </section>
 
+      <!-- Portal del Cliente (botón dedicado) -->
+      <section class="card" id="portal">
+        <h2 class="section-title">Portal del Cliente</h2>
+        <p class="muted">Gestiona tu suscripción, método de pago y facturas.</p>
+        <div class="price-cta">
+          <a class="btn btn-outline btn-secure" id="btn-portal" href="YOUR_STRIPE_PORTAL_LINK">Abrir Portal del Cliente</a>
+        </div>
+        <small class="pay-note">Se abrirá en una pestaña segura. Si ya eres cliente y no te abre, contáctanos por WhatsApp.</small>
+      </section>
+
       <section class="card">
         <h2 class="section-title" style="margin-bottom:6px">Política de reembolsos</h2>
         <p>
           Reembolso total durante los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas
           en el periodo). Solicítalo en <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a>.
-          La cancelación de cobros es desde el <a href="YOUR_STRIPE_PORTAL_LINK">Portal del Cliente</a>. La atención técnica se mantiene únicamente por WhatsApp.
+          La cancelación de cobros es desde el <a href="#portal">Portal del Cliente</a>. La atención técnica se mantiene únicamente por WhatsApp.
         </p>
       </section>
 
@@ -304,23 +336,40 @@
     </main>
 
     <footer>
-      <small>© 2025 Asesoria en Mecanica Automotriz — Advisor • <a href="YOUR_STRIPE_PORTAL_LINK">Portal del Cliente</a></small>
+      <small>© 2025 Asesoria en Mecanica Automotriz — Advisor • <a href="#portal">Portal del Cliente</a></small>
     </footer>
   </div>
 
+  <!-- Stripe.js (para redirectToCheckout si tu backend devuelve sessionId) -->
+  <script src="https://js.stripe.com/v3"></script>
+
   <script>
+    // ======= CONFIG FRONTEND =======
     const PHONE = "523112242880"; // MX +52 311 224 2880
+    const API_BASE = "https://api2-ixy4sbioma-uc.a.run.app.cloudfunctions.net/api"; // ← tu backend (Firebase Functions o Node)
+    const STRIPE_PK = ""; // opcional: 'pk_live_...' si quieres usar redirectToCheckout con sessionId
+
+    // ======= Helpers =======
     function waHref(text){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`; }
 
-    // Hero CTA
+    // Captura y persiste el código de referido (?ref=)
+    function captureRef() {
+      try {
+        const p = new URLSearchParams(location.search);
+        const r = p.get('ref');
+        if (r) localStorage.setItem('ref', r);
+        return localStorage.getItem('ref') || '';
+      } catch (_) { return ''; }
+    }
+    const REF_CODE = captureRef();
+
+    // ======= CTA WhatsApp =======
     const cta = document.getElementById('cta-whatsapp');
     if(cta){ cta.href = waHref("Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC]."); }
 
-    // Trial CTA (WhatsApp)
     const trial = document.getElementById('cta-trial');
     if(trial){ trial.href = waHref("Solicito PRUEBA 7 DIAS gratis. Mis datos: [Nombre/Taller] [Ciudad]."); }
 
-    // Planes → WhatsApp
     document.querySelectorAll('.wa-plan').forEach(btn=>{
       btn.addEventListener('click', (e)=>{
         e.preventDefault();
@@ -330,49 +379,121 @@
       });
     });
 
-    // ==== Carrusel: sin salto inicial; autoplay solo si es visible (>=50%) ====
+    // ======= Pago con Stripe (vía backend) =======
+    const stripe = (STRIPE_PK && /^pk_/.test(STRIPE_PK)) ? Stripe(STRIPE_PK) : null;
+
+    async function createCheckout(priceId, fallbackUrl){
+      // Si no hay backend configurado, usa fallback
+      if (!API_BASE || API_BASE.includes('<PROJECT>')) {
+        if (fallbackUrl && fallbackUrl.startsWith('http')) window.location.href = fallbackUrl;
+        else alert('Configura API_BASE o el enlace directo de Stripe.');
+        return;
+      }
+      try {
+        const res = await fetch(`${API_BASE}/create-checkout-session`, {
+          method: 'POST', headers: { 'Content-Type':'application/json' },
+          body: JSON.stringify({ priceId, ref: REF_CODE })
+        });
+        const data = await res.json();
+        if (data.url) { window.location.href = data.url; return; }
+        if (data.id && stripe) {
+          const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
+          if (error) alert(error.message);
+        } else if (fallbackUrl) {
+          window.location.href = fallbackUrl;
+        } else {
+          alert('No se pudo iniciar el pago.');
+        }
+      } catch (err) {
+        console.error(err);
+        if (fallbackUrl) window.location.href = fallbackUrl; else alert('Error de red al crear la sesión de pago');
+      }
+    }
+
+    document.querySelectorAll('.btn-pay-stripe').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const priceId = btn.dataset.priceId;
+        const fallback = btn.dataset.fallbackUrl || btn.getAttribute('href');
+        if (!priceId || priceId.includes('placeholder')) {
+          if (fallback) window.location.href = fallback; else alert('Configura los priceId o el enlace de Stripe.');
+          return;
+        }
+        createCheckout(priceId, fallback);
+      });
+    });
+
+    // ======= Portal del Cliente =======
+    async function hydrateFromSession(){
+      // Si llegamos de success_url con session_id, intenta guardar el customer en localStorage
+      const p = new URLSearchParams(location.search);
+      const sid = p.get('session_id');
+      if (!sid) return;
+      if (!API_BASE || API_BASE.includes('<PROJECT>')) return;
+      try{
+        const r = await fetch(`${API_BASE}/checkout-session?session_id=${encodeURIComponent(sid)}`);
+        const data = await r.json();
+        if (data && data.customer) localStorage.setItem('stripe_customer_id', data.customer);
+      }catch(e){ console.error('hydrateFromSession', e); }
+    }
+
+    async function openPortal(){
+      const fallback = document.getElementById('btn-portal')?.getAttribute('href');
+      // Si no hay backend, cae al fallback
+      if (!API_BASE || API_BASE.includes('<PROJECT>')) {
+        if (fallback && !fallback.includes('YOUR_STRIPE_PORTAL_LINK')) window.location.href = fallback; else alert('Escríbenos por WhatsApp para tu enlace de portal.');
+        return;
+      }
+      try{
+        const customerId = localStorage.getItem('stripe_customer_id') || '';
+        const r = await fetch(`${API_BASE}/create-portal-session`, {
+          method:'POST', headers:{'Content-Type':'application/json'},
+          body: JSON.stringify(customerId ? { customerId } : {})
+        });
+        const data = await r.json();
+        if (data.url) { window.location.href = data.url; return; }
+        // Si backend requiere customerId y no lo tiene
+        if (fallback && !fallback.includes('YOUR_STRIPE_PORTAL_LINK')) window.location.href = fallback;
+        else alert('No encontramos tu sesión. Si ya eres cliente, escríbenos por WhatsApp y te enviamos tu enlace.');
+      }catch(e){
+        console.error('openPortal', e);
+        if (fallback && !fallback.includes('YOUR_STRIPE_PORTAL_LINK')) window.location.href = fallback;
+        else alert('No pudimos abrir tu portal ahora.');
+      }
+    }
+
+    document.getElementById('btn-portal')?.addEventListener('click', (e)=>{ e.preventDefault(); openPortal(); });
+    hydrateFromSession();
+
+    // ======= Carrusel: sin salto; autoplay solo si es visible (>=50%) =======
     (function(){
       const track = document.getElementById('t-carousel');
       if(!track) return;
-
       const slides = Array.from(track.children);
-      let idx = 0;
-      let playing = false; // Comienza en pausa
+      let idx = 0; let playing = false;
       const mqlDesktop = matchMedia('(min-width: 860px)');
       const mqlReduce  = matchMedia('(prefers-reduced-motion: reduce)');
       const isDesktop = () => mqlDesktop.matches;
-
-      // Asegurar que no se mueva al cargar
       track.scrollLeft = 0;
-
       function next(){
         if(isDesktop() || !playing || mqlReduce.matches) return;
         idx = (idx + 1) % slides.length;
         slides[idx].scrollIntoView({behavior:'smooth', inline:'center'});
       }
-
       setInterval(next, 3500);
-
-      // Pausar con interacción
       track.addEventListener('pointerenter', ()=>{ playing = false; });
       track.addEventListener('pointerleave', ()=>{ if(isInView(track)) playing = true; });
-
       function isInView(el){
         const r = el.getBoundingClientRect();
         const vh = window.innerHeight || document.documentElement.clientHeight;
-        return r.top < vh*0.5 && r.bottom > vh*0.5; // centro del viewport
+        return r.top < vh*0.5 && r.bottom > vh*0.5;
       }
-
       if('IntersectionObserver' in window){
         const io = new IntersectionObserver((entries)=>{
-          entries.forEach(entry=>{
-            // Solo reproducir si el 50% del carrusel es visible
-            playing = entry.isIntersecting && entry.intersectionRatio >= 0.5;
-          });
+          entries.forEach(entry=>{ playing = entry.isIntersecting && entry.intersectionRatio >= 0.5; });
         }, {threshold:[0.5]});
         io.observe(track);
       } else {
-        // Fallback sin IO
         const onScroll = ()=>{ playing = isInView(track); };
         window.addEventListener('scroll', onScroll, {passive:true});
         onScroll();
