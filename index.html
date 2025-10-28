@@ -195,15 +195,14 @@
             <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
             <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
             <div class="price-cta">
-              <a class="btn btn-primary wa-plan" data-plan="BASICO" href="#">Iniciar por WhatsApp</a>
-             <a class="btn btn-outline btn-secure btn-pay-stripe"
-   data-price-id="price_1SEO1MHhTrAfLf1eXUPOP5VW"
-   data-fallback-url="https://buy.stripe.com/test_28E5kD8hYh2i3uPasrcMM00"
-   href="https://buy.stripe.com/test_28E5kD8hYh2i3uPasrcMM00"               
-   aria-label="Suscribirme al plan Básico por $399 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
-   Suscribirme al Básico
-</a>
-
+              <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#">Iniciar por WhatsApp</a>
+              <a class="btn btn-outline btn-secure btn-pay-stripe"
+                 data-price-id="price_1SEO1MHhTrAfLf1eXUPOP5VW"
+                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_BASIC"
+                 href="YOUR_STRIPE_CHECKOUT_LINK_BASIC"
+                 aria-label="Suscribirme al plan Básico por $399 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
+                 Suscribirme al Básico
+              </a>
             </div>
             <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
           </article>
@@ -221,9 +220,9 @@
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
               <a class="btn btn-outline btn-secure btn-pay-stripe"
-                 data-price-id="price_1SEO1vHhTrAfLf1ezReW7mFu"
-                 data-fallback-url="https://buy.stripe.com/test_bJe3cv41I13kd5pcAzcMM01"
-                 href="https://buy.stripe.com/test_bJe3cv41I13kd5pcAzcMM01"
+                 data-price-id="price_1SEO1vHhTrAfLf1ezeReW7mFu"
+                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED"
+                 href="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED"
                  aria-label="Suscribirme al plan Avanzado por $499 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
                  Suscribirme al Avanzado
               </a>
@@ -245,8 +244,8 @@
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
               <a class="btn btn-outline btn-secure btn-pay-stripe"
                  data-price-id="price_1SENdDHhTrAfLf1eTnywP9m6"
-                 data-fallback-url="https://buy.stripe.com/test_00w6oHdCidQ6e9tasrcMM02"
-                 href="https://buy.stripe.com/test_00w6oHdCidQ6e9tasrcMM02"
+                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_PRO"
+                 href="YOUR_STRIPE_CHECKOUT_LINK_PRO"
                  aria-label="Activar plan PRO por $999 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
                  Activar PRO
               </a>
@@ -347,7 +346,7 @@
   <script>
     // ======= CONFIG FRONTEND =======
     const PHONE = "523112242880"; // MX +52 311 224 2880
-    const API_BASE = "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2";
+    const API_BASE = "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2"; // ← tu backend (Firebase Functions o Node)
     const STRIPE_PK = ""; // opcional: 'pk_live_...' si quieres usar redirectToCheckout con sessionId
 
     // ======= Helpers =======
