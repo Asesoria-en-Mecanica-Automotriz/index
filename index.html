@@ -1,377 +1,412 @@
 <!doctype html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Asesoria en Mecanica Automotriz — Advisor</title>
-  <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Toda la atención se realiza exclusivamente por WhatsApp del cliente." />
+  <title>Asesoría en Mecánica Automotriz — Advisor</title>
+  <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Atención 100% por WhatsApp, paso a paso con guías claras y soporte experto." />
   <meta name="theme-color" content="#0A3D91" />
-  <meta property="og:title" content="Asesoria en Mecanica Automotriz — Advisor" />
-  <meta property="og:description" content="Diagnóstico experto 100% por WhatsApp. Planes mensuales y soporte paso a paso." />
+  <meta property="og:title" content="Asesoría en Mecánica Automotriz — Advisor" />
+  <meta property="og:description" content="Diagnóstico experto 100% por WhatsApp. Planes mensuales, soporte guiado y pagos seguros con Stripe." />
   <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Asesoria en Mecanica Automotriz" />
+  <meta property="og:site_name" content="Asesoría en Mecánica Automotriz" />
+  <link rel="canonical" href="https://asesoria-en-mecanica-automotriz.github.io/Asesoria-en-Mecanica-Automotriz/" />
 
-  <!-- Favicon “AM” embebido (sin archivos extra) -->
+  <!-- Favicon inline (AM) -->
   <link rel="icon" type="image/svg+xml"
-    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23FFC400'/%3E%3Cstop offset='1' stop-color='%23FFD966'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx='12' width='64' height='64' fill='%230A3D91'/%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='url(%23g)'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' font-family='Segoe UI, Roboto, Arial' fill='%231F2937' font-weight='900'%3EAM%3C/text%3E%3C/svg%3E" />
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23FFC400'/%3E%3Cstop offset='1' stop-color='%23FFD966'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx='14' width='64' height='64' fill='%230A3D91'/%3E%3Crect x='7' y='7' width='50' height='50' rx='11' fill='url(%23g)'/%3E%3Ctext x='50%25' y='57%25' text-anchor='middle' font-size='28' font-family='Segoe UI, Roboto, Arial' fill='%231F2937' font-weight='900'%3EAM%3C/text%3E%3C/svg%3E" />
 
   <style>
     :root{
-      --brand:#0A3D91; --brand-2:#0E62FF; --accent:#FFC400; --ink:#0F172A; --muted:#64748B;
-      --bg:#F6F8FC; --card:#fff; --ok:#12B886; --shadow:0 10px 30px rgba(2,23,80,.08);
-      --radius:18px; --radius-sm:12px; --maxw:1100px;
+      --brand:#0A3D91; --brand-2:#0E62FF; --accent:#FFC400; --accent-2:#FFDE73;
+      --ink:#0F172A; --muted:#64748B; --ok:#12B886; --danger:#D64545;
+      --bg:#F6F8FC; --card:#FFFFFF; --stroke:#E6ECF5;
+      --shadow:0 10px 30px rgba(2,23,80,.08);
+      --radius:20px; --radius-sm:14px; --maxw:1160px;
     }
     *{box-sizing:border-box}
-    html,body{height:100%}
-    /* Scroll suave para anclas (#planes) */
     html{scroll-behavior:smooth}
-
     body{
-      margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
-      background: radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);
-      color:var(--ink); line-height:1.6;
+      margin:0; font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+      color:var(--ink); line-height:1.6; background:var(--bg);
+      background-image: radial-gradient(1100px 520px at 80% -100px,#E8F0FF 0%,transparent 70%);
     }
-    .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
+    a{color:var(--brand-2); text-decoration:none}
+    a:hover{text-decoration:underline}
 
+    .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px}
+
+    /* ===== NAVBAR ===== */
+    .nav{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(6px);
+      background:linear-gradient(180deg,rgba(246,248,252,.9),rgba(246,248,252,.8));
+      border-bottom:1px solid rgba(0,0,0,.05);
+    }
+    .nav-inner{display:flex; align-items:center; justify-content:space-between; height:64px}
+    .brand{display:flex; align-items:center; gap:10px}
+    .logo{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+      background:linear-gradient(145deg,var(--accent),var(--accent-2)); color:#1F2937; font-weight:900; box-shadow:inset 0 -4px 10px rgba(0,0,0,.08)}
+    .brand-title{font-weight:900; letter-spacing:.2px; color:#0a2a63}
+    .nav-links{display:flex; gap:18px; align-items:center}
+    .nav a.btn{font-weight:800; padding:10px 14px; border-radius:12px}
+    .btn-wa{background:#25D366; color:#fff; box-shadow:var(--shadow)}
+    .btn-wa:hover{filter:brightness(1.03)}
+    .btn-ghost{border:1px solid #dfe7ff; background:#fff; color:#0B2B6C}
+    .btn-ghost:hover{background:#f7faff}
+
+    /* ===== HERO ===== */
+    .hero{
+      margin-top:18px;
+      border-radius:calc(var(--radius) + 8px);
+      background:linear-gradient(120deg,rgba(10,61,145,.98),rgba(14,98,255,.92));
+      color:#fff; overflow:hidden; box-shadow:var(--shadow);
+    }
+    .hero-in{padding:48px 22px}
     .ribbon{
-      margin:0 0 12px; padding:10px 14px; border-radius:12px; font-weight:700; font-size:14px; color:#0B2B6C;
-      background:linear-gradient(180deg,#FFF7D6,#FFE58F); border:1px solid #FFE39C; display:inline-flex; gap:8px; align-items:center;
+      display:inline-flex; gap:8px; align-items:center;
+      padding:8px 12px; border-radius:999px; font-weight:800; font-size:14px;
+      background:linear-gradient(180deg,#FFF7D6,#FFE58F); color:#0B2B6C; border:1px solid #FFE39C;
     }
+    .hero h1{font-size:clamp(28px,4.5vw,44px); line-height:1.08; margin:12px 0 8px}
+    .lead{font-size:clamp(15px,2.3vw,18px); opacity:.98; max-width:860px}
+    .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:18px}
+    .btn{appearance:none; border:0; cursor:pointer; font-weight:900; padding:12px 18px; border-radius:14px;
+      display:inline-flex; align-items:center; gap:10px; text-decoration:none; transition:.18s transform,.18s box-shadow,.18s background}
+    .btn-primary{background:#fff; color:#0B2B6C; box-shadow:var(--shadow)}
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:0 12px 32px rgba(2,23,80,.12)}
+    .btn-trans{background:rgba(255,255,255,.12); color:#fff; border:1px solid rgba(255,255,255,.25)}
+    .btn-trans:hover{background:rgba(255,255,255,.2)}
 
-    header.hero{
-      position:relative;border-radius:calc(var(--radius) + 6px);
-      background:linear-gradient(120deg,rgba(10,61,145,.95),rgba(14,98,255,.92));
-      color:#fff;padding:46px 28px;overflow:hidden; box-shadow:var(--shadow);
-    }
-    .brand{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-    .logo{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;
-      background:linear-gradient(145deg,var(--accent),#FFD966);color:#1F2937;font-weight:800;box-shadow:inset 0 -4px 10px rgba(0,0,0,.1)}
-    h1{font-size:clamp(28px,4.5vw,44px);line-height:1.1;margin:6px 0 10px}
-    .lead{font-size:clamp(15px,2.2vw,18px);opacity:.98;max-width:860px}
-    .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}
-    .btn{appearance:none;border:0;cursor:pointer;font-weight:800;padding:12px 18px;border-radius:14px;
-      display:inline-flex;align-items:center;gap:10px;text-decoration:none;transition:.18s transform,.18s box-shadow,.18s background}
-    .btn-primary{background:#fff;color:#0B2B6C;box-shadow:var(--shadow)}
-    .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(2,23,80,.12)}
-    .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
-    .btn-ghost:hover{background:rgba(255,255,255,.20)}
-    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
-      background:rgba(255,255,255,.14);color:#fff;font-size:13px;border:1px solid rgba(255,255,255,.25)}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .badge{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px;
+      background:rgba(255,255,255,.14); color:#fff; font-size:13px; border:1px solid rgba(255,255,255,.25)}
 
-    main{margin-top:28px}
+    /* ===== SECTIONS ===== */
+    main{margin:28px 0}
     section{margin:32px 0}
-    .card{background:var(--card);border:1px solid #E6ECF5;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
-    .section-title{font-size:clamp(22px,3vw,28px);margin:0 0 14px}
+    .card{background:var(--card); border:1px solid var(--stroke); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+    .section-title{font-size:clamp(22px,3vw,28px); margin:0 0 14px}
     .muted{color:var(--muted)}
-    .grid{display:grid;gap:16px}
-    @media(min-width:860px){.grid-3{grid-template-columns:repeat(3,1fr)}.grid-2{grid-template-columns:repeat(2,1fr)}}
+    .grid{display:grid; gap:16px}
+    @media(min-width:880px){ .grid-3{grid-template-columns:repeat(3,1fr)} .grid-2{grid-template-columns:repeat(2,1fr)} }
 
-    .price-card{position:relative;padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,#fff,#FBFDFF);
-      border:1px solid #E8EEF8;transition:.18s transform,.18s box-shadow}
-    .price-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(2,23,80,.10)}
-    .price-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-    .pill{font-size:12px;padding:6px 10px;border-radius:999px;background:#EEF4FF;color:#0A3D91;border:1px solid #DBE6FF}
-    .price{font-size:clamp(24px,3.6vw,30px);font-weight:800;color:var(--ink)}
-    .feat{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:15px}
-    .check{width:18px;height:18px;border-radius:6px;background:var(--ok);display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
-    .price-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
+    /* ===== PRICING ===== */
+    .price-card{position:relative; padding:22px; border-radius:var(--radius);
+      background:linear-gradient(180deg,#fff,#FBFDFF); border:1px solid #E8EEF8; transition:.18s transform,.18s box-shadow}
+    .price-card:hover{transform:translateY(-2px); box-shadow:0 12px 40px rgba(2,23,80,.10)}
+    .price-h{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px}
+    .pill{font-size:12px; padding:6px 10px; border-radius:999px; background:#EEF4FF; color:#0A3D91; border:1px solid #DBE6FF}
+    .price{font-size:clamp(24px,3.6vw,30px); font-weight:900; color:var(--ink)}
+    .feat{display:flex; align-items:flex-start; gap:10px; margin:8px 0; font-size:15px}
+    .check{width:18px; height:18px; border-radius:6px; background:var(--ok); display:inline-grid; place-items:center; color:#fff; font-weight:900; font-size:13px}
+    .price-cta{display:flex; gap:10px; margin-top:12px; flex-wrap:wrap}
+    .btn-outline{background:#fff; color:var(--brand); border:1px solid #D7E3FF}
+    .btn-secure::before{content:"🔒"; margin-right:6px}
+    .pay-note{display:block; font-size:12px; color:var(--muted); margin-top:6px}
+    .tag-top{
+      position:absolute; top:12px; right:-10px; background:linear-gradient(180deg,#FFD24D,#FFC400); color:#4a3500;
+      font-weight:900; font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid #E2B600; box-shadow:var(--shadow)
+    }
 
-    /* Botón seguro y nota de pago */
-    .btn-secure::before { content:"🔒"; margin-right:6px }
-    .pay-note{ display:block; font-size:12px; color:var(--muted); margin-top:6px }
-
-    /* Tarjetas testimonio */
-    .quote{background:#FFFDF4;border:1px solid #FFE39C;border-left:4px solid var(--accent);border-radius:16px;padding:14px}
+    /* ===== QUOTES ===== */
+    .quote{background:#FFFDF4; border:1px solid #FFE39C; border-left:4px solid var(--accent); border-radius:16px; padding:14px}
     .stars{letter-spacing:1px}
 
-    /* ==== Testimonials: grid (desktop) + carousel (mobile) ==== */
-    .t-trust-msg{
-      text-align:center; margin:16px 0 6px;
-      font-weight:800; font-size:200%; color:var(--ink);
-      text-decoration-line: underline;
-      text-decoration-color:#E03131;
-      text-decoration-thickness:3px;
-      text-underline-offset:4px;
-    }
-    .t-trust-title { text-align:center; margin-top:0 }
-    .t-carousel{
-      display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling:touch; padding-bottom:6px; scroll-behavior:smooth;
-    }
-    .t-slide{ flex:0 0 85%; scroll-snap-align:center }
-    .t-carousel::-webkit-scrollbar{ height:8px }
-    .t-carousel::-webkit-scrollbar-thumb{ background:#CBD7FF; border-radius:8px }
-    @media (min-width:860px){
-      .t-carousel{ display:grid; grid-template-columns:repeat(3,1fr); overflow:visible }
-      .t-slide{ flex:unset; scroll-snap-align:unset }
-    }
+    /* ===== FAQ ===== */
+    details{border:1px solid var(--stroke); border-radius:14px; padding:12px 14px; background:#fff}
+    summary{cursor:pointer; font-weight:800}
+    details[open]{background:#FCFEFF; border-color:#d7e6ff}
 
-    /* ===== Dark mode automático ===== */
+    /* ===== TOAST ===== */
+    .toast{
+      position:fixed; inset:auto 12px 12px auto; padding:12px 14px; border-radius:12px; font-weight:700;
+      background:#0EA5E9; color:#fff; box-shadow:var(--shadow); display:none
+    }
+    .toast.ok{background:#10B981} .toast.err{background:#D64545}
+
+    /* ===== FOOTER ===== */
+    footer{margin:40px 0 12px; padding:18px; border-radius:var(--radius);
+      background:linear-gradient(180deg,#0A3D91,#0A3D91 60%,#0E62FF); color:#fff}
+    footer small a{color:#fff; opacity:.9}
+
+    /* ===== DARK MODE ===== */
     @media (prefers-color-scheme: dark){
       :root{
-        --ink:#E5EAF5; --bg:#0b1220; --card:#0f1a2b; --muted:#94a3b8;
-        --brand:#1B63FF; --brand-2:#5491FF; --accent:#FFD24D; --ok:#17D39A;
-        --shadow: 0 6px 24px rgba(0,0,0,.45);
+        --ink:#E5EAF5; --bg:#0b1220; --card:#0f1a2b; --muted:#94a3b8; --stroke:#1f2d47;
+        --brand:#1B63FF; --brand-2:#5491FF; --accent:#FFD24D; --accent-2:#FFE691; --ok:#17D39A;
+        --shadow:0 6px 24px rgba(0,0,0,.45);
       }
-      body{ background: radial-gradient(1200px 600px at 70% -100px,#0f1a2b,transparent 70%), var(--bg); }
-      header.hero{ background: linear-gradient(120deg, rgba(16,70,180,.96), rgba(14,98,255,.85)); }
-      .card{ border-color:#1f2d47; }
-      .badge{ background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color:#fff; }
+      body{ background-image: radial-gradient(1100px 520px at 80% -100px,#0f1a2b 0%,transparent 70%) }
+      .hero{ background:linear-gradient(120deg, rgba(16,70,180,.96), rgba(14,98,255,.88)) }
       .btn-outline{ background:#0f1a2b; color:#E5EAF5; border-color:#2a3b5e }
       .quote{ background:#121d31; border-color:#2a3b5e }
-      footer{ background: linear-gradient(180deg,#0b1e52,#0b1e52 60%,#0E62FF) }
+      details{ background:#0f1a2b }
+      details[open]{ background:#0f1e34 }
+      .btn-ghost{ background:#0f1a2b; color:#E5EAF5; border-color:#2a3b5e }
     }
-
-    footer{margin:40px 0 12px;padding:18px;border-radius:var(--radius);
-      background:linear-gradient(180deg,#0A3D91,#0A3D91 60%,#0E62FF);color:#fff}
-    footer small a{color:#fff;opacity:.9}
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="ribbon">📣 Atención 100% por WhatsApp del cliente • Sin apps ni chat web</div>
-
-    <header class="hero" aria-label="Encabezado principal">
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="wrap nav-inner">
       <div class="brand">
         <div class="logo" aria-hidden="true">AM</div>
-        <div>
-          <div style="font-weight:800;letter-spacing:.2px">Asesoria en Mecanica Automotriz</div>
-          <small style="opacity:.9">“Advisor” — Diagnóstico experto, paso a paso</small>
-        </div>
+        <div class="brand-title">Asesoría en Mecánica Automotriz</div>
       </div>
+      <div class="nav-links">
+        <a class="btn-ghost" href="#como-funciona">Cómo funciona</a>
+        <a class="btn-ghost" href="#planes">Planes</a>
+        <a class="btn-ghost" href="#faq">FAQ</a>
+        <a class="btn btn-wa" id="nav-wa" href="#" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="wrap hero-in">
+      <span class="ribbon">✅ Pagos seguros con Stripe · 🔒 Datos protegidos</span>
       <h1>Asesoría mecánica profesional por suscripción</h1>
       <p class="lead">
-        Todo se atiende exclusivamente por <strong>WhatsApp</strong> desde el número del cliente.
-        Te guiamos con pruebas OBD2, eléctricos, enfriamiento, frenos y más.
+        Atención 100% por <strong>WhatsApp</strong> desde el número del cliente.
+        Diagnóstico guiado para OBD2, eléctricos, enfriamiento, frenos y más — con pasos claros y verificables.
       </p>
       <div class="cta">
         <a class="btn btn-primary" id="cta-whatsapp" href="#" rel="noopener">💬 Comenzar por WhatsApp</a>
-        <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
+        <a class="btn btn-trans" href="#planes">Ver planes y precios</a>
       </div>
       <div class="badges" aria-label="Confianza">
-        <span class="badge">✅ Cobro seguro con Stripe</span>
-        <span class="badge">🔒 Datos protegidos</span>
-        <span class="badge">🛠️ Especialistas 24/7</span>
+        <span class="badge">🛠️ Soporte experto</span>
+        <span class="badge">⚡ Respuesta ágil</span>
+        <span class="badge">📜 Historial de casos</span>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <main>
-      <section class="card">
-        <h2 class="section-title">Cómo funciona</h2>
-        <ol>
-          <li>Escríbenos por WhatsApp desde tu número y describe el problema (año, marca, modelo, motor, códigos DTC).</li>
-          <li>Un asesor experto te guía paso a paso con pruebas claras y decisiones concretas.</li>
-          <li>Elige un plan mensual. El pago es por Stripe; la atención se mantiene siempre en WhatsApp.</li>
-        </ol>
-        <small class="muted">No usamos chat web ni email para consultas técnicas — solo WhatsApp del cliente.</small>
-      </section>
+  <main class="wrap">
+    <section class="card" id="como-funciona">
+      <h2 class="section-title">Cómo funciona</h2>
+      <ol>
+        <li>Escríbenos por WhatsApp y describe el problema (año, marca, modelo, motor, códigos DTC si tienes).</li>
+        <li>Un asesor experto te guía paso a paso con pruebas concretas antes de comprar piezas.</li>
+        <li>Elige un plan mensual. El cobro es por <strong>Stripe</strong>. Las consultas se llevan siempre en WhatsApp.</li>
+      </ol>
+      <small class="muted">No usamos chat web ni email para la asesoría técnica — solo WhatsApp del cliente.</small>
+    </section>
 
-      <!-- Bloque: 7 días gratis (WhatsApp) -->
-      <section class="card">
-        <div class="trial" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
-          <div>
-            <h2 class="section-title" style="margin-bottom:6px">Probar 7 días gratis</h2>
-            <p class="muted" style="margin:4px 0">Actívalo por WhatsApp. Sujeto a disponibilidad. Atención dentro del horario operativo.</p>
+    <!-- Bloque de prueba gratis -->
+    <section class="card" aria-label="Prueba gratis">
+      <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+        <div>
+          <h2 class="section-title" style="margin-bottom:6px">Prueba de 7 días gratis</h2>
+          <p class="muted" style="margin:4px 0">Actívala por WhatsApp. Sujeto a disponibilidad.</p>
+        </div>
+        <a class="btn btn-primary" id="cta-trial" href="#" rel="noopener">✨ Probar 7 días por WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- Planes -->
+    <section id="planes">
+      <h2 class="section-title">Planes y precios</h2>
+      <p class="muted" style="margin-top:-6px">Contratación y soporte se coordinan por WhatsApp. Cancelas cuando quieras.</p>
+
+      <div class="grid grid-3" style="margin-top:12px">
+        <!-- Básico -->
+        <article class="price-card">
+          <div class="price-h">
+            <h3 style="margin:0">Básico</h3>
+            <span class="pill">Hasta 6 consultas/mes</span>
           </div>
-          <a class="btn btn-primary" id="cta-trial" href="#" rel="noopener">✨ Probar 7 días por WhatsApp</a>
-        </div>
-      </section>
+          <div class="price">$399 MXN/mes</div>
+          <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp</div>
+          <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
+          <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
+          <div class="price-cta">
+            <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#">Iniciar por WhatsApp</a>
+            <a class="btn btn-outline btn-secure btn-pay"
+               data-tier="basic">Suscribirme al Básico</a>
+          </div>
+          <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
+        </article>
 
-      <!-- Planes -->
-      <section id="planes">
-        <h2 class="section-title">Planes y precios</h2>
-        <p class="muted" style="margin-top:-6px">Elige un plan. Contratación y soporte se coordinan por WhatsApp.</p>
-        <div class="grid grid-3" style="margin-top:12px">
-          <!-- Básico -->
-          <article class="price-card">
-            <div class="price-h">
-              <h3 style="margin:0">Básico</h3>
-              <span class="pill">Hasta 6 consultas/mes</span>
-            </div>
-            <div class="price">$399 MXN/mes</div>
-            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp</div>
-            <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
-            <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
-            <div class="price-cta">
-              <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#">Iniciar por WhatsApp</a>
-              <a class="btn btn-outline btn-secure btn-pay-stripe"
-                 data-price-id="price_1SEO1MHhTrAfLf1eXUPOP5VW"
-                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_BASIC"
-                 href="YOUR_STRIPE_CHECKOUT_LINK_BASIC"
-                 aria-label="Suscribirme al plan Básico por $399 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
-                 Suscribirme al Básico
-              </a>
-            </div>
-            <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
-          </article>
+        <!-- Avanzado (destacado) -->
+        <article class="price-card" style="border:2px solid #FFD04D">
+          <div class="tag-top">Recomendado</div>
+          <div class="price-h">
+            <h3 style="margin:0">Avanzado</h3>
+            <span class="pill" style="background:#FFF4D1;color:#8A5800;border-color:#FFE39C">Hasta 10 consultas/mes</span>
+          </div>
+          <div class="price">$499 MXN/mes</div>
+          <div class="feat"><span class="check">✓</span> Casos eléctricos/inyección más complejos</div>
+          <div class="feat"><span class="check">✓</span> Interpretación de DTC con pruebas guiadas</div>
+          <div class="feat"><span class="check">✓</span> Seguimiento priorizado</div>
+          <div class="price-cta">
+            <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
+            <a class="btn btn-outline btn-secure btn-pay"
+               data-tier="adv">Suscribirme al Avanzado</a>
+          </div>
+          <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
+        </article>
 
-          <!-- Avanzado -->
-          <article class="price-card" style="border:2px solid #FFD04D">
-            <div class="price-h">
-              <h3 style="margin:0">Avanzado</h3>
-              <span class="pill" style="background:#FFF4D1;color:#8A5800;border-color:#FFE39C">Hasta 10 consultas/mes</span>
-            </div>
-            <div class="price">$499 MXN/mes</div>
-            <div class="feat"><span class="check">✓</span> Casos eléctricos e inyección más complejos</div>
-            <div class="feat"><span class="check">✓</span> Interpretación de DTC con pruebas guiadas</div>
-            <div class="feat"><span class="check">✓</span> Seguimiento priorizado</div>
-            <div class="price-cta">
-              <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
-              <a class="btn btn-outline btn-secure btn-pay-stripe"
-                 data-price-id="price_1SEO1vHhTrAfLf1ezeReW7mFu"
-                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED"
-                 href="YOUR_STRIPE_CHECKOUT_LINK_ADVANCED"
-                 aria-label="Suscribirme al plan Avanzado por $499 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
-                 Suscribirme al Avanzado
-              </a>
-            </div>
-            <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
-          </article>
+        <!-- PRO -->
+        <article class="price-card">
+          <div class="price-h">
+            <h3 style="margin:0">PRO</h3>
+            <span class="pill">Consultas ilimitadas</span>
+          </div>
+          <div class="price">$999 MXN/mes</div>
+          <div class="feat"><span class="check">✓</span> Soporte ilimitado mes a mes</div>
+          <div class="feat"><span class="check">✓</span> Escalamiento a asesor experto humano</div>
+          <div class="feat"><span class="check">✓</span> Historial de casos y mejores prácticas</div>
+          <div class="price-cta">
+            <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
+            <a class="btn btn-outline btn-secure btn-pay"
+               data-tier="pro">Activar PRO</a>
+          </div>
+          <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
+        </article>
+      </div>
 
-          <!-- PRO -->
-          <article class="price-card">
-            <div class="price-h">
-              <h3 style="margin:0">PRO</h3>
-              <span class="pill">Consultas ilimitadas</span>
-            </div>
-            <div class="price">$999 MXN/mes</div>
-            <div class="feat"><span class="check">✓</span> Soporte ilimitado mes a mes</div>
-            <div class="feat"><span class="check">✓</span> Escalamiento a asesor experto humano</div>
-            <div class="feat"><span class="check">✓</span> Historial de casos y mejores prácticas</div>
-            <div class="price-cta">
-              <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
-              <a class="btn btn-outline btn-secure btn-pay-stripe"
-                 data-price-id="price_1SENdDHhTrAfLf1eTnywP9m6"
-                 data-fallback-url="YOUR_STRIPE_CHECKOUT_LINK_PRO"
-                 href="YOUR_STRIPE_CHECKOUT_LINK_PRO"
-                 aria-label="Activar plan PRO por $999 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
-                 Activar PRO
-              </a>
-            </div>
-            <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
-          </article>
-        </div>
-
-        <small class="muted">
-          La autogestión de cobros y cancelaciones se realiza en el
-          <a href="#portal" id="portal-link">Portal del Cliente</a>. Las consultas siguen por WhatsApp del cliente.
-        </small>
-
-        <!-- Confianza + Testimonios (6) -->
-        <p class="t-trust-msg">
-          "Miles de tecnicos, mecanicos y autodidactas propietarios de vehiculos y de talleres estan satisfechos con nuestro gran sistema"
-        </p>
-        <h3 class="section-title t-trust-title">TESTIMONIOS DE CONFIANZA</h3>
-
-        <section class="t-carousel" id="t-carousel" aria-label="Testimonios">
-          <article class="quote t-slide">
+      <!-- Testimonios -->
+      <div class="card" style="margin-top:16px">
+        <h3 class="section-title" style="margin:0 0 8px">Testimonios</h3>
+        <div class="grid grid-3">
+          <article class="quote">
             <div class="stars">★★★★★</div>
             <strong>Taller “El Pistón”</strong><br/>
-            “Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”
+            “Nos resolvieron un P0300 terco en 24 h con pruebas claras por WhatsApp.”
           </article>
-
-          <article class="quote t-slide">
+          <article class="quote">
             <div class="stars">★★★★★</div>
             <strong>Autoeléctrico Rivera</strong><br/>
-            “Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas. Atención siempre en WhatsApp.”
+            “Guía CAN/OBD2 excelente. Ahorro de tiempo y piezas. Todo por WhatsApp.”
           </article>
-
-          <article class="quote t-slide">
+          <article class="quote">
             <div class="stars">★★★★★</div>
-            <strong>Taller Jalico</strong><br/>
-            “Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”
+            <strong>Flotillas Monterrey</strong><br/>
+            “Respuestas consistentes 24/7. Ideal para equipo en campo.”
           </article>
-
-          <article class="quote t-slide">
-            <div class="stars">★★★★★</div>
-            <strong>Mecánica “La Chispa”</strong><br/>
-            “Nos ayudaron a aislar un P0335 con pasos simples. Cero adivinanzas, todo por WhatsApp.”
-          </article>
-
-          <article class="quote t-slide">
-            <div class="stars">★★★★★</div>
-            <strong>Electromecánica Gómez</strong><br/>
-            “Interpretación de DTC y pruebas guiadas que realmente funcionan. Muy recomendados.”
-          </article>
-
-          <article class="quote t-slide">
-            <div class="stars">★★★★★</div>
-            <strong>Taller de Flotillas Monterrey</strong><br/>
-            “Para la flotilla fue clave: respuestas rápidas y consistentes, 100% por WhatsApp a cualquier hora 24/7.”
-          </article>
-        </section>
-      </section>
-
-      <!-- Portal del Cliente (botón dedicado) -->
-      <section class="card" id="portal">
-        <h2 class="section-title">Portal del Cliente</h2>
-        <p class="muted">Gestiona tu suscripción, método de pago y facturas.</p>
-        <div class="price-cta">
-          <a class="btn btn-outline btn-secure" id="btn-portal" href="YOUR_STRIPE_PORTAL_LINK">Abrir Portal del Cliente</a>
         </div>
-        <small class="pay-note">Se abrirá en una pestaña segura. Si ya eres cliente y no te abre, contáctanos por WhatsApp.</small>
-      </section>
+      </div>
+    </section>
 
-      <section class="card">
-        <h2 class="section-title" style="margin-bottom:6px">Política de reembolsos</h2>
-        <p>
-          Reembolso total durante los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas
-          en el periodo). Solicítalo en <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a>.
-          La cancelación de cobros es desde el <a href="#portal">Portal del Cliente</a>. La atención técnica se mantiene únicamente por WhatsApp.
-        </p>
-      </section>
+    <!-- Portal del Cliente -->
+    <section class="card" id="portal">
+      <h2 class="section-title">Portal del Cliente</h2>
+      <p class="muted">Gestiona tu suscripción, método de pago y facturas.</p>
+      <div class="price-cta">
+        <a class="btn btn-outline btn-secure" id="btn-portal" href="YOUR_STRIPE_PORTAL_LINK">Abrir Portal del Cliente</a>
+      </div>
+      <small class="pay-note">Si ya eres cliente y no abre, escríbenos por WhatsApp para enviarte tu enlace.</small>
+    </section>
 
-      <section class="card">
-        <h2 class="section-title">Contacto</h2>
-        <p>
-          Email: <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a><br />
-          WhatsApp: <a href="https://wa.me/523112242880" target="_blank" rel="noopener">+52 311 224 2880</a>
-        </p>
-        <p class="muted" style="margin-top:10px">
-          Gracias por tu visita
-        </p>
-      </section>
-    </main>
+    <!-- Reembolsos -->
+    <section class="card">
+      <h2 class="section-title" style="margin-bottom:6px">Política de reembolsos</h2>
+      <p>
+        Reembolso total durante los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas).
+        Solicítalo en <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a>.
+        Las cancelaciones se realizan desde el <a href="#portal">Portal del Cliente</a>.
+      </p>
+    </section>
 
-    <footer>
-      <small>© 2025 Asesoria en Mecanica Automotriz — Advisor • <a href="#portal">Portal del Cliente</a></small>
-    </footer>
-  </div>
+    <!-- FAQ -->
+    <section class="card" id="faq">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+      <div class="grid grid-2">
+        <details>
+          <summary>¿La atención es por WhatsApp o por esta página?</summary>
+          <p>Exclusivamente por WhatsApp del cliente. Esta página es para información, pago y portal.</p>
+        </details>
+        <details>
+          <summary>¿Puedo cancelar cuando quiera?</summary>
+          <p>Sí. La gestión de plan, método de pago y cancelación se hace en el Portal del Cliente (Stripe).</p>
+        </details>
+        <details>
+          <summary>¿Qué incluye cada plan?</summary>
+          <p>Básico (6 consultas/mes), Avanzado (10 consultas/mes), PRO (ilimitado). Siempre con guía paso a paso.</p>
+        </details>
+        <details>
+          <summary>¿Qué pasa si llego a mi límite de consultas?</summary>
+          <p>Podrás cambiar de plan o renovar. En PRO no hay límite.</p>
+        </details>
+      </div>
+    </section>
 
-  <!-- Stripe.js (para redirectToCheckout si tu backend devuelve sessionId) -->
+    <!-- Contacto -->
+    <section class="card" id="contacto">
+      <h2 class="section-title">Contacto</h2>
+      <p>
+        Email: <a href="mailto:soporte@tuCorreo.com">soporte@tuCorreo.com</a><br/>
+        WhatsApp: <a href="https://wa.me/523112242880" target="_blank" rel="noopener">+52 311 224 2880</a>
+      </p>
+      <p class="muted" style="margin-top:10px">Gracias por tu visita.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <small>© 2025 Asesoría en Mecánica Automotriz — Advisor • <a href="#portal">Portal del Cliente</a></small>
+    </div>
+  </footer>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Stripe.js (para redirectToCheckout si backend devuelve sessionId) -->
   <script src="https://js.stripe.com/v3"></script>
-
   <script>
-    // ======= CONFIG FRONTEND =======
+    // ===========================
+    // CONFIG (ajusta aquí)
+    // ===========================
     const PHONE = "523112242880"; // MX +52 311 224 2880
-    const API_BASE = "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2"; // ← tu backend (Firebase Functions o Node)
-    const STRIPE_PK = ""; // opcional: 'pk_live_...' si quieres usar redirectToCheckout con sessionId
+    const API_BASE = "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2";
+    const FRONT_BASE = "https://asesoria-en-mecanica-automotriz.github.io/Asesoria-en-Mecanica-Automotriz/";
 
-    // ======= Helpers =======
+    // Centraliza tus price IDs aquí (evita modificar el HTML):
+    const PRICE_IDS = {
+      basic: "price_1SEO1MHhTrAfLf1eXUPOP5VW",   // Básico 399
+      adv:   "price_1SEO1vHhTrAfLf1ezeReW7mFu",   // Avanzado 499
+      pro:   "price_1SENdDHhTrAfLf1eTnywP9m6"     // PRO 999
+    };
+
+    // (Opcional) Clave pública si vas a usar redirectToCheckout con sessionId
+    const STRIPE_PK = ""; // 'pk_live_...' o vacío para no usarlo
+    const stripe = (STRIPE_PK && /^pk_/.test(STRIPE_PK)) ? Stripe(STRIPE_PK) : null;
+
+    // ===========================
+    // Helpers
+    // ===========================
+    const $ = (sel, ctx=document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+    const toast = (msg, type="ok") => {
+      const t = $("#toast"); if(!t) return;
+      t.className = "toast " + (type==="err" ? "err" : "ok");
+      t.textContent = msg; t.style.display = "block";
+      setTimeout(()=>{ t.style.display = "none"; }, 3800);
+    };
+
     function waHref(text){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(text)}`; }
 
-    // Captura y persiste el código de referido (?ref=)
-    function captureRef() {
-      try {
+    function captureRef(){
+      try{
         const p = new URLSearchParams(location.search);
-        const r = p.get('ref');
-        if (r) localStorage.setItem('ref', r);
+        const r = p.get('ref'); if (r) localStorage.setItem('ref', r);
         return localStorage.getItem('ref') || '';
-      } catch (_) { return ''; }
+      }catch(_){ return ''; }
     }
     const REF_CODE = captureRef();
 
-    // ======= CTA WhatsApp =======
-    const cta = document.getElementById('cta-whatsapp');
-    if(cta){ cta.href = waHref("Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC]."); }
+    // ===========================
+    // CTAs WhatsApp
+    // ===========================
+    const msgStart = "Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC].";
+    $("#cta-whatsapp")?.setAttribute("href", waHref(msgStart));
+    $("#nav-wa")?.setAttribute("href", waHref("Hola, tengo dudas sobre los planes."));
+    $("#cta-trial")?.setAttribute("href", waHref("Solicito PRUEBA 7 DIAS gratis. Mis datos: [Nombre/Taller] [Ciudad]."));
 
-    const trial = document.getElementById('cta-trial');
-    if(trial){ trial.href = waHref("Solicito PRUEBA 7 DIAS gratis. Mis datos: [Nombre/Taller] [Ciudad]."); }
-
-    document.querySelectorAll('.wa-plan').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
+    $$(".wa-plan").forEach(btn=>{
+      btn.addEventListener("click", e=>{
         e.preventDefault();
         const plan = btn.dataset.plan || "BÁSICO";
         const msg = `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [Año/Marca/Modelo/Motor] [Descripción del caso].`;
@@ -379,125 +414,94 @@
       });
     });
 
-    // ======= Pago con Stripe (vía backend) =======
-    const stripe = (STRIPE_PK && /^pk_/.test(STRIPE_PK)) ? Stripe(STRIPE_PK) : null;
-
+    // ===========================
+    // Flujo de pago (via backend)
+    // ===========================
     async function createCheckout(priceId, fallbackUrl){
-      // Si no hay backend configurado, usa fallback
-      if (!API_BASE || API_BASE.includes('<PROJECT>')) {
-        if (fallbackUrl && fallbackUrl.startsWith('http')) window.location.href = fallbackUrl;
-        else alert('Configura API_BASE o el enlace directo de Stripe.');
-        return;
+      if (!API_BASE || API_BASE.includes("<PROJECT>")){
+        if (fallbackUrl) { location.href = fallbackUrl; return; }
+        toast("Configura API_BASE o un enlace de Stripe.", "err"); return;
       }
-      try {
+      try{
         const res = await fetch(`${API_BASE}/create-checkout-session`, {
-          method: 'POST', headers: { 'Content-Type':'application/json' },
+          method:"POST", headers:{ "Content-Type":"application/json" },
           body: JSON.stringify({ priceId, ref: REF_CODE })
         });
         const data = await res.json();
-        if (data.url) { window.location.href = data.url; return; }
-        if (data.id && stripe) {
+        if (data.url){ location.href = data.url; return; }
+        if (data.id && stripe){
           const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
-          if (error) alert(error.message);
-        } else if (fallbackUrl) {
-          window.location.href = fallbackUrl;
+          if (error) toast(error.message, "err");
+        } else if (fallbackUrl){
+          location.href = fallbackUrl;
         } else {
-          alert('No se pudo iniciar el pago.');
+          toast("No se pudo iniciar el pago.", "err");
         }
-      } catch (err) {
+      }catch(err){
         console.error(err);
-        if (fallbackUrl) window.location.href = fallbackUrl; else alert('Error de red al crear la sesión de pago');
+        if (fallbackUrl) location.href = fallbackUrl; else toast("Error de red al crear la sesión de pago", "err");
       }
     }
 
-    document.querySelectorAll('.btn-pay-stripe').forEach(btn=>{
-      btn.addEventListener('click', (e)=>{
+    // Botones pagar
+    $$(".btn-pay").forEach(btn=>{
+      btn.addEventListener("click", e=>{
         e.preventDefault();
-        const priceId = btn.dataset.priceId;
-        const fallback = btn.dataset.fallbackUrl || btn.getAttribute('href');
-        if (!priceId || priceId.includes('placeholder')) {
-          if (fallback) window.location.href = fallback; else alert('Configura los priceId o el enlace de Stripe.');
-          return;
-        }
-        createCheckout(priceId, fallback);
+        const tier = btn.dataset.tier; const priceId = PRICE_IDS[tier];
+        if (!priceId){ toast("Configura los priceId.", "err"); return; }
+        createCheckout(priceId);
       });
     });
 
-    // ======= Portal del Cliente =======
+    // ===========================
+    // Portal del cliente
+    // ===========================
     async function hydrateFromSession(){
-      // Si llegamos de success_url con session_id, intenta guardar el customer en localStorage
       const p = new URLSearchParams(location.search);
-      const sid = p.get('session_id');
-      if (!sid) return;
-      if (!API_BASE || API_BASE.includes('<PROJECT>')) return;
+      const sid = p.get("session_id"); if (!sid) return;
+      if (!API_BASE || API_BASE.includes("<PROJECT>")) return;
       try{
         const r = await fetch(`${API_BASE}/checkout-session?session_id=${encodeURIComponent(sid)}`);
         const data = await r.json();
-        if (data && data.customer) localStorage.setItem('stripe_customer_id', data.customer);
-      }catch(e){ console.error('hydrateFromSession', e); }
+        if (data && data.customer) localStorage.setItem("stripe_customer_id", data.customer);
+      }catch(e){ console.error("hydrateFromSession", e); }
     }
 
     async function openPortal(){
-      const fallback = document.getElementById('btn-portal')?.getAttribute('href');
-      // Si no hay backend, cae al fallback
-      if (!API_BASE || API_BASE.includes('<PROJECT>')) {
-        if (fallback && !fallback.includes('YOUR_STRIPE_PORTAL_LINK')) window.location.href = fallback; else alert('Escríbenos por WhatsApp para tu enlace de portal.');
+      const fallback = $("#btn-portal")?.getAttribute("href");
+      if (!API_BASE || API_BASE.includes("<PROJECT>")){
+        if (fallback && !fallback.includes("YOUR_STRIPE_PORTAL_LINK")) location.href = fallback;
+        else toast("Pídenos tu enlace de portal por WhatsApp.", "err");
         return;
       }
       try{
-        const customerId = localStorage.getItem('stripe_customer_id') || '';
+        const customerId = localStorage.getItem("stripe_customer_id") || "";
         const r = await fetch(`${API_BASE}/create-portal-session`, {
-          method:'POST', headers:{'Content-Type':'application/json'},
+          method:"POST", headers:{ "Content-Type":"application/json" },
           body: JSON.stringify(customerId ? { customerId } : {})
         });
         const data = await r.json();
-        if (data.url) { window.location.href = data.url; return; }
-        // Si backend requiere customerId y no lo tiene
-        if (fallback && !fallback.includes('YOUR_STRIPE_PORTAL_LINK')) window.location.href = fallback;
-        else alert('No encontramos tu sesión. Si ya eres cliente, escríbenos por WhatsApp y te enviamos tu enlace.');
+        if (data.url){ location.href = data.url; return; }
+        if (fallback && !fallback.includes("YOUR_STRIPE_PORTAL_LINK")) location.href = fallback;
+        else toast("No encontramos tu sesión. Escríbenos por WhatsApp.", "err");
       }catch(e){
-        console.error('openPortal', e);
-        if (fallback && !fallback.includes('YOUR_STRIPE_PORTAL_LINK')) window.location.href = fallback;
-        else alert('No pudimos abrir tu portal ahora.');
+        console.error("openPortal", e);
+        if (fallback && !fallback.includes("YOUR_STRIPE_PORTAL_LINK")) location.href = fallback;
+        else toast("No pudimos abrir tu portal ahora.", "err");
       }
     }
-
-    document.getElementById('btn-portal')?.addEventListener('click', (e)=>{ e.preventDefault(); openPortal(); });
+    $("#btn-portal")?.addEventListener("click", (e)=>{ e.preventDefault(); openPortal(); });
     hydrateFromSession();
 
-    // ======= Carrusel: sin salto; autoplay solo si es visible (>=50%) =======
+    // ===========================
+    // Mensaje post-checkout (URL flags)
+    // ===========================
     (function(){
-      const track = document.getElementById('t-carousel');
-      if(!track) return;
-      const slides = Array.from(track.children);
-      let idx = 0; let playing = false;
-      const mqlDesktop = matchMedia('(min-width: 860px)');
-      const mqlReduce  = matchMedia('(prefers-reduced-motion: reduce)');
-      const isDesktop = () => mqlDesktop.matches;
-      track.scrollLeft = 0;
-      function next(){
-        if(isDesktop() || !playing || mqlReduce.matches) return;
-        idx = (idx + 1) % slides.length;
-        slides[idx].scrollIntoView({behavior:'smooth', inline:'center'});
-      }
-      setInterval(next, 3500);
-      track.addEventListener('pointerenter', ()=>{ playing = false; });
-      track.addEventListener('pointerleave', ()=>{ if(isInView(track)) playing = true; });
-      function isInView(el){
-        const r = el.getBoundingClientRect();
-        const vh = window.innerHeight || document.documentElement.clientHeight;
-        return r.top < vh*0.5 && r.bottom > vh*0.5;
-      }
-      if('IntersectionObserver' in window){
-        const io = new IntersectionObserver((entries)=>{
-          entries.forEach(entry=>{ playing = entry.isIntersecting && entry.intersectionRatio >= 0.5; });
-        }, {threshold:[0.5]});
-        io.observe(track);
-      } else {
-        const onScroll = ()=>{ playing = isInView(track); };
-        window.addEventListener('scroll', onScroll, {passive:true});
-        onScroll();
-      }
+      const p = new URLSearchParams(location.search);
+      if (p.get("success")==="true") toast("¡Pago confirmado! Te contactamos por WhatsApp.", "ok");
+      if (p.get("canceled")==="true") toast("Pago cancelado. Puedes intentar de nuevo cuando gustes.", "err");
+      // Limpia parámetros tracking al navegar
+      history.replaceState({}, "", FRONT_BASE);
     })();
   </script>
 </body>
