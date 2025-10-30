@@ -228,34 +228,40 @@
           </div>
           <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
         </article>
-<!-- Avanzado -->
+
+        <!-- Avanzado (corregido) -->
 <article class="price-card" style="border:2px solid #FFD04D">
   <div class="price-h">
     <h3 style="margin:0">Avanzado</h3>
-    <span class="pill" style="background:#FFF4D1;color:#8A5800;border-color:#FFE39C">Hasta 10 consultas/mes</span>
+    <span class="pill" style="background:#FFF4D1;color:#8A5800;border-color:#FFE39C">
+      Hasta 10 consultas/mes
+    </span>
   </div>
+
   <div class="price">$499 MXN/mes</div>
-  <div class="feat"><span class="check">✓</span> Casos eléctricos e inyección más complejos</div>
+
+  <div class="feat"><span class="check">✓</span> Casos eléctricos/inyección más complejos</div>
   <div class="feat"><span class="check">✓</span> Interpretación de DTC con pruebas guiadas</div>
   <div class="feat"><span class="check">✓</span> Seguimiento priorizado</div>
 
   <div class="price-cta">
     <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
 
-    <!-- 👇 IMPORTANTE: pon tu Price ID real y, si tienes, un Payment Link como respaldo -->
+    <!-- IMPORTANTE: deja href="#" para evitar 404; usa tu priceId real -->
     <a class="btn btn-outline btn-secure btn-pay-stripe"
-       data-price-id="price_1SEO1MHhTrAfLf1eXUPOP5VW"
-       data-fallback-url="https://buy.stripe.com/TEST_O_LIVE_TU_PAYMENT_LINK"
+       data-price-id="price_1SEO1vHhTrAfLf1ezeReW7mFu"
        href="#"
        aria-label="Suscribirme al plan Avanzado por $499 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
        Suscribirme al Avanzado
     </a>
+    <!-- Si tienes un Payment Link REAL, agrega además:
+       data-fallback-url="https://buy.stripe.com/tu_link_real"
+       (quítalo si no es una URL válida para evitar 404)
+    -->
   </div>
 
   <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
 </article>
-
-
 
         <!-- PRO -->
         <article class="price-card">
