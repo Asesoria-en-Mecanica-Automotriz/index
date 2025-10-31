@@ -332,16 +332,24 @@ const API_BASE= "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/
 function waHref(t){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`; }
 
 /* ====== WhatsApp: links reales (funcionan aunque falle el JS) ====== */
-const cta = document.getElementById('cta-whatsapp');
-if (cta) cta.setAttribute('href', waHref('Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC].'));
+if (cta) cta.href = waHref(
+  "Hola, quiero comenzar. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad] [Año, Marca, Modelo, Motor, Códigos, sintoma, DTC]."
+);
 
-const trial = document.getElementById('cta-trial');
-if (trial) trial.setAttribute('href', waHref('Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [Ciudad].'));
+
+if (trial) trial.href = waHref(
+  "Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]."
+);
+
 
 document.querySelectorAll('.wa-plan').forEach(btn=>{
   const plan = (btn.dataset.plan||'BÁSICO').trim();
-  btn.setAttribute('href', waHref(`Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [Año/Marca/Modelo/Motor] [Descripción del caso].`));
+  btn.href = waHref(
+    `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]. ` +
+    `[Año/Marca/Modelo/Motor] [Descripción del caso, sintoma].`
+  );
 });
+
 
 /* ====== Pago con Stripe (robusto) ====== */
 async function createCheckout(priceId, fallback){
