@@ -324,128 +324,66 @@
   <script src="https://js.stripe.com/v3"></script>
 
  <script src="https://js.stripe.com/v3"></script>
+<script src="https://js.stripe.com/v3"></script>
 <script>
-(function(){
-  /* ===== WhatsApp (links reales) ===== */
-  function waHref(t){
-    const phone = (typeof PHONE!=='undefined' && PHONE) ? PHONE : '523112242880';
-    return `https://wa.me/${phone}?text=${encodeURIComponent(t)}`;
+/* ====== CONFIG ====== */
+const PHONE   = "523112242880";
+const API_BASE= "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2";
+function waHref(t){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`; }
+
+/* ====== WhatsApp: links reales (funcionan aunque falle el JS) ====== */
+const cta = document.getElementById('cta-whatsapp');
+if (cta) cta.setAttribute('href', waHref('Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC].'));
+
+const trial = document.getElementById('cta-trial');
+if (trial) trial.setAttribute('href', waHref('Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [Ciudad].'));
+
+document.querySelectorAll('.wa-plan').forEach(btn=>{
+  const plan = (btn.dataset.plan||'BÁSICO').trim();
+  btn.setAttribute('href', waHref(`Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [Año/Marca/Modelo/Motor] [Descripción del caso].`));
+});
+
+/* ====== Pago con Stripe (robusto) ====== */
+async function createCheckout(priceId, fallback){
+  try{
+    const res = await fetch(`${API_BASE}/create-checkout-session`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ priceId, ref: (localStorage.getItem('ref')||'') })
+    });
+    const data = await res.json();
+    if (data?.url) { window.location.href = data.url; return; }
+    if (fallback && /^https?:\/\//i.test(fallback)) { window.location.href = fallback; return; }
+    alert('No se pudo iniciar el pago.'); console.warn('Respuesta API:', data);
+  } catch (e){
+    console.error('Network/Fetch error', e);
+    if (fallback && /^https?:\/\//i.test(fallback)) window.location.href = fallback;
+    else alert('Error de red al crear la sesión de pago');
   }
-  const cta = document.getElementById('cta-whatsapp');
-  if (cta) cta.href = waHref('Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC].');
+}
 
-  const trial = document.getElementById('cta-trial');
-  if (trial) trial.href = waHref('Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [Ciudad].');
-
-  document.querySelectorAll('.wa-plan').forEach(btn=>{
-    const plan = (btn.dataset.plan||'BÁSICO').trim();
-    btn.href = waHref(`Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [A/M/M/Motor] [Descripción del caso].`);
-  });
-
-  /* ===== Stripe Checkout (vía backend) ===== */
-  const stripe = (typeof STRIPE_PK!=='undefined' && STRIPE_PK && /^pk_/.test(STRIPE_PK)) ? Stripe(STRIPE_PK) : null;
-  const API  = (typeof API_BASE!=='undefined' ? API_BASE : '');
-  const REF  = (typeof REF_CODE!=='undefined' ? REF_CODE : '');
-
-  async function createCheckout(priceId, fallback){
-    if (!API || API.includes('<PROJECT>')) {
-      if (fallback && /^https?:\/\//i.test(fallback)) window.location.href = fallback;
-      else alert('Configura API_BASE o un Payment Link válido.');
-      return;
-    }
-    try{
-      const res  = await fetch(`${API}/create-checkout-session`, {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ priceId, ref: REF })
-      });
-      const data = await res.json();
-      if (data?.url) { window.location.href = data.url; return; }
-      if (data?.id && stripe) {
-        const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
-        if (error) alert(error.message);
-        return;
-      }
-      if (fallback && /^https?:\/\//i.test(fallback)) { window.location.href = fallback; return; }
-      alert('No se pudo iniciar el pago.'); console.warn('Respuesta API:', data);
-    } catch (err){
-      console.error('createCheckout error', err);
-      if (fallback && /^https?:\/\//i.test(fallback)) window.location.href = fallback;
-      else alert('Error de red al crear la sesión de pago');
-    }
+/* Delegación: captura TODOS los .btn-pay-stripe aunque cambies el HTML */
+document.addEventListener('click', (ev)=>{
+  const btn = ev.target.closest('.btn-pay-stripe');
+  if (!btn) return;
+  ev.preventDefault();
+  const priceId = (btn.dataset.priceId||'').trim();
+  const fallback = (btn.dataset.fallbackUrl||'').trim();
+  if (!/^price_/.test(priceId)){
+    if (/^https?:\/\//i.test(fallback)) window.location.href = fallback;
+    else alert('Configura un priceId válido en el botón de pago.');
+    return;
   }
+  createCheckout(priceId, fallback);
+});
 
-  /* Delegación: captura todos los .btn-pay-stripe */
-  document.addEventListener('click', (ev)=>{
-    const btn = ev.target.closest('.btn-pay-stripe');
-    if (!btn) return;
-    ev.preventDefault();
-    const priceId  = (btn.dataset.priceId||'').trim();
-    const fallback = (btn.dataset.fallbackUrl||'').trim();
-    if (!/^price_/.test(priceId)){
-      if (/^https?:\/\//i.test(fallback)) window.location.href = fallback;
-      else alert('Configura un priceId válido en el botón.');
-      return;
-    }
-    createCheckout(priceId, fallback);
-  });
-
-  /* ===== Portal del Cliente ===== */
-  async function hydrateFromSession(){
-    try{
-      const p = new URLSearchParams(location.search);
-      const sid = p.get('session_id'); if (!sid || !API) return;
-      const r = await fetch(`${API}/checkout-session?session_id=${encodeURIComponent(sid)}`);
-      const data = await r.json();
-      if (data?.customer) localStorage.setItem('stripe_customer_id', data.customer);
-    }catch(e){ console.error('hydrateFromSession', e); }
-  }
-  async function openPortal(){
-    const fallback = document.getElementById('btn-portal')?.getAttribute('href') || '';
-    if (!API || API.includes('<PROJECT>')) {
-      if (fallback && !/YOUR_STRIPE_PORTAL_LINK/.test(fallback)) window.location.href = fallback;
-      else alert('Escríbenos por WhatsApp para tu enlace de portal.');
-      return;
-    }
-    try{
-      const customerId = localStorage.getItem('stripe_customer_id') || '';
-      const r = await fetch(`${API}/create-portal-session`, {
-        method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify(customerId ? { customerId } : {})
-      });
-      const data = await r.json();
-      if (data?.url) { window.location.href = data.url; return; }
-      if (fallback && !/YOUR_STRIPE_PORTAL_LINK/.test(fallback)) window.location.href = fallback;
-      else alert('No encontramos tu sesión. Escríbenos por WhatsApp y te enviamos tu enlace.');
-    }catch(e){
-      console.error('openPortal', e);
-      if (fallback && !/YOUR_STRIPE_PORTAL_LINK/.test(fallback)) window.location.href = fallback;
-      else alert('No pudimos abrir tu portal ahora.');
-    }
-  }
-  document.getElementById('btn-portal')?.addEventListener('click', (e)=>{ e.preventDefault(); openPortal(); });
-  hydrateFromSession();
-
-  /* ===== Carrusel ===== */
-  (function(){
-    const track = document.getElementById('t-carousel'); if(!track) return;
-    const slides = Array.from(track.children); let idx=0; let playing=false;
-    const mqlDesktop = matchMedia('(min-width: 860px)'); const mqlReduce = matchMedia('(prefers-reduced-motion: reduce)');
-    const isDesktop = ()=> mqlDesktop.matches; track.scrollLeft = 0;
-    function next(){ if(isDesktop() || !playing || mqlReduce.matches) return;
-      idx=(idx+1)%slides.length; slides[idx].scrollIntoView({behavior:'smooth', inline:'center'}); }
-    setInterval(next, 3500);
-    track.addEventListener('pointerenter', ()=>{ playing=false; });
-    track.addEventListener('pointerleave', ()=>{ if(isInView(track)) playing=true; });
-    function isInView(el){ const r=el.getBoundingClientRect(); const vh=innerHeight||document.documentElement.clientHeight; return r.top < vh*0.5 && r.bottom > vh*0.5; }
-    if('IntersectionObserver' in window){
-      const io = new IntersectionObserver((entries)=>{ entries.forEach(entry=>{ playing = entry.isIntersecting && entry.intersectionRatio >= 0.5; }); }, {threshold:[0.5]});
-      io.observe(track);
-    } else {
-      const onScroll=()=>{ playing=isInView(track); }; addEventListener('scroll', onScroll, {passive:true}); onScroll();
-    }
-  })();
-})();
+/* (Opcional) capturar ?ref= una sola vez */
+try{
+  const p = new URLSearchParams(location.search);
+  const r = p.get('ref'); if (r) localStorage.setItem('ref', r);
+}catch(_){}
 </script>
+
 
 </body>
 </html>
