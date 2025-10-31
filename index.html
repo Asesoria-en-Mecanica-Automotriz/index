@@ -331,24 +331,49 @@ const PHONE   = "523112242880";
 const API_BASE= "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2";
 function waHref(t){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`; }
 
-/* ====== WhatsApp: links reales (funcionan aunque falle el JS) ====== */
-if (cta) cta.href = waHref(
-  "Hola, quiero comenzar. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad] [Año, Marca, Modelo, Motor, Códigos, sintoma, DTC]."
-);
+<script>
+/* ===== WhatsApp: links reales (blindado) ===== */
+(() => {
+  // Usa la PHONE global si ya la definiste arriba; si no, toma esta por defecto
+  const PHONE = (window.PHONE && String(window.PHONE)) || "523112242880";
+  const waHref = (t) => `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
 
+  // CTA principal (hero)
+  const cta = document.getElementById("cta-whatsapp");
+  if (cta) {
+    cta.setAttribute(
+      "href",
+      waHref(
+        "Hola, quiero comenzar. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad] [Año, Marca, Modelo, Motor, Códigos/DTC, síntoma]."
+      )
+    );
+  }
 
-if (trial) trial.href = waHref(
-  "Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]."
-);
+  // CTA de prueba (3 asesorías en 7 días)
+  const trial = document.getElementById("cta-trial");
+  if (trial) {
+    trial.setAttribute(
+      "href",
+      waHref(
+        "Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]."
+      )
+    );
+  }
 
+  // Botones de cada plan (Básico/Avanzado/PRO)
+  document.querySelectorAll(".wa-plan").forEach((btn) => {
+    const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
+    btn.setAttribute(
+      "href",
+      waHref(
+        `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]. ` +
+          `[Año/Marca/Modelo/Motor] [Descripción del caso / síntoma].`
+      )
+    );
+  });
+})();
+</script>
 
-document.querySelectorAll('.wa-plan').forEach(btn=>{
-  const plan = (btn.dataset.plan||'BÁSICO').trim();
-  btn.href = waHref(
-    `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]. ` +
-    `[Año/Marca/Modelo/Motor] [Descripción del caso, sintoma].`
-  );
-});
 
 
 /* ====== Pago con Stripe (robusto) ====== */
