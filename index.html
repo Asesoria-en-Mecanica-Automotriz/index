@@ -322,59 +322,55 @@
 
   <!-- Stripe.js (para redirectToCheckout si tu backend devuelve sessionId) -->
   
+<!-- Stripe (cárgalo SOLO una vez) -->
 <script src="https://js.stripe.com/v3"></script>
-<script>
-/* ====== CONFIG ====== */
-const PHONE   = "523112242880";
-const API_BASE= "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2";
-function waHref(t){ return `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`; }
 
 <script>
-/* ===== WhatsApp: links reales (blindado) ===== */
-(() => {
-  // Usa la PHONE global si ya la definiste arriba; si no, toma esta por defecto
-  const PHONE = (window.PHONE && String(window.PHONE)) || "523112242880";
+// ====== CONFIG ======
+const PHONE    = "523112242880";
+const API_BASE = "https://us-central1-asesor-automotriz-a06b7.cloudfunctions.net/api2";
+
+// Guardar ?ref= si llega en la URL
+try {
+  const p = new URLSearchParams(location.search);
+  const r = p.get('ref'); if (r) localStorage.setItem('ref', r);
+} catch (_) {}
+</script>
+
+<script>
+// ====== WhatsApp: links reales (blindado) ======
+(function () {
   const waHref = (t) => `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
 
   // CTA principal (hero)
   const cta = document.getElementById("cta-whatsapp");
   if (cta) {
-    cta.setAttribute(
-      "href",
-      waHref(
-        "Hola, quiero comenzar. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad] [Año, Marca, Modelo, Motor, Códigos/DTC, síntoma]."
-      )
+    cta.href = waHref(
+      "Hola, quiero comenzar. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad] [Año, Marca, Modelo, Motor, Códigos/DTC, síntoma]."
     );
   }
 
   // CTA de prueba (3 asesorías en 7 días)
   const trial = document.getElementById("cta-trial");
   if (trial) {
-    trial.setAttribute(
-      "href",
-      waHref(
-        "Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]."
-      )
+    trial.href = waHref(
+      "Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]."
     );
   }
 
   // Botones de cada plan (Básico/Avanzado/PRO)
   document.querySelectorAll(".wa-plan").forEach((btn) => {
     const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
-    btn.setAttribute(
-      "href",
-      waHref(
-        `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]. ` +
-          `[Año/Marca/Modelo/Motor] [Descripción del caso / síntoma].`
-      )
+    btn.href = waHref(
+      `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]. ` +
+      `[Año/Marca/Modelo/Motor] [Descripción del caso / síntoma].`
     );
   });
 })();
 </script>
 
-
-
-/* ====== Pago con Stripe (robusto) ====== */
+<script>
+// ====== Pago con Stripe (vía backend) ======
 async function createCheckout(priceId, fallback){
   try{
     const res = await fetch(`${API_BASE}/create-checkout-session`, {
@@ -383,36 +379,30 @@ async function createCheckout(priceId, fallback){
       body: JSON.stringify({ priceId, ref: (localStorage.getItem('ref')||'') })
     });
     const data = await res.json();
-    if (data?.url) { window.location.href = data.url; return; }
-    if (fallback && /^https?:\/\//i.test(fallback)) { window.location.href = fallback; return; }
-    alert('No se pudo iniciar el pago.'); console.warn('Respuesta API:', data);
+    if (data && data.url) { location.href = data.url; return; }
+    if (fallback && /^https?:\/\//i.test(fallback)) { location.href = fallback; return; }
+    alert('No se pudo iniciar el pago.');
   } catch (e){
-    console.error('Network/Fetch error', e);
-    if (fallback && /^https?:\/\//i.test(fallback)) window.location.href = fallback;
+    console.error(e);
+    if (fallback && /^https?:\/\//i.test(fallback)) location.href = fallback;
     else alert('Error de red al crear la sesión de pago');
   }
 }
 
-/* Delegación: captura TODOS los .btn-pay-stripe aunque cambies el HTML */
+// Delegación: captura TODOS los .btn-pay-stripe aunque muevas el HTML
 document.addEventListener('click', (ev)=>{
   const btn = ev.target.closest('.btn-pay-stripe');
   if (!btn) return;
   ev.preventDefault();
-  const priceId = (btn.dataset.priceId||'').trim();
-  const fallback = (btn.dataset.fallbackUrl||'').trim();
+  const priceId = (btn.dataset.priceId || '').trim();
+  const fallback = (btn.dataset.fallbackUrl || '').trim();
   if (!/^price_/.test(priceId)){
-    if (/^https?:\/\//i.test(fallback)) window.location.href = fallback;
+    if (/^https?:\/\//i.test(fallback)) location.href = fallback;
     else alert('Configura un priceId válido en el botón de pago.');
     return;
   }
   createCheckout(priceId, fallback);
 });
-
-/* (Opcional) capturar ?ref= una sola vez */
-try{
-  const p = new URLSearchParams(location.search);
-  const r = p.get('ref'); if (r) localStorage.setItem('ref', r);
-}catch(_){}
 </script>
 
 
