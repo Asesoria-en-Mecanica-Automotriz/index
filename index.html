@@ -386,8 +386,12 @@
 
     // ======= CTA WhatsApp =======
     const cta = document.getElementById('cta-whatsapp');
-    if(cta){ cta.href = waHref("Hola, quiero comenzar. Mis datos: [Año, Marca, Modelo, Motor, Códigos DTC]."); }
+if(trial){
+  trial.href = waHref("Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [Ciudad].");
+}
 
+
+    
     const trial = document.getElementById('cta-trial');
     if(trial){ trial.href = waHref("Solicito PRUEBA 7 DIAS gratis. Mis datos: [Nombre/Taller] [Ciudad]."); }
 
