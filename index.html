@@ -208,6 +208,7 @@
           </article>
 
          <!-- Avanzado (corregido) -->
+<!-- Avanzado (OK) -->
 <article class="price-card" style="border:2px solid #FFD04D">
   <div class="price-h">
     <h3 style="margin:0">Avanzado</h3>
@@ -225,17 +226,15 @@
   <div class="price-cta">
     <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
 
-    <!-- IMPORTANTE: deja href="#" para evitar 404; usa tu priceId real -->
+    <!-- Asegúrate de poner aquí TU price real del mismo modo (test/live) -->
     <a class="btn btn-outline btn-secure btn-pay-stripe"
-       data-price-id="price_1SEO1vHhTrAfLf1ezeReW7mFu"
+       data-price-id="price_XXXXXXXXADV" 
        href="#"
        aria-label="Suscribirme al plan Avanzado por $499 MXN al mes. Pago seguro con tarjeta, procesado por Stripe.">
        Suscribirme al Avanzado
     </a>
-    <!-- Si tienes un Payment Link REAL, agrega además:
-       data-fallback-url="https://buy.stripe.com/tu_link_real"
-       (quítalo si no es una URL válida para evitar 404)
-    -->
+    <!-- (Opcional) si tienes Payment Link real, agrega:
+         data-fallback-url="https://buy.stripe.com/..." -->
   </div>
 
   <small class="pay-note">Procesado por Stripe • Cargo mensual • Cancelas cuando quieras</small>
