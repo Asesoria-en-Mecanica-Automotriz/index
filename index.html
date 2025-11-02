@@ -341,7 +341,55 @@
 <!-- Stripe (cárgalo SOLO una vez) -->
 <script src="https://js.stripe.com/v3"></script>
 
+<!-- PARCHE DE DEPURACIÓN: fuerza e instrumenta el checkout -->
 <script>
+(function () {
+  function log() { console.log('[checkout]', ...arguments); }
+
+  async function startCheckout(priceId) {
+    try {
+      const ref = localStorage.getItem('ref') || '';
+      const url = `${API_BASE}/create-checkout-session`;
+      log('POST', url, { priceId, ref });
+
+      const r = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId, ref })
+      });
+
+      const j = await r.json();
+      log('HTTP', r.status, j);
+
+      if (r.ok && j.url) {
+        location.href = j.url;
+      } else {
+        alert(`No se pudo iniciar el pago (${r.status}): ${j.error || 'sin detalle'}`);
+      }
+    } catch (e) {
+      console.error('Fallo creando la sesión', e);
+      alert('Error de red al crear la sesión de pago');
+    }
+  }
+
+  // Enlaza los botones Stripe de la página
+  document.querySelectorAll('.btn-pay-stripe').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const priceId = btn.getAttribute('data-price-id');
+      log('click', priceId, btn);
+      if (!priceId) return alert('Falta data-price-id');
+      startCheckout(priceId);
+    }, { passive: false });
+  });
+
+  log('parche cargado');
+})();
+</script>
+
+  
+<script>
+  
 // ====== CONFIG ======
 const PHONE    = "523112242880";
 
