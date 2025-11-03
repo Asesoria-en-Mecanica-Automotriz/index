@@ -600,29 +600,7 @@ try {
   }
 
   // 2) Abrir Portal de clientes
-  if (btnPortal) {
-    btnPortal.addEventListener('click', async (e) => {
-      e.preventDefault();
-      try {
-        const customerId = localStorage.getItem('stripe_customer_id');
-        if (!customerId) {
-          alert('No hay cliente guardado aún. Completa una compra primero.');
-          return;
-        }
-        const r = await fetch(`${API_BASE}/create-portal-session`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ customerId })
-        });
-        const j = await r.json();
-        if (!r.ok || !j.url) throw new Error(j.error || 'portal_error');
-        location.href = j.url;
-      } catch (err) {
-        console.error('[portal] error', err);
-        alert('Error al abrir el portal del cliente.');
-      }
-    }, { passive: false });
-  }
+  
 
   // 3) Borrar datos locales (para pruebas)
   if (btnLogout) {
@@ -636,6 +614,35 @@ try {
 })();
 
   // ...tu código “parche” existente...
+  document.querySelectorAll('.btn-portal').forEach((btn) => {
+  if (btn.dataset.wired) return;
+  btn.dataset.wired = '1';
+
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const customerId = localStorage.getItem('stripe_customer_id');
+    if (!customerId) {
+      alert('Aún no hay cliente en este navegador. Suscríbete o usa "Restaurar acceso".');
+      return;
+    }
+
+    try {
+      const r = await fetch(`${API_BASE}/create-portal-session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ customerId })
+      });
+      const j = await r.json();
+      if (!r.ok || !j.url) throw new Error(j.error || 'portal_error');
+      window.open(j.url, '_blank', 'noopener'); // o location.href = j.url;
+    } catch (err) {
+      console.error('[portal] error', err);
+      alert('Error al abrir el portal del cliente.');
+    }
+  }, { passive: false });
+});
+
 
   // === Restaurar acceso: recompone localStorage con el email ===
   const btnRestore = document.getElementById('btn-restore');
