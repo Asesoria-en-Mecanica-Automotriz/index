@@ -744,20 +744,76 @@ document.addEventListener('click', (ev)=>{
   }
   createCheckout(priceId, fallback);
 });
-</script>
-
-<!-- Coloca este <script> INMEDIATAMENTE antes de </body> -->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const btnPortal = document.getElementById('btn-portal');
-  if (!btnPortal) return;
+/** Ajusta si no lo declaraste antes en el archivo */
+const API_BASE = window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app';
 
-  btnPortal.addEventListener('click', async (e) => {
-    e.preventDefault();                // evita que “salte” al inicio
-    // ... tu lógica para abrir el portal ...
-  }, { passive: false });
+document.addEventListener('DOMContentLoaded', () => {
+  const CUST_KEY = 'stripe_customer_id';
+  const SUB_KEY  = 'stripe_subscription_id';
+  const EMAIL_KEY= 'customer_email';
+
+  async function postJSON(url, body){
+    const r = await fetch(url, {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify(body||{})
+    });
+    const j = await r.json().catch(()=> ({}));
+    return { ok: r.ok, ...j };
+  }
+
+  // --- Abrir Portal ---
+  const btnPortal = document.getElementById('btn-portal');
+  if (btnPortal){
+    btnPortal.addEventListener('click', async (e) => {
+      e.preventDefault();    // evita que la página salte arriba
+      const customerId = localStorage.getItem(CUST_KEY);
+      if (!customerId){
+        alert('Aún no tenemos tu cliente de Stripe en este navegador. Completa una compra o pulsa “Restaurar acceso”.');
+        return;
+      }
+      try{
+        const {ok, url, error} = await postJSON(`${API_BASE}/create-portal-session`, { customerId });
+        if (!ok || !url) throw new Error(error || 'portal_error');
+        location.href = url;
+      }catch(err){
+        console.error('[portal]', err);
+        alert('Error al abrir el portal del cliente.');
+      }
+    }, { passive:false });
+  }
+
+  // --- Restaurar acceso con email (opcional) ---
+  const btnRestore = document.getElementById('btn-restore');
+  if (btnRestore){
+    btnRestore.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = prompt('Escribe el correo con el que te suscribiste:');
+      if (!email) return;
+      try{
+        const r = await fetch(`${API_BASE}/lookup-customer?email=${encodeURIComponent(email)}`);
+        const data = await r.json();
+        if (!r.ok) throw new Error(data?.error || 'No encontrado');
+        if (data.customerId)     localStorage.setItem(CUST_KEY, data.customerId);
+        if (data.subscriptionId) localStorage.setItem(SUB_KEY, data.subscriptionId);
+        localStorage.setItem(EMAIL_KEY, email);
+        alert('Listo. Ahora sí, pulsa “Abrir Portal del Cliente”.');
+      }catch(err){
+        alert('No se pudo restaurar: ' + err.message);
+      }
+    });
+  }
+
+  // --- Borrar datos locales (para pruebas) ---
+  const btnLogout = document.getElementById('btn-logout');
+  if (btnLogout){
+    btnLogout.addEventListener('click', (e) => {
+      e.preventDefault();
+      [CUST_KEY, SUB_KEY, EMAIL_KEY].forEach(k => localStorage.removeItem(k));
+      location.reload();
+    });
+  }
 });
 </script>
-
 </body>
 </html>
