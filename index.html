@@ -183,6 +183,9 @@
     <a id="btn-portal" class="btn btn-outline btn-secure" href="#" style="margin-left:8px;">
   Gestionar mi suscripción
 </a>
+   <a id="btn-portal" class="btn btn-outline btn-secure" href="#" style="margin-left:8px;">Gestionar mi suscripción</a>
+<a id="btn-restore" class="btn btn-link" href="#" style="margin-left:8px;">Restaurar acceso</a>
+
   </div>
 </section>
 
@@ -627,6 +630,36 @@ try {
     });
   }
 })();
+
+  // ...tu código “parche” existente...
+
+  // === Restaurar acceso: recompone localStorage con el email ===
+  const btnRestore = document.getElementById('btn-restore');
+  if (btnRestore) {
+    btnRestore.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = prompt('Escribe el correo con el que te suscribiste:');
+      if (!email) return;
+
+      try {
+        const r = await fetch(`${API_BASE}/lookup-customer?email=${encodeURIComponent(email)}`);
+        const data = await r.json();
+        if (!r.ok) throw new Error(data?.error || 'No se pudo restaurar');
+
+        if (data.customerId)      localStorage.setItem('stripe_customer_id', data.customerId);
+        if (data.subscriptionId)  localStorage.setItem('stripe_subscription_id', data.subscriptionId);
+        localStorage.setItem('customer_email', email);
+
+        alert('Listo. Ya puedes usar “Gestionar mi suscripción”.');
+        location.reload();
+      } catch (err) {
+        console.error(err);
+        alert('No se pudo restaurar: ' + err.message);
+      }
+    });
+  }
+<script>
+
 </script>
 
   
