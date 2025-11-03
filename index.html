@@ -600,20 +600,6 @@ try {
   }
 
   // 2) Abrir Portal de clientes
-  
-
-  // 3) Borrar datos locales (para pruebas)
-  if (btnLogout) {
-    btnLogout.addEventListener('click', () => {
-      localStorage.removeItem('stripe_customer_id');
-      localStorage.removeItem('stripe_subscription_id');
-      localStorage.removeItem('customer_email');
-      location.reload();
-    });
-  }
-})();
-
-  // ...tu código “parche” existente...
   document.querySelectorAll('.btn-portal').forEach((btn) => {
   if (btn.dataset.wired) return;
   btn.dataset.wired = '1';
@@ -642,6 +628,18 @@ try {
     }
   }, { passive: false });
 });
+
+
+  // 3) Borrar datos locales (para pruebas)
+  if (btnLogout) {
+    btnLogout.addEventListener('click', () => {
+      localStorage.removeItem('stripe_customer_id');
+      localStorage.removeItem('stripe_subscription_id');
+      localStorage.removeItem('customer_email');
+      location.reload();
+    });
+  }
+})();
 
 
   // === Restaurar acceso: recompone localStorage con el email ===
