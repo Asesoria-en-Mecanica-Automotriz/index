@@ -386,35 +386,52 @@
   log('parche cargado');
 })();
 </script>
-
   
 <script>
-  
 // ====== CONFIG ======
 const PHONE    = "523112242880";
+const API_BASE = "https://api2-ixy4sbioma-uc.a.run.app";  // sin "/api2"
 
-const API_BASE = "https://api2-ixy4sbioma-uc.a.run.app";  / sin “/api2”
-
-  
 // Guardar ?ref= si llega en la URL
 try {
   const p = new URLSearchParams(location.search);
   const r = p.get('ref'); if (r) localStorage.setItem('ref', r);
 } catch (_) {}
 </script>
+
+<!-- 1) Post-checkout: si volvemos con ?session_id, leer datos del cliente -->
+<script>
+(async () => {
+  try {
+    const params = new URLSearchParams(location.search);
+    const sid = params.get('session_id');
+    if (sid) {
+      const r = await fetch(`${API_BASE}/checkout-session?session_id=${encodeURIComponent(sid)}`);
+      const s = await r.json();
+      if (s?.customer) {
+        localStorage.setItem('stripe_customer_id',     s.customer);
+        localStorage.setItem('stripe_subscription_id', s.subscription || '');
+        localStorage.setItem('customer_email',         s.customer_email || '');
+        console.log('[stripe] customer guardado:', s.customer);
+      }
+    }
+  } catch (e) { console.warn(e); }
+})();
+</script>
+
+<!-- 2) Parche: crear sesión de Checkout al clic en los botones .btn-pay-stripe -->
 <script>
 (() => {
   console.log('[checkout] parche2 cargado');
 
-  // 1) Asegura globals por si el bloque CONFIG no corrió
-  window.PHONE = window.PHONE || '523112242880';
-  window.API_BASE = window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app'; // <- tu backend
+  // Fallbacks por si el bloque CONFIG no corrió (no deberían activarse si arriba no hay errores)
+  window.PHONE    = window.PHONE    || '523112242880';
+  window.API_BASE = window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app';
 
-  // 2) Helper: selector(es)
+  // Helpers
   const $  = (s, c=document) => c.querySelector(s);
   const $$ = (s, c=document) => Array.from(c.querySelectorAll(s));
 
-  // 3) Llamada al backend (POST JSON)
   async function api(path, payload) {
     const r = await fetch(`${window.API_BASE}/${path}`, {
       method: 'POST',
@@ -425,10 +442,8 @@ try {
     return r.json();
   }
 
-  // 4) Intercepta los botones "Suscribirme..." y crea la sesión de Checkout
   function wireStripeButtons() {
     $$('.btn-pay-stripe').forEach(btn => {
-      // Evita doble registro
       if (btn.__wired) return;
       btn.__wired = true;
 
@@ -457,10 +472,10 @@ try {
     });
   }
 
-  // 5) Ejecuta
   wireStripeButtons();
 })();
 </script>
+
 
 <script>
 // ====== WhatsApp: links reales (blindado) ======
