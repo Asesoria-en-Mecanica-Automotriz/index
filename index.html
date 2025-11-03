@@ -183,6 +183,21 @@
   </div>
 </section>
 
+<!-- ===== Mi suscripción (visible solo si hay customer) ===== -->
+<section id="mi-suscripcion" style="display:none; margin:24px 0;">
+  <div style="padding:16px; border:1px solid #e5e7eb; border-radius:12px;">
+    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
+      <div id="sub-status" style="font-weight:600;">Tienes una suscripción activa.</div>
+      <div>
+        <button id="btn-portal" class="btn btn-outline btn-secure">Gestionar mi suscripción</button>
+        <button id="btn-logout" class="btn" style="margin-left:8px;">Borrar datos locales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+      
 <!-- ========== Planes ========== -->
 <section id="planes">
   <h2 class="section-title">Planes y precios</h2>
@@ -473,6 +488,48 @@ try {
   }
 
   wireStripeButtons();
+})();
+</script>
+
+<script>
+(() => {
+  console.log('[checkout] parche3 (guardar customer)');
+
+  // Usa tu backend ya definido en CONFIG/parche2
+  const API = (window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app').replace(/\/+$/,'');
+
+  const params    = new URLSearchParams(location.search);
+  const isSuccess = params.get('success') === 'true';
+  const sid       = params.get('session_id');
+
+  // Solo actuamos al volver de Stripe con ?success=true&session_id=...
+  if (!isSuccess || !sid) return;
+
+  fetch(`${API}/checkout-session?session_id=${encodeURIComponent(sid)}`)
+    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+    .then(data => {
+      // Guarda datos útiles para el portal del cliente
+      if (data.customer)        localStorage.setItem('stripe_customer_id',       data.customer);
+      if (data.subscription)    localStorage.setItem('stripe_subscription_id',   data.subscription);
+      if (data.customer_email)  localStorage.setItem('customer_email',           data.customer_email);
+
+      console.log('[stripe] customer guardado:', data.customer);
+
+      // Toast rápido (opcional)
+      try {
+        const t = document.createElement('div');
+        t.textContent = '¡Listo! Suscripción creada. Redirigiendo…';
+        t.style.cssText = 'position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:8px;z-index:99999;font:600 14px/1 system-ui';
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 3500);
+      } catch {}
+
+      // Limpia la query y vuelve al home
+      const url = new URL(location.href);
+      url.search = '';
+      setTimeout(() => location.replace(url.toString()), 700);
+    })
+    .catch(err => console.error('[checkout] no se pudo leer la sesión:', err));
 })();
 </script>
 
