@@ -403,6 +403,7 @@
 })();
 </script>
   
+  
 <script>
 // ====== CONFIG ======
 const PHONE    = "523112242880";
@@ -534,6 +535,38 @@ try {
 })();
 </script>
 
+<!-- ====== Portal del cliente (Stripe) ====== -->
+<script>
+(() => {
+  const btn = document.getElementById('btn-portal');
+  if (!btn) return;
+
+  btn.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    const customerId = localStorage.getItem('stripe_customer_id');
+    if (!customerId) {
+      alert('Primero activa una suscripción para poder abrir el portal.');
+      return;
+    }
+
+    try {
+      const r = await fetch(`${API_BASE}/create-portal-session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ customerId })
+      });
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      const { url } = await r.json();
+      if (url) location.href = url;
+      else alert('No se pudo abrir el portal del cliente.');
+    } catch (err) {
+      console.error('[portal]', err);
+      alert('Error al abrir el portal del cliente.');
+    }
+  });
+})();
+</script>
 
 <script>
 // ====== WhatsApp: links reales (blindado) ======
