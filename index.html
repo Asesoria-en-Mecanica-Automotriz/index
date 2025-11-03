@@ -746,6 +746,18 @@ document.addEventListener('click', (ev)=>{
 });
 </script>
 
+<!-- Coloca este <script> INMEDIATAMENTE antes de </body> -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btnPortal = document.getElementById('btn-portal');
+  if (!btnPortal) return;
+
+  btnPortal.addEventListener('click', async (e) => {
+    e.preventDefault();                // evita que “salte” al inicio
+    // ... tu lógica para abrir el portal ...
+  }, { passive: false });
+});
+</script>
 
 </body>
 </html>
