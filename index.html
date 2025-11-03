@@ -679,23 +679,6 @@ try {
   const waHref = (t) => `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
 
   // CTA principal (hero)
-  <header class="hero" aria-label="Encabezado principal">
-  <div class="brand">
-    <div class="logo" aria-hidden="true">AM</div>
-    <div class="brand-text">
-      <strong style="font-size:18px;letter-spacing:.2px">
-        ASESORÍA EN MECÁNICA AUTOMOTRIZ “ADVISOR”
-      </strong>
-      <div><small style="opacity:.9;font-size:15px">— Diagnóstico experto, paso a paso</small></div>
-    </div>
-  </div>
-
-  <h1>Asesoría mecánica profesional por suscripción</h1>
-  <p class="lead">Toda la atención se realiza exclusivamente por WhatsApp del cliente…</p>
-  <!-- tus CTAs -->
-</header>
-
-
   const cta = document.getElementById("cta-whatsapp");
   if (cta) {
     cta.href = waHref(
@@ -711,8 +694,6 @@ try {
     );
   }
 
-
-  
   // Botones de cada plan (Básico/Avanzado/PRO)
   document.querySelectorAll(".wa-plan").forEach((btn) => {
     const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
