@@ -572,6 +572,65 @@ try {
 </script>
 
 <script>
+(function () {
+  console.log('[checkout] ui suscripción');
+
+  const cid   = localStorage.getItem('stripe_customer_id');
+  const email = localStorage.getItem('customer_email');
+
+  const seccionMiSub = document.getElementById('mi-suscripcion'); // tu <section id="mi-suscripcion">
+  const ctaTrial     = document.getElementById('cta-trial');       // tu botón “Probar 3 asesorías (7 días)”
+  const btnPortal    = document.getElementById('btn-portal');      // botón “Gestionar mi suscripción”
+  const btnLogout    = document.getElementById('btn-logout');      // botón “Borrar datos locales”
+
+  // 1) Mostrar/ocultar secciones según si hay suscriptor
+  if (cid || email) {
+    if (seccionMiSub) seccionMiSub.style.display = 'block';
+    if (ctaTrial)     ctaTrial.style.display     = 'none';
+  } else {
+    if (seccionMiSub) seccionMiSub.style.display = 'none';
+    if (ctaTrial)     ctaTrial.style.display     = 'inline-block';
+  }
+
+  // 2) Abrir Portal de clientes
+  if (btnPortal) {
+    btnPortal.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const customerId = localStorage.getItem('stripe_customer_id');
+        if (!customerId) {
+          alert('No hay cliente guardado aún. Completa una compra primero.');
+          return;
+        }
+        const r = await fetch(`${API_BASE}/create-portal-session`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ customerId })
+        });
+        const j = await r.json();
+        if (!r.ok || !j.url) throw new Error(j.error || 'portal_error');
+        location.href = j.url;
+      } catch (err) {
+        console.error('[portal] error', err);
+        alert('Error al abrir el portal del cliente.');
+      }
+    }, { passive: false });
+  }
+
+  // 3) Borrar datos locales (para pruebas)
+  if (btnLogout) {
+    btnLogout.addEventListener('click', () => {
+      localStorage.removeItem('stripe_customer_id');
+      localStorage.removeItem('stripe_subscription_id');
+      localStorage.removeItem('customer_email');
+      location.reload();
+    });
+  }
+})();
+</script>
+
+  
+<script>
 // ====== WhatsApp: links reales (blindado) ======
 (function () {
   const waHref = (t) => `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
