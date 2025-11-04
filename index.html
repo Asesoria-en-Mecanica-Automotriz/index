@@ -152,7 +152,7 @@
         Te guiamos con pruebas OBD2, eléctricos, enfriamiento, frenos y más.
       </p>
       <div class="cta">
-        <a class="btn btn-primary" id="cta-whatsapp" href="#" rel="noopener">💬 Comenzar por WhatsApp</a>
+        <a class="btn btn-primary" id="cta-whatsapp" href="#!" rel="noopener">💬 Comenzar por WhatsApp</a>
         <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
       </div>
       <div class="badges" aria-label="Confianza">
@@ -184,12 +184,12 @@
         Activación por WhatsApp.
       </p>
     </div>
-    <a class="btn btn-primary" id="cta-trial" href="#" rel="noopener">✨ Probar 3 asesorías (7 días)</a>
-    <a id="btn-portal" class="btn btn-outline btn-secure" href="#" style="margin-left:8px;">
-Gestionar mi suscripción
+    <a class="btn btn-primary" id="cta-trial" href="#!" rel="noopener">✨ Probar 3 asesorías (7 días)</a>
+   <a class="btn btn-outline btn-secure btn-portal" href="#!" style="margin-left:8px;">
+  Gestionar mi suscripción
 </a>
    
-<a id="btn-restore" class="btn btn-link" href="#" style="margin-left:8px;">Restaurar acceso</a>
+<a id="btn-restore" class="btn btn-link" href="#!" style="margin-left:8px;">Restaurar acceso</a>
 
   </div>
 </section>
@@ -200,7 +200,7 @@ Gestionar mi suscripción
     <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
       <div id="sub-status" style="font-weight:600;">Tienes una suscripción activa.</div>
       <div>
-        <button id="btn-portal" class="btn btn-outline btn-secure">Gestionar mi suscripción</button>
+        <button class="btn btn-outline btn-secure btn-portal">Gestionar mi suscripción</button>
         <button id="btn-logout" class="btn" style="margin-left:8px;">Borrar datos locales</button>
       </div>
     </div>
@@ -231,10 +231,10 @@ Gestionar mi suscripción
       <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
 
       <div class="price-cta">
-        <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#">Iniciar por WhatsApp</a>
+        <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#!">Iniciar por WhatsApp</a>
         <a class="btn btn-outline btn-secure btn-pay-stripe"
            data-price-id="price_1SOXlqHDRB00f7scrOHlBbBo"
-           href="#">
+           href="#!">
           Suscribirme al Básico
         </a>
       </div>
@@ -256,10 +256,10 @@ Gestionar mi suscripción
       <div class="feat"><span class="check">✓</span> Seguimiento priorizado</div>
 
       <div class="price-cta">
-        <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#">Iniciar por WhatsApp</a>
+        <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#!">Iniciar por WhatsApp</a>
         <a class="btn btn-outline btn-secure btn-pay-stripe"
            data-price-id="price_1SOXtLHDRB00f7sc9Kt3ozaN"
-           href="#">
+           href="#!">
           Suscribirme al Avanzado
         </a>
       </div>
@@ -279,10 +279,10 @@ Gestionar mi suscripción
       <div class="feat"><span class="check">✓</span> Historial de casos y mejores prácticas</div>
 
       <div class="price-cta">
-        <a class="btn btn-primary wa-plan" data-plan="PRO" href="#">Iniciar por WhatsApp</a>
+        <a class="btn btn-primary wa-plan" data-plan="PRO" href="#!">Iniciar por WhatsApp</a>
         <a class="btn btn-outline btn-secure btn-pay-stripe"
            data-price-id="price_1SOXvxHDRB00f7scXx2DFcOM"
-           href="#">
+           href="#!">
           Activar PRO
         </a>
       </div>
@@ -330,10 +330,8 @@ Gestionar mi suscripción
   <h2 class="section-title">Portal del Cliente</h2>
   <p class="muted">Gestiona tu suscripción, método de pago y facturas.</p>
 
-  <a id="btn-portal" class="btn btn-outline btn-secure" href="#!">
-    Abrir Portal del Cliente
-  </a>
-
+<a id="btn-portal" class="btn btn-outline btn-secure btn-portal" href="#!">Abrir Portal del Cliente</a>
+            
   <small class="pay-note">Se abrirá en una pestaña segura. Si ya eres cliente y no te abre, contáctanos por WhatsApp.</small>
 </section>
 
@@ -546,38 +544,41 @@ try {
 })();
 </script>
 
-<!-- ====== Portal del cliente (Stripe) ====== -->
 <script>
-(() => {
-  const btn = document.getElementById('btn-portal');
-  if (!btn) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const API = (window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app').replace(/\/+$/,'');
+  const CUST_KEY = 'stripe_customer_id';
 
-  btn.addEventListener('click', async (e) => {
-    e.preventDefault();
+  document.querySelectorAll('.btn-portal').forEach((el) => {
+    if (el.dataset.wired) return;
+    el.dataset.wired = '1';
 
-    const customerId = localStorage.getItem('stripe_customer_id');
-    if (!customerId) {
-      alert('Primero activa una suscripción para poder abrir el portal.');
-      return;
-    }
-
-    try {
-      const r = await fetch(`${API_BASE}/create-portal-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ customerId })
-      });
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      const { url } = await r.json();
-      if (url) location.href = url;
-      else alert('No se pudo abrir el portal del cliente.');
-    } catch (err) {
-      console.error('[portal]', err);
-      alert('Error al abrir el portal del cliente.');
-    }
+    el.addEventListener('click', async (e) => {
+      e.preventDefault(); // evita saltar al inicio
+      const customerId = localStorage.getItem(CUST_KEY);
+      if (!customerId){
+        alert('Aún no hay cliente en este navegador. Suscríbete o usa “Restaurar acceso”.');
+        return;
+      }
+      try{
+        const r = await fetch(`${API}/create-portal-session`, {
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body: JSON.stringify({ customerId })
+        });
+        const j = await r.json();
+        if (!r.ok || !j.url) throw new Error(j.error || `HTTP ${r.status}`);
+        location.href = j.url; // o window.open(j.url,'_blank','noopener')
+      }catch(err){
+        console.error('[portal]', err);
+        alert('Error al abrir el portal del cliente.');
+      }
+    }, { passive:false });
   });
-})();
+});
 </script>
+
+  
 
 <script>
 (function () {
@@ -737,9 +738,10 @@ document.addEventListener('click', (ev)=>{
     else alert('Configura un priceId válido en el botón de pago.');
     return;
   }
-  createCheckout(priceId, fallback);
+createCheckout(priceId, fallback);
 });
-<script>
+</script>
+  
 /** Ajusta si no lo declaraste antes en el archivo */
 const API_BASE = window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app';
 
