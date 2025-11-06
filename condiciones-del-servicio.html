@@ -4,107 +4,169 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Condiciones del Servicio – Asesoría en Mecánica Automotriz Advisor</title>
-  <meta name="description" content="Términos y Condiciones del servicio de asesoría automotriz por suscripción (WhatsApp, Stripe y Firebase)." />
+  <meta name="description" content="Términos y Condiciones del servicio de asesoría automotriz por suscripción (WhatsApp, Stripe, Botpress y Firebase). Límites por plan, prueba gratis y cancelaciones." />
   <link rel="canonical" href="https://asesoria-en-mecanica-automotriz.github.io/index/condiciones-del-servicio.html" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.6;margin:0;color:#0a0a0a}
-    header,main,footer{max-width:920px;margin:auto;padding:16px}
-    header h1{margin:24px 0 8px}
-    .card{background:#fff;border:1px solid #e6e6e6;border-radius:14px;padding:20px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
-    h2{margin-top:28px}
-    ul{margin:8px 0 16px 20px}
-    a{color:#0A3D91}
-    small,footer{color:#666}
+    :root{
+      --primary:#0A3D91; /* azul institucional como en index */
+      --accent:#F2C94C;  /* amarillo/dorado de acento */
+      --ink:#0a0a0a;
+      --paper:#fff;
+      --bg:#f6f8fb;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;line-height:1.6}
+    .topbar{background:var(--primary);color:#fff}
+    .topbar .container{max-width:980px;margin:auto;padding:12px 16px}
+    .topbar a{color:#fff;text-decoration:none;opacity:.9}
+    .topbar a:hover{opacity:1}
+    .container{max-width:980px;margin:auto;padding:18px}
+    .paper{
+      position:relative;background:var(--paper);
+      border:2px solid var(--primary);border-radius:18px;
+      padding:24px;box-shadow:0 12px 28px rgba(10,61,145,.08);
+    }
+    .paper:before{
+      content:"";position:absolute;inset:-10px;
+      border:1px solid rgba(10,61,145,.18);border-radius:22px;pointer-events:none;
+    }
+    h1{margin:0 0 6px;font-size:clamp(28px,3.2vw,36px)}
+    .meta{color:#555;font-size:.95rem}
+    .rule{height:4px;border-radius:999px;margin:12px 0 22px;
+      background:linear-gradient(90deg,var(--primary),var(--accent))}
+    h2{margin-top:26px}
+    a{color:var(--primary)}
+    .muted{color:#666}
+
+    /* Galería de imágenes de planes */
+    .plan-gallery{
+      display:grid;gap:16px;margin-top:18px;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    }
+    .plan-card{border:1px solid #e6eefc;border-radius:14px;overflow:hidden;background:#fff}
+    .plan-card img{display:block;width:100%;height:auto}
+    .plan-card figcaption{padding:8px 10px;font-size:.9rem;color:#444;text-align:center}
+
+    footer{color:#666;margin:26px auto 40px;text-align:center}
+    footer a{color:var(--primary)}
   </style>
 </head>
 <body>
-<header>
-  <h1>Condiciones del Servicio</h1>
-  <p><strong>Última actualización:</strong> 5 nov 2025</p>
-</header>
+  <!-- Barra superior con enlace de regreso -->
+  <div class="topbar">
+    <div class="container"><a href="./">← Volver al inicio</a></div>
+  </div>
 
-<main class="card">
-  <p>Estas Condiciones del Servicio (“Condiciones”) regulan el uso del sitio y del servicio de <strong>Asesoría en Mecánica Automotriz Advisor</strong> (el “Servicio”), prestado principalmente por WhatsApp. Al contratar, pagar o usar el Servicio aceptas estas Condiciones.</p>
+  <main class="container">
+    <article class="paper">
+      <h1>Condiciones del Servicio</h1>
+      <div class="meta">Última actualización: 5 nov 2025</div>
+      <div class="rule"></div>
 
-  <h2>1) Quiénes somos</h2>
-  <p><strong>Responsable:</strong> (operando como “Asesoría en Mecánica Automotriz Advisor”), México. 
-  <br><strong>Contacto:</strong> <a href="mailto:asesoria.mecanica.advisor@gmail.com">asesoria.mecanica.advisor@gmail.com</a> · WhatsApp <a href="https://wa.me/523112242880" target="_blank">+52 311 224 2880</a>.
-  <br>Consulta también nuestro <a href="./politica-de-privacidad.html">Aviso de Privacidad</a>.</p>
+      <p>Estas Condiciones del Servicio (“Condiciones”) regulan el uso del sitio y del servicio de <strong>Asesoría en Mecánica Automotriz Advisor</strong> (el “Servicio”), prestado principalmente por WhatsApp. Al contratar, pagar o usar el Servicio aceptas estas Condiciones.</p>
 
-  <h2>2) Descripción del Servicio</h2>
-  <ul>
-    <li>Asesoría técnica automotriz remota por WhatsApp (texto, audio, imágenes, video) y recursos complementarios.</li>
-    <li>El diagnóstico es <strong>orientativo</strong> basado en la información que aportas; no sustituye la revisión física por un mecánico certificado ni constituye garantía de resultado.</li>
-    <li>No es un servicio de emergencia. No operamos grúas, ni realizamos trabajos mecánicos presenciales.</li>
-  </ul>
+      <h2>1) Quiénes somos</h2>
+      <p><strong>Responsable:</strong> (operando como “Asesoría en Mecánica Automotriz Advisor”), México.<br>
+      <strong>Contacto:</strong> <a href="mailto:asesoria.mecanica.advisor@gmail.com">asesoria.mecanica.advisor@gmail.com</a> · WhatsApp <a href="https://wa.me/523112242880" target="_blank">+52 311 224 2880</a>.<br>
+      Consulta también nuestro <a href="./politica-de-privacidad.html">Aviso de Privacidad</a>.</p>
 
-  <h2>3) Cuentas, elegibilidad y uso</h2>
-  <ul>
-    <li>Debes ser mayor de edad y tener capacidad legal.</li>
-    <li>La suscripción es <strong>personal e intransferible</strong>, asociada a un número de WhatsApp. Prohibido compartirla de forma simultánea entre varias personas o talleres.</li>
-    <li>Trataremos tus datos conforme al <a href="./politica-de-privacidad.html">Aviso de Privacidad</a>.</li>
-  </ul>
+      <h2>2) Descripción del Servicio</h2>
+      <ul>
+        <li>Asesoría técnica automotriz remota por WhatsApp (texto, audio, imágenes, video) y recursos complementarios.</li>
+        <li>El diagnóstico es <strong>orientativo</strong> según la información que nos compartes; no sustituye la revisión física por un mecánico certificado ni constituye garantía de resultado.</li>
+        <li>No es un servicio de emergencia. No operamos grúas ni realizamos trabajos presenciales.</li>
+      </ul>
 
-  <h2>4) Planes, límites y “uso justo”</h2>
-  <ul>
-    <li><strong>Básico:</strong> hasta <strong>6</strong> consultas/mes.</li>
-    <li><strong>Avanzado:</strong> hasta <strong>10</strong> consultas/mes y apoyo OBD-II/diagnósticos guiados.</li>
-    <li><strong>PRO:</strong> consultas <strong>ilimitadas</strong> bajo política de <em>uso razonable</em> (sin spam, sin acoso, sin disponibilidad 24/7). Podemos pedir espaciar consultas si afectan la atención a otros usuarios.</li>
-    <li>Una “consulta” es un caso técnico (vehículo/síntoma) con intercambio de mensajes dentro de un periodo razonable.</li>
-  </ul>
+      <h2>3) Cuentas, elegibilidad y uso</h2>
+      <ul>
+        <li>Debes ser mayor de edad y tener capacidad legal.</li>
+        <li>La suscripción es <strong>personal e intransferible</strong>, asociada a un número de WhatsApp. Prohibido compartirla simultáneamente entre varias personas o talleres.</li>
+        <li>Tratamos tus datos conforme al <a href="./politica-de-privacidad.html">Aviso de Privacidad</a>.</li>
+      </ul>
 
-  <h2>5) Prueba gratuita</h2>
-  <p>Ofrecemos una prueba sin costo de <strong>hasta 7 días o 3 consultas</strong>, lo que suceda primero. Al finalizar, se te cobrará el plan elegido salvo cancelación previa.</p>
+      <h2>4) Planes, límites y “uso justo”</h2>
+      <ul>
+        <li><strong>Básico:</strong> hasta <strong>6</strong> consultas al mes.</li>
+        <li><strong>Avanzado:</strong> hasta <strong>10</strong> consultas al mes y apoyo en OBD-II/diagnósticos guiados.</li>
+        <li><strong>PRO:</strong> consultas <strong>ilimitadas</strong> bajo política de <em>uso razonable</em> (sin spam, sin acoso, sin disponibilidad 24/7). Podemos pedir espaciar consultas si afectan la atención a otros usuarios.</li>
+        <li>Una “consulta” es un caso técnico (vehículo/síntoma) con intercambio de mensajes dentro de un periodo razonable.</li>
+      </ul>
 
-  <h2>6) Pagos, facturación y renovaciones</h2>
-  <ul>
-    <li>Los pagos y suscripciones se gestionan con <strong>Stripe</strong>. La suscripción se <strong>renueva automáticamente</strong> (mensual) hasta que la canceles.</li>
-    <li>Puedes gestionar plan y cancelación desde el <a href="#portal">Portal del Cliente</a> (Stripe). Al cancelar, el acceso continúa hasta el final del periodo pagado. No hay reembolsos prorrateados, salvo lo exigido por ley.</li>
-    <li>Precios en MXN, impuestos según aplique. Cargos bancarios o de tu operador no están incluidos.</li>
-    <li>En caso de contracargos o impagos, podemos suspender o terminar el Servicio.</li>
-  </ul>
+      <h2>5) Prueba gratuita</h2>
+      <p>Ofrecemos una prueba sin costo de <strong>hasta 7 días o 3 consultas</strong>, lo que suceda primero. Al finalizar, se te cobrará el plan elegido salvo cancelación previa.</p>
 
-  <h2>7) Horarios y tiempos de respuesta</h2>
-  <p>Atención habitual en horario laboral de México; plazos típicos de respuesta 0–12 h hábiles (prioridad para planes Avanzado/PRO). En picos de demanda o fuera de horario puede extenderse.</p>
+      <h2>6) Pagos, facturación y renovaciones</h2>
+      <ul>
+        <li>Los pagos y suscripciones se gestionan con <strong>Stripe</strong>. La suscripción se <strong>renueva automáticamente</strong> (mensual) hasta que la canceles.</li>
+        <li>Puedes gestionar plan y cancelación desde el <a href="#portal">Portal del Cliente</a> (Stripe). Al cancelar, el acceso continúa hasta el final del periodo pagado. No hay reembolsos prorrateados, salvo lo exigido por ley.</li>
+        <li>Precios en MXN; impuestos y cargos bancarios según aplique.</li>
+        <li>En caso de contracargos o impagos, podemos suspender o terminar el Servicio.</li>
+      </ul>
 
-  <h2>8) Contenido del usuario</h2>
-  <ul>
-    <li>Eres responsable del contenido que envías y declaras que tienes derechos para compartirlo.</li>
-    <li>Nos otorgas una licencia no exclusiva para usar ese contenido únicamente a fin de prestar y mejorar el Servicio.</li>
-  </ul>
+      <h2>7) Horarios y tiempos de respuesta</h2>
+      <p>Atención habitual en horario laboral de México; tiempos típicos de respuesta: 0–12 h hábiles (prioridad para planes Avanzado y PRO). En picos de demanda o fuera de horario puede extenderse.</p>
 
-  <h2>9) Conducta prohibida</h2>
-  <ul>
-    <li>Uso ilegal, difamatorio, abusivo o que infrinja derechos de terceros.</li>
-    <li>Compartir credenciales, automatizar envíos masivos o saturar deliberadamente el canal.</li>
-  </ul>
+      <h2>8) Contenido del usuario</h2>
+      <ul>
+        <li>Eres responsable del contenido que envías y declaras tener derechos para compartirlo.</li>
+        <li>Nos otorgas una licencia no exclusiva para usar ese contenido únicamente a fin de prestar y mejorar el Servicio.</li>
+      </ul>
 
-  <h2>10) Limitación de responsabilidad</h2>
-  <p>En la medida máxima permitida por ley, no seremos responsables por daños indirectos, pérdida de beneficios o daños consecuenciales derivados del uso del Servicio. Nuestra responsabilidad total, de existir, se limita al monto pagado por ti en los últimos 3 meses.</p>
+      <h2>9) Conducta prohibida</h2>
+      <ul>
+        <li>Uso ilegal, difamatorio, abusivo o que infrinja derechos de terceros.</li>
+        <li>Compartir credenciales, automatizar envíos masivos o saturar deliberadamente el canal.</li>
+      </ul>
 
-  <h2>11) Descargo técnico</h2>
-  <p>Las recomendaciones se basan en la información que proporcionas y buenas prácticas. La naturaleza remota implica incertidumbre. Cualquier intervención mecánica corre por cuenta del usuario o del taller que ejecute el trabajo.</p>
+      <h2>10) Limitación de responsabilidad</h2>
+      <p>En la máxima medida permitida por ley, no seremos responsables por daños indirectos, pérdida de beneficios o daños consecuenciales derivados del uso del Servicio. Nuestra responsabilidad total, de existir, se limita al monto pagado por ti en los últimos 3 meses.</p>
 
-  <h2>12) Suspensión y terminación</h2>
-  <p>Podemos suspender o terminar el acceso por incumplimientos (por ejemplo, abuso, impago, fraude). Podrás terminar en cualquier momento via <a href="#portal">Portal del Cliente</a>.</p>
+      <h2>11) Descargo técnico</h2>
+      <p>Las recomendaciones se basan en la información proporcionada y buenas prácticas. La naturaleza remota implica incertidumbre. Cualquier intervención mecánica corre por cuenta del usuario o del taller que ejecute el trabajo.</p>
 
-  <h2>13) Cambios del Servicio o de las Condiciones</h2>
-  <p>Podemos actualizar el Servicio y estas Condiciones. Publicaremos la versión vigente y, cuando corresponda, te notificaremos por un medio razonable. Seguir usando el Servicio implica aceptación.</p>
+      <h2>12) Suspensión y terminación</h2>
+      <p>Podemos suspender o terminar el acceso por incumplimientos (abuso, impago, fraude). Tú puedes terminar en cualquier momento vía <a href="#portal">Portal del Cliente</a>.</p>
 
-  <h2>14) Ley aplicable y jurisdicción</h2>
-  <p>Estas Condiciones se rigen por las leyes de México. Para cualquier controversia, las partes se someten a los tribunales competentes del Estado de Nayarit, México, salvo disposición legal en contrario.</p>
+      <h2>13) Cambios del Servicio o de las Condiciones</h2>
+      <p>Podemos actualizar el Servicio y estas Condiciones. Publicaremos la versión vigente y, cuando corresponda, te notificaremos por un medio razonable. Seguir usando el Servicio implica aceptación.</p>
 
-  <h2>15) Contacto</h2>
-  <p>Correo: <a href="mailto:asesoria.mecanica.advisor@gmail.com">asesoria.mecanica.advisor@gmail.com</a><br>
-     WhatsApp: <a href="https://wa.me/523112242880" target="_blank">+52 311 224 2880</a></p>
+      <h2>14) Ley aplicable y jurisdicción</h2>
+      <p>Estas Condiciones se rigen por las leyes de México. Para controversias, las partes se someten a los tribunales competentes del Estado de Nayarit, México, salvo disposición legal en contrario.</p>
 
-  <p><small>Este documento es informativo y no constituye asesoría legal.</small></p>
-</main>
+      <h2>15) Contacto</h2>
+      <p>Correo: <a href="mailto:asesoria.mecanica.advisor@gmail.com">asesoria.mecanica.advisor@gmail.com</a><br>
+         WhatsApp: <a href="https://wa.me/523112242880" target="_blank">+52 311 224 2880</a></p>
 
-<footer>
-  <p><small>© 2025 Asesoría en Mecánica Automotriz Advisor · 
-  <a href="./condiciones-del-servicio.html">Condiciones del Servicio</a> · 
-  <a href="./politica-de-privacidad.html">Política de Privacidad</a></small></p>
-</footer>
+      <!-- Galería de imágenes de planes (mismo estilo que en Privacidad) -->
+      <section aria-label="Planes" style="margin-top:10px">
+        <h2 class="muted">Nuestros planes</h2>
+        <div class="plan-gallery">
+          <figure class="plan-card">
+            <img src="./assets/img/plan-basico.png" alt="Plan Básico – Asesor Automotriz">
+            <figcaption>Plan Básico</figcaption>
+          </figure>
+          <figure class="plan-card">
+            <img src="./assets/img/plan-avanzado.png" alt="Plan Avanzado – Asesor Automotriz">
+            <figcaption>Plan Avanzado</figcaption>
+          </figure>
+          <figure class="plan-card">
+            <img src="./assets/img/plan-pro.png" alt="Plan PRO – Asesor Automotriz">
+            <figcaption>Plan PRO</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <p class="muted" style="font-size:.9rem;margin-top:16px">
+        <small>Este documento es informativo y no constituye asesoría legal.</small>
+      </p>
+    </article>
+
+    <footer>
+      <small>© 2025 Asesoría en Mecánica Automotriz Advisor ·
+        <a href="./condiciones-del-servicio.html">Condiciones del Servicio</a> ·
+        <a href="./politica-de-privacidad.html">Política de Privacidad</a>
+      </small>
+    </footer>
+  </main>
 </body>
 </html>
