@@ -26,11 +26,15 @@
     /* Scroll suave para anclas (#planes) */
     html{scroll-behavior:smooth}
 
-    body{
-      margin:0;font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
-      background: radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);
-      color:var(--ink); line-height:1.6;
-    }
+  body{
+  margin:0;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+  background: radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+  overflow-x:hidden; /* Evita scroll horizontal si algo se desborda */
+}
+
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
 
     .ribbon{
