@@ -81,15 +81,11 @@
     .price-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
     .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
 
-    /* Botón seguro y nota */
-    .btn-secure::before { content:"🔒"; margin-right:6px }
     .pay-note{ display:block; font-size:12px; color:var(--muted); margin-top:6px }
 
-    /* Tarjetas testimonio */
     .quote{background:#FFFDF4;border:1px solid #FFE39C;border-left:4px solid var(--accent);border-radius:16px;padding:14px}
     .stars{letter-spacing:1px}
 
-    /* Testimonials: grid (desktop) + carousel (mobile) */
     .t-trust-msg{
       text-align:center; margin:16px 0 6px;
       font-weight:800; font-size:200%; color:var(--ink);
@@ -111,7 +107,6 @@
       .t-slide{ flex:unset; scroll-snap-align:unset }
     }
 
-    /* Dark mode */
     @media (prefers-color-scheme: dark){
       :root{
         --ink:#E5EAF5; --bg:#0b1220; --card:#0f1a2b; --muted:#94a3b8;
@@ -179,6 +174,66 @@
         <small class="muted">No usamos chat web ni email para consultas técnicas — solo WhatsApp del cliente.</small>
       </section>
 
+      <!-- =========================================================
+           SECCIÓN NUEVA: Base técnica y cobertura (presunción)
+           ========================================================= -->
+      <section class="card" id="base-tecnica">
+        <h2 class="section-title">Método Advisor: base técnica y cobertura</h2>
+
+        <p style="margin:0 0 10px">
+          <strong>Bienvenido/a a Asesores de Mecánica Automotriz Advisor</strong>
+        </p>
+
+        <p class="muted" style="margin:0 0 10px">
+          Estás entrando a uno de los métodos más prácticos y vanguardistas de México y América Latina para recibir
+          <strong>asesoría técnica automotriz remota</strong>, utilizando el canal más cómodo: <strong>WhatsApp</strong>.
+        </p>
+
+        <div class="quote" style="margin:12px 0">
+          <strong>Actualmente hay un mundo de información…</strong><br>
+          pero ya deja de perder el tiempo recopilando información experimental.
+          Aquí trabajamos con <strong>rutas de prueba</strong> y decisiones claras.
+        </div>
+
+        <div class="grid grid-2" style="margin-top:12px">
+          <div>
+            <div class="feat"><span class="check">✓</span> <strong>Autos de todas las marcas</strong></div>
+            <div class="feat"><span class="check">✓</span> Gasolina, diésel, híbridos y eléctricos <strong>(MHEV, HEV, PHEV, BEV)</strong></div>
+            <div class="feat"><span class="check">✓</span> Diagnóstico de fallas y <strong>códigos OBD2</strong></div>
+            <div class="feat"><span class="check">✓</span> Definición de <strong>rutas de prueba paso a paso</strong></div>
+          </div>
+
+          <div>
+            <div class="feat"><span class="check">✓</span> <strong>Boletines técnicos</strong> de fabricantes</div>
+            <div class="feat"><span class="check">✓</span> Fundamentos técnicos de cada sistema involucrado</div>
+            <div class="feat"><span class="check">✓</span> Motor, transmisión, frenos ABS, suspensión y más</div>
+            <div class="feat"><span class="check">✓</span> Motocicletas y sistemas de carga de batería</div>
+          </div>
+        </div>
+
+        <div class="quote" style="margin:14px 0 12px">
+          <strong>CONTAMOS CON LA BASE DE DATOS, BOLETINES Y PROCEDIMIENTOS MÁS COMPLETA DEL MUNDO AUTOMOTRIZ</strong>
+          <br>
+          Además, asesoría especializada en <strong>ATV, RZR y CAN-AM</strong>.
+        </div>
+
+        <p style="margin:0 0 10px">
+          <strong>Aquí tienes a tu “mano derecha” técnica, disponible 24/7.</strong>
+        </p>
+
+        <div class="card" style="padding:14px; border-radius:16px; background:linear-gradient(180deg,#fff,#FBFDFF); border:1px solid #E8EEF8">
+          <p style="margin:0 0 10px">
+            Por ser tu primera vez, cuentas con un <strong>TRIAL GRATUITO de prueba</strong>
+            (hasta <strong>3 consultas</strong> o <strong>7 días</strong>, lo que ocurra primero).
+          </p>
+          <p class="muted" style="margin:0 0 12px">
+            No solicitamos tarjeta ni forma de pago para la prueba. Primero conoces el servicio y después decides cómo continuar.
+          </p>
+          <a class="btn btn-primary wa-trial" href="#!" rel="noopener">✨ Activar mi prueba gratis</a>
+          <small class="pay-note">Se abrirá WhatsApp y el bot iniciará con su presentación y pregunta de nombre.</small>
+        </div>
+      </section>
+
       <!-- Bloque: Prueba (3 asesorías gratis en 7 días) -->
       <section class="card">
         <div class="trial" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
@@ -220,9 +275,7 @@
               <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#!">Iniciar por WhatsApp</a>
             </div>
 
-            <small class="pay-note">
-              La contratación se gestiona desde WhatsApp.
-            </small>
+            <small class="pay-note">La contratación se gestiona desde WhatsApp.</small>
           </article>
 
           <!-- ===== Avanzado ===== -->
@@ -243,9 +296,7 @@
               <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#!">Iniciar por WhatsApp</a>
             </div>
 
-            <small class="pay-note">
-              La contratación se gestiona desde WhatsApp.
-            </small>
+            <small class="pay-note">La contratación se gestiona desde WhatsApp.</small>
           </article>
 
           <!-- ===== PRO ===== -->
@@ -265,9 +316,7 @@
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#!">Iniciar por WhatsApp</a>
             </div>
 
-            <small class="pay-note">
-              La contratación se gestiona desde WhatsApp.
-            </small>
+            <small class="pay-note">La contratación se gestiona desde WhatsApp.</small>
           </article>
 
         </div>
@@ -336,23 +385,21 @@
   </div>
 
   <!-- =========================================================
-       SCRIPTS (LIMPIO): SOLO WhatsApp + soporte directo
-       - Incluye ?ref=XXXX en el mensaje si viene en la URL
+       SCRIPT ÚNICO: SOLO WhatsApp + atención directa (SIN pedir nombre)
+       - El bot inicia con cualquier mensaje y luego pregunta:
+         “¿Con quién tengo el gusto?” (RAW INPUT en tu flujo)
+       - Incluye ?ref=XXXX en el texto si llega en la URL
        ========================================================= -->
   <script>
     (function () {
-      // WhatsApp del sistema (Botpress) y atención directa
-      const BOT_PHONE = "523338219109";     // +52 33 3821 9109
-      const DIRECT_PHONE = "523311571619";  // +52 33 1157 1619
+      const BOT_PHONE = "523338219109";     // +52 33 3821 9109 (Botpress)
+      const DIRECT_PHONE = "523311571619";  // +52 33 1157 1619 (Atención directa)
 
       function getRef() {
         try {
           const p = new URLSearchParams(location.search);
-          const r = (p.get("ref") || "").trim();
-          return r;
-        } catch (_) {
-          return "";
-        }
+          return (p.get("ref") || "").trim();
+        } catch (_) { return ""; }
       }
 
       function waLink(phone, text) {
@@ -362,42 +409,56 @@
       const ref = getRef();
       const refLine = ref ? `\nCódigo: ${ref}` : "";
 
-      // CTA principal (hero)
+      // CTA principal
       const cta = document.getElementById("cta-whatsapp");
       if (cta) {
         cta.href = waLink(
           BOT_PHONE,
-          "Hola, quiero comenzar.\nMis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\nVehículo: [Año, Marca, Modelo, Motor]\nCaso: [Síntoma] [Códigos/DTC si aplica]" + refLine
+          "Hola. Quiero iniciar asesoría por WhatsApp." + refLine
         );
       }
 
-      // CTA de prueba
+      // CTA trial (bloque trial)
       const trial = document.getElementById("cta-trial");
       if (trial) {
         trial.href = waLink(
           BOT_PHONE,
-          "Solicito PRUEBA: 3 asesorías gratis (7 días).\nMis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\nVehículo: [Año, Marca, Modelo, Motor]\nCaso: [Síntoma] [Códigos/DTC si aplica]" + refLine
+          "Hola. Quiero activar mi PRUEBA (3 consultas o 7 días)." + refLine
         );
       }
 
-      // Botones por plan
+      // CTA trial (sección base técnica)
+      document.querySelectorAll(".wa-trial").forEach((btn) => {
+        btn.href = waLink(
+          BOT_PHONE,
+          "Hola. Quiero activar mi PRUEBA (3 consultas o 7 días)." + refLine
+        );
+      });
+
+      // CTA por plan
       document.querySelectorAll(".wa-plan").forEach((btn) => {
         const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
         btn.href = waLink(
           BOT_PHONE,
-          `Quiero contratar el plan ${plan}.\nMis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\nVehículo: [Año, Marca, Modelo, Motor]\nCaso: [Síntoma] [Códigos/DTC si aplica]` + refLine
+          `Hola. Quiero información y contratación del plan ${plan}.` + refLine
         );
       });
 
       // Links de contacto
       const linkBot = document.getElementById("link-bot");
       if (linkBot) {
-        linkBot.href = waLink(BOT_PHONE, "Hola. Quiero información para iniciar asesoría por WhatsApp." + refLine);
+        linkBot.href = waLink(
+          BOT_PHONE,
+          "Hola. Quiero información para iniciar el servicio." + refLine
+        );
       }
 
       const linkDirecto = document.getElementById("link-directo");
       if (linkDirecto) {
-        linkDirecto.href = waLink(DIRECT_PHONE, "Hola. Necesito atención directa para seguimiento / incidencia." + refLine);
+        linkDirecto.href = waLink(
+          DIRECT_PHONE,
+          "Hola. Necesito atención directa para seguimiento / incidencia." + refLine
+        );
       }
     })();
   </script>
