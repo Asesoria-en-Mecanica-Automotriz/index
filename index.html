@@ -73,15 +73,33 @@
     .price-card{position:relative;padding:22px;border-radius:var(--radius);background:linear-gradient(180deg,#fff,#FBFDFF);
       border:1px solid #E8EEF8;transition:.18s transform,.18s box-shadow}
     .price-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(2,23,80,.10)}
+    .price-card.destacado{border:2px solid #D7E3FF}
     .price-h{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
     .pill{font-size:12px;padding:6px 10px;border-radius:999px;background:#EEF4FF;color:#0A3D91;border:1px solid #DBE6FF}
     .price{font-size:clamp(24px,3.6vw,30px);font-weight:800;color:var(--ink)}
     .feat{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:15px}
     .check{width:18px;height:18px;border-radius:6px;background:var(--ok);display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
     .price-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
-
     .pay-note{ display:block; font-size:12px; color:var(--muted); margin-top:6px }
+
+    /* === NUEVO: Imagen del plan dentro de la tarjeta === */
+    .plan-media{
+      margin:0 0 12px;
+      border-radius:16px;
+      overflow:hidden;
+      border:1px solid #E8EEF8;
+      box-shadow:0 10px 24px rgba(2,23,80,.08);
+      background:#fff;
+    }
+    .plan-media img{
+      width:100%;
+      height:180px;
+      display:block;
+      object-fit:cover;
+    }
+    @media(min-width:860px){
+      .plan-media img{ height:160px; }
+    }
 
     .quote{background:#FFFDF4;border:1px solid #FFE39C;border-left:4px solid var(--accent);border-radius:16px;padding:14px}
     .stars{letter-spacing:1px}
@@ -117,9 +135,9 @@
       header.hero{ background: linear-gradient(120deg, rgba(16,70,180,.96), rgba(14,98,255,.85)); }
       .card{ border-color:#1f2d47; }
       .badge{ background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color:#fff; }
-      .btn-outline{ background:#0f1a2b; color:#E5EAF5; border-color:#2a3b5e }
       .quote{ background:#121d31; border-color:#2a3b5e }
       footer{ background: linear-gradient(180deg,#0b1e52,#0b1e52 60%,#0E62FF) }
+      .plan-media{border-color:#2a3b5e; background:#0f1a2b}
     }
 
     footer{margin:40px 0 12px;padding:18px;border-radius:var(--radius);
@@ -174,9 +192,7 @@
         <small class="muted">No usamos chat web ni email para consultas técnicas — solo WhatsApp del cliente.</small>
       </section>
 
-      <!-- =========================================================
-           SECCIÓN NUEVA: Base técnica y cobertura (presunción)
-           ========================================================= -->
+      <!-- ========== Base técnica y cobertura (presunción) ========== -->
       <section class="card" id="base-tecnica">
         <h2 class="section-title">Método Advisor: base técnica y cobertura</h2>
 
@@ -230,7 +246,7 @@
             No solicitamos tarjeta ni forma de pago para la prueba. Primero conoces el servicio y después decides cómo continuar.
           </p>
           <a class="btn btn-primary wa-trial" href="#!" rel="noopener">✨ Activar mi prueba gratis</a>
-          <small class="pay-note">Se abrirá WhatsApp y te atenderemos de inmediato.</small>
+          <small class="pay-note">Se abrirá WhatsApp y el bot iniciará con su presentación y pregunta de nombre.</small>
         </div>
       </section>
 
@@ -261,11 +277,16 @@
 
           <!-- ===== Básico ===== -->
           <article class="price-card">
+            <div class="plan-media">
+              <img src="assets/img/plan-basico.png" alt="Plan Básico - Advisor" loading="lazy">
+            </div>
+
             <div class="price-h">
               <h3 style="margin:0">Básico</h3>
               <span class="pill">Hasta 6 consultas/mes</span>
             </div>
             <div class="price">$399 MXN/mes</div>
+
             <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp</div>
             <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
             <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
@@ -274,17 +295,21 @@
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#!">Iniciar por WhatsApp</a>
             </div>
-
             <small class="pay-note">La contratación se gestiona desde WhatsApp.</small>
           </article>
 
           <!-- ===== Avanzado ===== -->
           <article class="price-card destacado">
+            <div class="plan-media">
+              <img src="assets/img/plan-avanzado.png" alt="Plan Avanzado - Advisor" loading="lazy">
+            </div>
+
             <div class="price-h">
               <h3 style="margin:0">Avanzado</h3>
               <span class="pill">Hasta 10 consultas/mes</span>
             </div>
             <div class="price">$499 MXN/mes</div>
+
             <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp</div>
             <div class="feat"><span class="check">✓</span> Todo lo del plan Básico</div>
             <div class="feat"><span class="check">✓</span> Apoyo en casos más complejos</div>
@@ -295,17 +320,21 @@
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#!">Iniciar por WhatsApp</a>
             </div>
-
             <small class="pay-note">La contratación se gestiona desde WhatsApp.</small>
           </article>
 
           <!-- ===== PRO ===== -->
           <article class="price-card">
+            <div class="plan-media">
+              <img src="assets/img/plan-pro.png" alt="Plan PRO - Advisor" loading="lazy">
+            </div>
+
             <div class="price-h">
               <h3 style="margin:0">PRO</h3>
               <span class="pill">Consultas ilimitadas</span>
             </div>
             <div class="price">$999 MXN/mes</div>
+
             <div class="feat"><span class="check">✓</span> Asesoría por WhatsApp</div>
             <div class="feat"><span class="check">✓</span> Soporte ilimitado (políticas de uso justo)</div>
             <div class="feat"><span class="check">✓</span> Estándar de respuesta máximo</div>
@@ -315,14 +344,13 @@
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#!">Iniciar por WhatsApp</a>
             </div>
-
             <small class="pay-note">La contratación se gestiona desde WhatsApp.</small>
           </article>
 
         </div>
 
         <small class="muted">
-          Nota: Todo el servicio opera por WhatsApp. La contratación del plan se hace desde ahí.
+          Nota: Todo el servicio opera por WhatsApp del cliente. La contratación del plan se hace desde ahí.
         </small>
       </section>
 
@@ -354,7 +382,7 @@
         </p>
       </section>
 
-      <!-- Contacto (2 números: sistema + atención directa) -->
+      <!-- Contacto (2 números) -->
       <section class="card">
         <h2 class="section-title">Contacto</h2>
 
@@ -368,9 +396,7 @@
           <a id="link-directo" href="#!" rel="noopener">+52 33 1157 1619</a>
         </p>
 
-        <p class="muted" style="margin-top:10px">
-          Gracias por tu visita.
-        </p>
+        <p class="muted" style="margin-top:10px">Gracias por tu visita.</p>
       </section>
     </main>
 
@@ -387,7 +413,7 @@
   <!-- =========================================================
        SCRIPT ÚNICO: SOLO WhatsApp + atención directa (SIN pedir nombre)
        - El bot inicia con cualquier mensaje y luego pregunta:
-         “¿Con quién tengo el gusto?” (RAW INPUT en tu flujo)
+         “¿Con quién tengo el gusto?”
        - Incluye ?ref=XXXX en el texto si llega en la URL
        ========================================================= -->
   <script>
@@ -409,56 +435,33 @@
       const ref = getRef();
       const refLine = ref ? `\nCódigo: ${ref}` : "";
 
-      // CTA principal
       const cta = document.getElementById("cta-whatsapp");
       if (cta) {
-        cta.href = waLink(
-          BOT_PHONE,
-          "Hola. Quiero iniciar asesoría por WhatsApp." + refLine
-        );
+        cta.href = waLink(BOT_PHONE, "Hola. Quiero iniciar asesoría por WhatsApp." + refLine);
       }
 
-      // CTA trial (bloque trial)
       const trial = document.getElementById("cta-trial");
       if (trial) {
-        trial.href = waLink(
-          BOT_PHONE,
-          "Hola. Quiero activar mi PRUEBA (3 consultas o 7 días)." + refLine
-        );
+        trial.href = waLink(BOT_PHONE, "Hola. Quiero activar mi PRUEBA (3 consultas o 7 días)." + refLine);
       }
 
-      // CTA trial (sección base técnica)
       document.querySelectorAll(".wa-trial").forEach((btn) => {
-        btn.href = waLink(
-          BOT_PHONE,
-          "Hola. Quiero activar mi PRUEBA (3 consultas o 7 días)." + refLine
-        );
+        btn.href = waLink(BOT_PHONE, "Hola. Quiero activar mi PRUEBA (3 consultas o 7 días)." + refLine);
       });
 
-      // CTA por plan
       document.querySelectorAll(".wa-plan").forEach((btn) => {
         const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
-        btn.href = waLink(
-          BOT_PHONE,
-          `Hola. Quiero información y contratación del plan ${plan}.` + refLine
-        );
+        btn.href = waLink(BOT_PHONE, `Hola. Quiero información y contratación del plan ${plan}.` + refLine);
       });
 
-      // Links de contacto
       const linkBot = document.getElementById("link-bot");
       if (linkBot) {
-        linkBot.href = waLink(
-          BOT_PHONE,
-          "Hola. Quiero información para iniciar el servicio." + refLine
-        );
+        linkBot.href = waLink(BOT_PHONE, "Hola. Quiero información para iniciar el servicio." + refLine);
       }
 
       const linkDirecto = document.getElementById("link-directo");
       if (linkDirecto) {
-        linkDirecto.href = waLink(
-          DIRECT_PHONE,
-          "Hola. Necesito atención directa para seguimiento / incidencia." + refLine
-        );
+        linkDirecto.href = waLink(DIRECT_PHONE, "Hola. Necesito atención directa para seguimiento / incidencia." + refLine);
       }
     })();
   </script>
