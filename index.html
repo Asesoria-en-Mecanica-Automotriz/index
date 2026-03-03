@@ -4,13 +4,14 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Asesoria en Mecanica Automotriz Advisor</title>
-  <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Atención y pagos se gestionan exclusivamente por WhatsApp." />
+  <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Toda la atención se realiza exclusivamente por WhatsApp del cliente." />
   <meta name="theme-color" content="#0A3D91" />
   <meta property="og:title" content="Asesoria en Mecanica Automotriz Advisor" />
-  <meta property="og:description" content="Diagnóstico experto 100% por WhatsApp. Planes mensuales y soporte paso a paso." />
+  <meta property="og:description" content="Diagnóstico experto 100% por WhatsApp. Planes mensuales y guía paso a paso." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Asesoria en Mecanica Automotriz" />
 
+  <!-- Favicon “AM” embebido (sin archivos extra) -->
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23FFC400'/%3E%3Cstop offset='1' stop-color='%23FFD966'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx='12' width='64' height='64' fill='%230A3D91'/%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='url(%23g)'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' font-family='Segoe UI, Roboto, Arial' fill='%231F2937' font-weight='900'%3EAM%3C/text%3E%3C/svg%3E" />
 
@@ -23,6 +24,7 @@
     *{box-sizing:border-box}
     html,body{height:100%}
     html{scroll-behavior:smooth}
+
     body{
       margin:0;
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
@@ -31,6 +33,7 @@
       line-height:1.6;
       overflow-x:hidden;
     }
+
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
 
     .ribbon{
@@ -55,8 +58,6 @@
     .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(2,23,80,.12)}
     .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
     .btn-ghost:hover{background:rgba(255,255,255,.20)}
-    .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
-
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
       background:rgba(255,255,255,.14);color:#fff;font-size:13px;border:1px solid rgba(255,255,255,.25)}
@@ -78,11 +79,17 @@
     .feat{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:15px}
     .check{width:18px;height:18px;border-radius:6px;background:var(--ok);display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
     .price-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+    .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
+
+    /* Botón seguro y nota */
+    .btn-secure::before { content:"🔒"; margin-right:6px }
     .pay-note{ display:block; font-size:12px; color:var(--muted); margin-top:6px }
 
+    /* Tarjetas testimonio */
     .quote{background:#FFFDF4;border:1px solid #FFE39C;border-left:4px solid var(--accent);border-radius:16px;padding:14px}
     .stars{letter-spacing:1px}
 
+    /* Testimonials: grid (desktop) + carousel (mobile) */
     .t-trust-msg{
       text-align:center; margin:16px 0 6px;
       font-weight:800; font-size:200%; color:var(--ink);
@@ -104,6 +111,7 @@
       .t-slide{ flex:unset; scroll-snap-align:unset }
     }
 
+    /* Dark mode */
     @media (prefers-color-scheme: dark){
       :root{
         --ink:#E5EAF5; --bg:#0b1220; --card:#0f1a2b; --muted:#94a3b8;
@@ -144,20 +152,19 @@
 
       <h1>Asesoría mecánica profesional por suscripción</h1>
       <p class="lead">
-        Todo se atiende exclusivamente por <strong>WhatsApp</strong> desde tu número.
-        Pagos, activaciones y gestión de suscripción se realizan dentro de WhatsApp.
+        Todo se atiende exclusivamente por <strong>WhatsApp</strong> desde el número del cliente.
+        Te guiamos con pruebas OBD2, eléctricos, enfriamiento, frenos y más.
       </p>
 
       <div class="cta">
         <a class="btn btn-primary" id="cta-whatsapp" href="#!" rel="noopener">💬 Comenzar por WhatsApp</a>
         <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
-        <a class="btn btn-outline" id="cta-soporte-humano" href="#!" rel="noopener">👤 Soporte humano</a>
       </div>
 
       <div class="badges" aria-label="Confianza">
-        <span class="badge">✅ Pagos seguros (Stripe) vía WhatsApp</span>
+        <span class="badge">✅ Atención por WhatsApp</span>
         <span class="badge">🔒 Datos protegidos</span>
-        <span class="badge">🛠️ Especialistas 24/7</span>
+        <span class="badge">🛠️ Protocolo guiado</span>
       </div>
     </header>
 
@@ -165,14 +172,14 @@
       <section class="card">
         <h2 class="section-title">Cómo funciona</h2>
         <ol>
-          <li>Escríbenos por WhatsApp desde tu número y describe el problema (año, marca, modelo, motor, DTC).</li>
+          <li>Escríbenos por WhatsApp desde tu número y describe el caso (año, marca, modelo, motor, códigos DTC).</li>
           <li>Un asesor te guía paso a paso con pruebas claras y decisiones concretas.</li>
-          <li>Elige un plan mensual. Activación, pagos y gestión de suscripción se realizan dentro de WhatsApp.</li>
+          <li>Elige un plan mensual. La contratación se gestiona desde WhatsApp.</li>
         </ol>
         <small class="muted">No usamos chat web ni email para consultas técnicas — solo WhatsApp del cliente.</small>
       </section>
 
-      <!-- Bloque: Prueba -->
+      <!-- Bloque: Prueba (3 asesorías gratis en 7 días) -->
       <section class="card">
         <div class="trial" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
           <div>
@@ -184,79 +191,93 @@
             </p>
           </div>
           <a class="btn btn-primary" id="cta-trial" href="#!" rel="noopener">✨ Probar 3 asesorías (7 días)</a>
-          <a class="btn btn-outline" id="cta-gestionar" href="#!" rel="noopener">⚙️ Gestionar mi suscripción</a>
         </div>
-        <small class="pay-note">Pagos/gestión: dentro de WhatsApp (Stripe). Soporte humano disponible aparte.</small>
       </section>
 
-      <!-- Planes -->
+      <!-- ========== Planes ========== -->
       <section id="planes">
         <h2 class="section-title">Planes y precios</h2>
         <p class="muted" style="margin-top:-6px">
-          Contratación, activación y cobro se realizan dentro de WhatsApp.
+          Elige un plan. Contratación y seguimiento se coordinan por WhatsApp.
           <br><strong>Prueba incluida:</strong> 3 asesorías gratis en 7 días (lo que ocurra primero).
         </p>
 
         <div class="grid grid-3" style="margin-top:12px">
 
-          <!-- Básico -->
+          <!-- ===== Básico ===== -->
           <article class="price-card">
             <div class="price-h">
               <h3 style="margin:0">Básico</h3>
               <span class="pill">Hasta 6 consultas/mes</span>
             </div>
             <div class="price">$399 MXN/mes</div>
-            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp 24/7</div>
+            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp</div>
             <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
             <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
             <div class="feat"><span class="check">✓</span> Hasta 3 rondas por diagnóstico</div>
+
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#!">Iniciar por WhatsApp</a>
             </div>
-            <small class="pay-note">Cobro y activación: dentro de WhatsApp (Stripe) • Cargo mensual • Cancelas cuando quieras</small>
+
+            <small class="pay-note">
+              La contratación se gestiona desde WhatsApp.
+            </small>
           </article>
 
-          <!-- Avanzado -->
+          <!-- ===== Avanzado ===== -->
           <article class="price-card destacado">
             <div class="price-h">
               <h3 style="margin:0">Avanzado</h3>
               <span class="pill">Hasta 10 consultas/mes</span>
             </div>
             <div class="price">$499 MXN/mes</div>
-            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp 24/7</div>
+            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp</div>
             <div class="feat"><span class="check">✓</span> Todo lo del plan Básico</div>
             <div class="feat"><span class="check">✓</span> Apoyo en casos más complejos</div>
             <div class="feat"><span class="check">✓</span> Seguimiento más cercano</div>
             <div class="feat"><span class="check">✓</span> Hasta 4 rondas por diagnóstico</div>
-            <div class="feat"><span class="check">✓</span> Acceso a tu historial personal</div>
+            <div class="feat"><span class="check">✓</span> Acceso a tu historial personal de diagnósticos</div>
+
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#!">Iniciar por WhatsApp</a>
             </div>
-            <small class="pay-note">Cobro y activación: dentro de WhatsApp (Stripe) • Cargo mensual • Cancelas cuando quieras</small>
+
+            <small class="pay-note">
+              La contratación se gestiona desde WhatsApp.
+            </small>
           </article>
 
-          <!-- PRO -->
+          <!-- ===== PRO ===== -->
           <article class="price-card">
             <div class="price-h">
               <h3 style="margin:0">PRO</h3>
               <span class="pill">Consultas ilimitadas</span>
             </div>
             <div class="price">$999 MXN/mes</div>
-            <div class="feat"><span class="check">✓</span> Asesoría 24/7 por WhatsApp</div>
+            <div class="feat"><span class="check">✓</span> Asesoría por WhatsApp</div>
             <div class="feat"><span class="check">✓</span> Soporte ilimitado (políticas de uso justo)</div>
-            <div class="feat"><span class="check">✓</span> Máximo estándar de respuesta</div>
-            <div class="feat"><span class="check">✓</span> Historial personal + biblioteca global</div>
+            <div class="feat"><span class="check">✓</span> Estándar de respuesta máximo</div>
+            <div class="feat"><span class="check">✓</span> Historial personal y acceso a biblioteca global</div>
             <div class="feat"><span class="check">✓</span> Hasta 5 rondas por diagnóstico</div>
+
             <div class="price-cta">
               <a class="btn btn-primary wa-plan" data-plan="PRO" href="#!">Iniciar por WhatsApp</a>
             </div>
-            <small class="pay-note">Cobro y activación: dentro de WhatsApp (Stripe) • Cargo mensual • Cancelas cuando quieras</small>
+
+            <small class="pay-note">
+              La contratación se gestiona desde WhatsApp.
+            </small>
           </article>
 
         </div>
+
+        <small class="muted">
+          Nota: Todo el servicio opera por WhatsApp del cliente. La contratación del plan se hace desde ahí.
+        </small>
       </section>
 
-      <!-- Testimonios -->
+      <!-- ========== Testimonios ========== -->
       <section class="card">
         <p class="t-trust-msg">
           "Miles de técnicos, mecánicos y autodidactas propietarios de vehículos y de talleres están satisfechos con nuestro gran sistema"
@@ -268,30 +289,38 @@
 
         <div class="t-carousel" id="t-carousel" aria-label="Testimonios">
           <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller “El Pistón”</strong><br>“Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”</article>
-          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Autoeléctrico Rivera</strong><br>“Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas. Atención siempre en WhatsApp.”</article>
-          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller Jalisco</strong><br>“Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Autoeléctrico Rivera</strong><br>“Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller Jalisco</strong><br>“Seguimiento ordenado y rápido. Ideal para equipo en campo.”</article>
           <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Mecánica “La Chispa”</strong><br>“Nos ayudaron a aislar un P0335 con pasos simples. Cero adivinanzas.”</article>
           <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Electromecánica Gómez</strong><br>“Interpretación de DTC y pruebas guiadas que funcionan. Muy recomendados.”</article>
-          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller de Flotillas Monterrey</strong><br>“Para la flotilla fue clave: respuestas rápidas y consistentes, 100% por WhatsApp.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller de Flotillas Monterrey</strong><br>“Para la flotilla fue clave: respuestas rápidas y consistentes.”</article>
         </div>
       </section>
 
       <section class="card">
         <h2 class="section-title" style="margin-bottom:6px">Política de reembolsos</h2>
         <p>
-          Reembolso total durante los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas
-          en el periodo). Solicítalo por WhatsApp desde el menú principal en “Cancelar suscripción”.
+          Reembolso total durante los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas en el periodo).
+          Solicítalo por WhatsApp, desde el menú principal en la sección de <strong>“Cancelar suscripción”</strong>.
         </p>
       </section>
 
+      <!-- Contacto (2 números: sistema + atención directa) -->
       <section class="card">
         <h2 class="section-title">Contacto</h2>
-        <p>
-          <strong>Soporte humano (atención directa):</strong>
-          <a href="https://wa.me/523311571619" target="_blank" rel="noopener">+52 3311571619</a>
+
+        <p style="margin:0 0 10px">
+          <strong>Asesoría por WhatsApp (sistema):</strong>
+          <a id="link-bot" href="#!" rel="noopener">+52 33 3821 9109</a>
         </p>
+
+        <p style="margin:0 0 10px">
+          <strong>Atención directa (incidencias y seguimiento):</strong>
+          <a id="link-directo" href="#!" rel="noopener">+52 33 1157 1619</a>
+        </p>
+
         <p class="muted" style="margin-top:10px">
-          Consultas técnicas, pagos y planes: por WhatsApp con el bot (opción “Comenzar”).
+          Gracias por tu visita.
         </p>
       </section>
     </main>
@@ -304,82 +333,72 @@
         <a href="./eliminacion-de-datos.html" rel="nofollow">Eliminación de Datos</a>
       </small>
     </footer>
-
   </div>
 
-  <!-- ============================= -->
-  <!-- SECCIÓN SCRIPTS: SOLO WHATSAPP -->
-  <!-- ============================= -->
+  <!-- =========================================================
+       SCRIPTS (LIMPIO): SOLO WhatsApp + soporte directo
+       - Incluye ?ref=XXXX en el mensaje si viene en la URL
+       ========================================================= -->
   <script>
-    // Número BOT (Botpress WABA) y Soporte humano (WhatsApp directo)
-    const PHONE_BOT   = "523338219109";
-    const PHONE_HUMAN = "523311571619";
+    (function () {
+      // WhatsApp del sistema (Botpress) y atención directa
+      const BOT_PHONE = "523338219109";     // +52 33 3821 9109
+      const DIRECT_PHONE = "523311571619";  // +52 33 1157 1619
 
-    // Guardar ?ref= si llega en la URL (para anexarlo al mensaje)
-    (function persistRef(){
-      try {
-        const p = new URLSearchParams(location.search);
-        const r = (p.get('ref') || '').trim();
-        if (r) localStorage.setItem('ref', r);
-      } catch (_) {}
-    })();
+      function getRef() {
+        try {
+          const p = new URLSearchParams(location.search);
+          const r = (p.get("ref") || "").trim();
+          return r;
+        } catch (_) {
+          return "";
+        }
+      }
 
-    function waHref(phone, text){
-      return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
-    }
+      function waLink(phone, text) {
+        return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+      }
 
-    function appendRef(baseText){
-      const ref = (localStorage.getItem('ref') || '').trim();
-      if (!ref) return baseText;
-      return `${baseText}\n\nCódigo/Ref: ${ref}`;
-    }
+      const ref = getRef();
+      const refLine = ref ? `\nCódigo: ${ref}` : "";
 
-    // Wire links
-    (function wireWhatsApp(){
+      // CTA principal (hero)
       const cta = document.getElementById("cta-whatsapp");
       if (cta) {
-        const msg = appendRef(
-          "Hola, quiero comenzar.\n" +
-          "Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\n" +
-          "Vehículo: [Año, Marca, Modelo, Motor]\n" +
-          "Caso: [Códigos/DTC si hay] [Síntoma]"
+        cta.href = waLink(
+          BOT_PHONE,
+          "Hola, quiero comenzar.\nMis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\nVehículo: [Año, Marca, Modelo, Motor]\nCaso: [Síntoma] [Códigos/DTC si aplica]" + refLine
         );
-        cta.href = waHref(PHONE_BOT, msg);
       }
 
+      // CTA de prueba
       const trial = document.getElementById("cta-trial");
       if (trial) {
-        const msg = appendRef(
-          "Solicito PRUEBA: 3 asesorías gratis (7 días).\n" +
-          "Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]"
+        trial.href = waLink(
+          BOT_PHONE,
+          "Solicito PRUEBA: 3 asesorías gratis (7 días).\nMis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\nVehículo: [Año, Marca, Modelo, Motor]\nCaso: [Síntoma] [Códigos/DTC si aplica]" + refLine
         );
-        trial.href = waHref(PHONE_BOT, msg);
       }
 
-      const gestionar = document.getElementById("cta-gestionar");
-      if (gestionar) {
-        const msg = appendRef(
-          "Quiero gestionar mi suscripción (cambiar plan, cancelar, facturas o pago).\n" +
-          "Mi WhatsApp es este número. Gracias."
-        );
-        gestionar.href = waHref(PHONE_BOT, msg);
-      }
-
-      const soporte = document.getElementById("cta-soporte-humano");
-      if (soporte) {
-        soporte.href = waHref(PHONE_HUMAN, "Hola, necesito soporte humano. Vengo del sistema Advisor.");
-      }
-
+      // Botones por plan
       document.querySelectorAll(".wa-plan").forEach((btn) => {
         const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
-        const msg = appendRef(
-          `Quiero contratar el plan ${plan}.\n` +
-          "Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\n" +
-          "Vehículo: [Año/Marca/Modelo/Motor]\n" +
-          "Caso: [Descripción del síntoma]"
+        btn.href = waLink(
+          BOT_PHONE,
+          `Quiero contratar el plan ${plan}.\nMis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\nVehículo: [Año, Marca, Modelo, Motor]\nCaso: [Síntoma] [Códigos/DTC si aplica]` + refLine
         );
-        btn.href = waHref(PHONE_BOT, msg);
       });
+
+      // Links de contacto
+      const linkBot = document.getElementById("link-bot");
+      if (linkBot) {
+        linkBot.href = waLink(BOT_PHONE, "Hola. Quiero información para iniciar asesoría por WhatsApp." + refLine);
+      }
+
+      const linkDirecto = document.getElementById("link-directo");
+      if (linkDirecto) {
+        linkDirecto.href = waLink(DIRECT_PHONE, "Hola. Necesito atención directa para seguimiento / incidencia." + refLine);
+      }
     })();
   </script>
 </body>
