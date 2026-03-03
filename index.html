@@ -4,14 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Asesoria en Mecanica Automotriz Advisor</title>
-  <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Toda la atención se realiza exclusivamente por WhatsApp del cliente." />
+  <meta name="description" content="Asesoría mecánica automotriz profesional por suscripción. Atención y pagos se gestionan exclusivamente por WhatsApp." />
   <meta name="theme-color" content="#0A3D91" />
   <meta property="og:title" content="Asesoria en Mecanica Automotriz Advisor" />
   <meta property="og:description" content="Diagnóstico experto 100% por WhatsApp. Planes mensuales y soporte paso a paso." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Asesoria en Mecanica Automotriz" />
 
-  <!-- Favicon “AM” embebido (sin archivos extra) -->
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1'%3E%3Cstop stop-color='%23FFC400'/%3E%3Cstop offset='1' stop-color='%23FFD966'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect rx='12' width='64' height='64' fill='%230A3D91'/%3E%3Crect x='6' y='6' width='52' height='52' rx='10' fill='url(%23g)'/%3E%3Ctext x='50%25' y='56%25' text-anchor='middle' font-size='30' font-family='Segoe UI, Roboto, Arial' fill='%231F2937' font-weight='900'%3EAM%3C/text%3E%3C/svg%3E" />
 
@@ -23,18 +22,15 @@
     }
     *{box-sizing:border-box}
     html,body{height:100%}
-    /* Scroll suave para anclas (#planes) */
     html{scroll-behavior:smooth}
-
-  body{
-  margin:0;
-  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
-  background: radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);
-  color:var(--ink);
-  line-height:1.6;
-  overflow-x:hidden; /* Evita scroll horizontal si algo se desborda */
-}
-
+    body{
+      margin:0;
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+      background: radial-gradient(1200px 600px at 70% -100px,#E8F0FF,transparent 70%),var(--bg);
+      color:var(--ink);
+      line-height:1.6;
+      overflow-x:hidden;
+    }
     .wrap{max-width:var(--maxw);margin:0 auto;padding:24px}
 
     .ribbon{
@@ -59,6 +55,8 @@
     .btn-primary:hover{transform:translateY(-1px);box-shadow:0 12px 32px rgba(2,23,80,.12)}
     .btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25)}
     .btn-ghost:hover{background:rgba(255,255,255,.20)}
+    .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
+
     .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
     .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;
       background:rgba(255,255,255,.14);color:#fff;font-size:13px;border:1px solid rgba(255,255,255,.25)}
@@ -80,17 +78,11 @@
     .feat{display:flex;align-items:flex-start;gap:10px;margin:8px 0;font-size:15px}
     .check{width:18px;height:18px;border-radius:6px;background:var(--ok);display:inline-grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
     .price-cta{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
-    .btn-outline{background:#fff;color:var(--brand);border:1px solid #D7E3FF}
-
-    /* Botón seguro y nota de pago */
-    .btn-secure::before { content:"🔒"; margin-right:6px }
     .pay-note{ display:block; font-size:12px; color:var(--muted); margin-top:6px }
 
-    /* Tarjetas testimonio */
     .quote{background:#FFFDF4;border:1px solid #FFE39C;border-left:4px solid var(--accent);border-radius:16px;padding:14px}
     .stars{letter-spacing:1px}
 
-    /* ==== Testimonials: grid (desktop) + carousel (mobile) ==== */
     .t-trust-msg{
       text-align:center; margin:16px 0 6px;
       font-weight:800; font-size:200%; color:var(--ink);
@@ -112,7 +104,6 @@
       .t-slide{ flex:unset; scroll-snap-align:unset }
     }
 
-    /* ===== Dark mode automático ===== */
     @media (prefers-color-scheme: dark){
       :root{
         --ink:#E5EAF5; --bg:#0b1220; --card:#0f1a2b; --muted:#94a3b8;
@@ -133,6 +124,7 @@
     footer small a{color:#fff;opacity:.9}
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="ribbon">📣 Atención 100% por WhatsApp del cliente • Sin apps ni chat web</div>
@@ -142,25 +134,28 @@
         <div class="logo" aria-hidden="true">AM</div>
         <div>
           <div style="font-weight:700;font-size:1.25rem;line-height:1.2;white-space:nowrap;">
-  ASESORIA EN MECANICA AUTOMOTRIZ "ADVISOR"
-</div>
-         <small style="opacity:.95; font-size:1.125rem; font-weight:600; line-height:1.35; display:block; margin-top:.25rem;">
-  *Diagnóstico experto, paso a paso
-</small>
-
+            ASESORIA EN MECANICA AUTOMOTRIZ "ADVISOR"
+          </div>
+          <small style="opacity:.95; font-size:1.125rem; font-weight:600; line-height:1.35; display:block; margin-top:.25rem;">
+            *Diagnóstico experto, paso a paso
+          </small>
         </div>
       </div>
+
       <h1>Asesoría mecánica profesional por suscripción</h1>
       <p class="lead">
-        Todo se atiende exclusivamente por <strong>WhatsApp</strong> desde el número del cliente.
-        Te guiamos con pruebas OBD2, eléctricos, enfriamiento, frenos y más.
+        Todo se atiende exclusivamente por <strong>WhatsApp</strong> desde tu número.
+        Pagos, activaciones y gestión de suscripción se realizan dentro de WhatsApp.
       </p>
+
       <div class="cta">
         <a class="btn btn-primary" id="cta-whatsapp" href="#!" rel="noopener">💬 Comenzar por WhatsApp</a>
         <a class="btn btn-ghost" href="#planes">Ver planes y precios</a>
+        <a class="btn btn-outline" id="cta-soporte-humano" href="#!" rel="noopener">👤 Soporte humano</a>
       </div>
+
       <div class="badges" aria-label="Confianza">
-        <span class="badge">✅ Cobro seguro con Stripe</span>
+        <span class="badge">✅ Pagos seguros (Stripe) vía WhatsApp</span>
         <span class="badge">🔒 Datos protegidos</span>
         <span class="badge">🛠️ Especialistas 24/7</span>
       </div>
@@ -170,696 +165,222 @@
       <section class="card">
         <h2 class="section-title">Cómo funciona</h2>
         <ol>
-          <li>Escríbenos por WhatsApp desde tu número y describe el problema (año, marca, modelo, motor, códigos DTC).</li>
-          <li>Un asesor experto te guía paso a paso con pruebas claras y decisiones concretas.</li>
-          <li>Elige un plan mensual. El pago es por Stripe; la atención se mantiene siempre en WhatsApp.</li>
+          <li>Escríbenos por WhatsApp desde tu número y describe el problema (año, marca, modelo, motor, DTC).</li>
+          <li>Un asesor te guía paso a paso con pruebas claras y decisiones concretas.</li>
+          <li>Elige un plan mensual. Activación, pagos y gestión de suscripción se realizan dentro de WhatsApp.</li>
         </ol>
         <small class="muted">No usamos chat web ni email para consultas técnicas — solo WhatsApp del cliente.</small>
       </section>
 
-     <!-- Bloque: Prueba (3 asesorías gratis en 7 días) -->
-<section class="card">
-  <div class="trial" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
-    <div>
-      <h2 class="section-title" style="margin-bottom:6px">Prueba: 3 asesorías gratis en 7 días</h2>
-      <p class="muted" style="margin:4px 0">
-        Incluye hasta <strong>3 asesorías</strong> dentro de los primeros <strong>7 días</strong>.
-        La prueba termina al consumirse las 3 asesorías o al cumplirse los 7 días, <em>lo que ocurra primero</em>.
-        Activación por WhatsApp.
-      </p>
-    </div>
-    <a class="btn btn-primary" id="cta-trial" href="#!" rel="noopener">✨ Probar 3 asesorías (7 días)</a>
+      <!-- Bloque: Prueba -->
+      <section class="card">
+        <div class="trial" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+          <div>
+            <h2 class="section-title" style="margin-bottom:6px">Prueba: 3 asesorías gratis en 7 días</h2>
+            <p class="muted" style="margin:4px 0">
+              Incluye hasta <strong>3 asesorías</strong> dentro de los primeros <strong>7 días</strong>.
+              La prueba termina al consumirse las 3 asesorías o al cumplirse los 7 días, <em>lo que ocurra primero</em>.
+              Activación por WhatsApp.
+            </p>
+          </div>
+          <a class="btn btn-primary" id="cta-trial" href="#!" rel="noopener">✨ Probar 3 asesorías (7 días)</a>
+          <a class="btn btn-outline" id="cta-gestionar" href="#!" rel="noopener">⚙️ Gestionar mi suscripción</a>
+        </div>
+        <small class="pay-note">Pagos/gestión: dentro de WhatsApp (Stripe). Soporte humano disponible aparte.</small>
+      </section>
 
-   <a class="btn btn-outline btn-secure btn-portal" href="#" style="margin-left:8px;">Gestionar mi suscripción</a>
+      <!-- Planes -->
+      <section id="planes">
+        <h2 class="section-title">Planes y precios</h2>
+        <p class="muted" style="margin-top:-6px">
+          Contratación, activación y cobro se realizan dentro de WhatsApp.
+          <br><strong>Prueba incluida:</strong> 3 asesorías gratis en 7 días (lo que ocurra primero).
+        </p>
 
-<a id="btn-restore" class="btn btn-link" href="#!" style="margin-left:8px;">Restaurar acceso</a>
+        <div class="grid grid-3" style="margin-top:12px">
 
-  </div>
-</section>
+          <!-- Básico -->
+          <article class="price-card">
+            <div class="price-h">
+              <h3 style="margin:0">Básico</h3>
+              <span class="pill">Hasta 6 consultas/mes</span>
+            </div>
+            <div class="price">$399 MXN/mes</div>
+            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp 24/7</div>
+            <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
+            <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
+            <div class="feat"><span class="check">✓</span> Hasta 3 rondas por diagnóstico</div>
+            <div class="price-cta">
+              <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#!">Iniciar por WhatsApp</a>
+            </div>
+            <small class="pay-note">Cobro y activación: dentro de WhatsApp (Stripe) • Cargo mensual • Cancelas cuando quieras</small>
+          </article>
 
-<!-- ===== Mi suscripción (visible solo si hay customer) ===== -->
-<section id="mi-suscripcion" style="display:none; margin:24px 0;">
-  <div style="padding:16px; border:1px solid #e5e7eb; border-radius:12px;">
-    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
-      <div id="sub-status" style="font-weight:600;">Tienes una suscripción activa.</div>
-      <div>
-        <button class="btn btn-outline btn-secure btn-portal">Gestionar mi suscripción</button>
-        <button id="btn-logout" class="btn" style="margin-left:8px;">Borrar datos locales</button>
-      </div>
-    </div>
-  </div>
-</section>
+          <!-- Avanzado -->
+          <article class="price-card destacado">
+            <div class="price-h">
+              <h3 style="margin:0">Avanzado</h3>
+              <span class="pill">Hasta 10 consultas/mes</span>
+            </div>
+            <div class="price">$499 MXN/mes</div>
+            <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp 24/7</div>
+            <div class="feat"><span class="check">✓</span> Todo lo del plan Básico</div>
+            <div class="feat"><span class="check">✓</span> Apoyo en casos más complejos</div>
+            <div class="feat"><span class="check">✓</span> Seguimiento más cercano</div>
+            <div class="feat"><span class="check">✓</span> Hasta 4 rondas por diagnóstico</div>
+            <div class="feat"><span class="check">✓</span> Acceso a tu historial personal</div>
+            <div class="price-cta">
+              <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#!">Iniciar por WhatsApp</a>
+            </div>
+            <small class="pay-note">Cobro y activación: dentro de WhatsApp (Stripe) • Cargo mensual • Cancelas cuando quieras</small>
+          </article>
 
+          <!-- PRO -->
+          <article class="price-card">
+            <div class="price-h">
+              <h3 style="margin:0">PRO</h3>
+              <span class="pill">Consultas ilimitadas</span>
+            </div>
+            <div class="price">$999 MXN/mes</div>
+            <div class="feat"><span class="check">✓</span> Asesoría 24/7 por WhatsApp</div>
+            <div class="feat"><span class="check">✓</span> Soporte ilimitado (políticas de uso justo)</div>
+            <div class="feat"><span class="check">✓</span> Máximo estándar de respuesta</div>
+            <div class="feat"><span class="check">✓</span> Historial personal + biblioteca global</div>
+            <div class="feat"><span class="check">✓</span> Hasta 5 rondas por diagnóstico</div>
+            <div class="price-cta">
+              <a class="btn btn-primary wa-plan" data-plan="PRO" href="#!">Iniciar por WhatsApp</a>
+            </div>
+            <small class="pay-note">Cobro y activación: dentro de WhatsApp (Stripe) • Cargo mensual • Cancelas cuando quieras</small>
+          </article>
 
-      
-<!-- ========== Planes ========== -->
-<section id="planes">
-  <h2 class="section-title">Planes y precios</h2>
-  <p class="muted" style="margin-top:-6px">
-    Elige un plan. Contratación y soporte se coordinan por WhatsApp.
-    <br><strong>Prueba incluida:</strong> 3 asesorías gratis en 7 días (lo que ocurra primero).
-  </p>
+        </div>
+      </section>
 
-  <div class="grid grid-3" style="margin-top:12px">
+      <!-- Testimonios -->
+      <section class="card">
+        <p class="t-trust-msg">
+          "Miles de técnicos, mecánicos y autodidactas propietarios de vehículos y de talleres están satisfechos con nuestro gran sistema"
+          <br>
+          CONTAMOS CON LA BASE DE DATOS, BOLETINES Y PROCEDIMIENTOS MAS COMPLETA DEL MUNDO AUTOMOTRIZ
+        </p>
 
-<!-- ===== Básico ===== -->
-<article class="price-card">
-  <div class="price-h">
-    <h3 style="margin:0">Básico</h3>
-    <span class="pill">Hasta 6 consultas/mes</span>
-  </div>
-  <div class="price">$399 MXN/mes</div>
-  <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp 24/7</div>
-  <div class="feat"><span class="check">✓</span> Guías de diagnóstico OBD2 básicas</div>
-  <div class="feat"><span class="check">✓</span> Revisión de síntomas y pruebas rápidas</div>
-  <div class="feat"><span class="check">✓</span> Hasta 3 rondas por diagnostico</div>
+        <h3 class="section-title t-trust-title">TESTIMONIOS DE CONFIANZA</h3>
 
-  <div class="price-cta">
-    <a class="btn btn-primary wa-plan" data-plan="BÁSICO" href="#!">
-      Iniciar por WhatsApp
-    </a>
-
-    <a class="btn btn-outline btn-secure btn-pay-stripe"
-       data-price-id="price_1SVg9rHDRB00f7scZN5ILDRz"
-       data-plan="basico"
-       href="#!">
-      Suscribirme al Básico
-    </a>
-  </div>
-
-  <small class="pay-note">
-    Procesado por Stripe • Cargo mensual • Cancelas cuando quieras
-  </small>
-</article>
-
-
-   <!-- ===== Avanzado ===== -->
-<article class="price-card destacado">
-  <div class="price-h">
-    <h3 style="margin:0">Avanzado</h3>
-    <span class="pill">Hasta 10 consultas/mes</span>
-  </div>
-  <div class="price">$499 MXN/mes</div>
-  <div class="feat"><span class="check">✓</span> Asistencia por WhatsApp 24/7</div>
-  <div class="feat"><span class="check">✓</span> Todo lo del plan Básico</div>
-  <div class="feat"><span class="check">✓</span> Apoyo en casos más complejos</div>
-  <div class="feat"><span class="check">✓</span> Seguimiento más cercano a tus diagnósticos</div>
-  <div class="feat"><span class="check">✓</span> Hasta 4 rondas por diagnostico</div>
-  <div class="feat"><span class="check">✓</span> Acceso a tu historial personal de diagnosticos</div>
-
-  <div class="price-cta">
-    <a class="btn btn-primary wa-plan" data-plan="AVANZADO" href="#!">
-      Iniciar por WhatsApp
-    </a>
-
-    <a class="btn btn-outline btn-secure btn-pay-stripe"
-       data-price-id="price_1SVg8qHDRB00f7scadJluPIz"
-       data-plan="avanzado"
-       href="#!">
-      Suscribirme al Avanzado
-    </a>
-  </div>
-
-  <small class="pay-note">
-    Procesado por Stripe • Cargo mensual • Cancelas cuando quieras
-  </small>
-</article>
-
-    <!-- ===== PRO ===== -->
-    <article class="price-card">
-      <div class="price-h">
-        <h3 style="margin:0">PRO</h3>
-        <span class="pill">Consultas ilimitadas</span>
-      </div>
-      <div class="price">$999 MXN/mes</div>
-      <div class="feat"><span class="check">✓</span> Asesoría 24/7 por WhatsApp</div>
-      <div class="feat"><span class="check">✓</span> Soporte ilimitado de casos mes a mes (politicas de uso justo)</div>
-      <div class="feat"><span class="check">✓</span> Escalamiento a EL MÁXIMO ESTÁNDAR DE RESPUESTA</div>
-      <div class="feat"><span class="check">✓</span> Historial de casos personal y acceso a biblioteca global</div>
-      <div class="feat"><span class="check">✓</span> Hasta 5 rondas por diagnóstico (seguimiento dentro del mismo caso)</div>
-
-      
-      <div class="price-cta">
-        <a class="btn btn-primary wa-plan" data-plan="PRO" href="#!">Iniciar por WhatsApp</a>
-        <a class="btn btn-outline btn-secure btn-pay-stripe"
-           data-price-id="price_1SVg7MHDRB00f7scU9GBZcY3"
-           data-plan="pro"
-           href="#!">
-          Activar PRO
-        </a>
-      </div>
-
-      <small class="pay-note">
-        Procesado por Stripe • Cargo mensual • Cancelas cuando quieras
-      </small>
-    </article>
-
-  </div>
-
-  <small class="muted">
-    La autogestión de cobros y cancelaciones se realiza en el
-    <a href="#portal" id="portal-link">Portal del Cliente</a>. Las consultas siguen por WhatsApp del cliente.
-  </small>
-</section>
-
-<!-- ========== Testimonios (sección separada para evitar desbordes) ========== -->
-<section class="card">
-  <p class="t-trust-msg">
-  "Miles de técnicos, mecánicos y autodidactas propietarios de vehículos y de talleres están satisfechos con nuestro gran sistema"
-  <br>
-  CONTAMOS CON LA BASE DE DATOS, BOLETINES Y PROCEDIMIENTOS MAS COMPLETA DEL MUNDO AUTOMOTRIZ
-</p>
-
-  <h3 class="section-title t-trust-title">TESTIMONIOS DE CONFIANZA</h3>
-
-  <div class="t-carousel" id="t-carousel" aria-label="Testimonios">
-    <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller “El Pistón”</strong><br>“Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”</article>
-    <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Autoeléctrico Rivera</strong><br>“Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas. Atención siempre en WhatsApp.”</article>
-    <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller Jalisco</strong><br>“Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”</article>
-    <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Mecánica “La Chispa”</strong><br>“Nos ayudaron a aislar un P0335 con pasos simples. Cero adivinanzas.”</article>
-    <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Electromecánica Gómez</strong><br>“Interpretación de DTC y pruebas guiadas que funcionan. Muy recomendados.”</article>
-    <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller de Flotillas Monterrey</strong><br>“Para la flotilla fue clave: respuestas rápidas y consistentes, 100% por WhatsApp.”</article>
-  </div>
-</section>
-
-      <!-- Portal del Cliente (botón dedicado) -->
-          <section class="card" id="portal">
-  <h2 class="section-title">Portal del Cliente</h2>
-  <p class="muted">Gestiona tu suscripción, método de pago y facturas.</p>
-
-            <a class="btn btn-outline btn-secure btn-portal" href="#!">Abrir Portal del Cliente</a>
-            
-  <small class="pay-note">Se abrirá en una pestaña segura. Si ya eres cliente y no te abre, contáctanos por WhatsApp.</small>
-</section>
+        <div class="t-carousel" id="t-carousel" aria-label="Testimonios">
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller “El Pistón”</strong><br>“Nos resolvieron un P0300 terc@ en menos de 24 h con pruebas claras por WhatsApp.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Autoeléctrico Rivera</strong><br>“Excelente guía para CAN/OBD2. Ahorro de tiempo y piezas. Atención siempre en WhatsApp.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller Jalisco</strong><br>“Seguimiento ordenado y rápido. Ideal para equipo en campo: todo por WhatsApp.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Mecánica “La Chispa”</strong><br>“Nos ayudaron a aislar un P0335 con pasos simples. Cero adivinanzas.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Electromecánica Gómez</strong><br>“Interpretación de DTC y pruebas guiadas que funcionan. Muy recomendados.”</article>
+          <article class="quote t-slide"><div class="stars">★★★★★</div><strong>Taller de Flotillas Monterrey</strong><br>“Para la flotilla fue clave: respuestas rápidas y consistentes, 100% por WhatsApp.”</article>
+        </div>
+      </section>
 
       <section class="card">
         <h2 class="section-title" style="margin-bottom:6px">Política de reembolsos</h2>
         <p>
           Reembolso total durante los primeros <strong>7 días</strong> si el servicio no fue utilizado (sin consultas consumidas
-          en el periodo). Solicítalo por Whatapp, desde "Menu principal" en la seccion de  "Cancelar suscripcion"</a>.
-      </p>
+          en el periodo). Solicítalo por WhatsApp desde el menú principal en “Cancelar suscripción”.
+        </p>
       </section>
 
       <section class="card">
         <h2 class="section-title">Contacto</h2>
         <p>
-          
-         Soporte, recomendaciones y quejas WhatsApp: <a href="https://wa.me/523311571619" target="_blank" rel="noopener">+52 3311571619</a>
+          <strong>Soporte humano (atención directa):</strong>
+          <a href="https://wa.me/523311571619" target="_blank" rel="noopener">+52 3311571619</a>
         </p>
         <p class="muted" style="margin-top:10px">
-          Gracias por tu visita
+          Consultas técnicas, pagos y planes: por WhatsApp con el bot (opción “Comenzar”).
         </p>
       </section>
     </main>
 
-
-  <footer class="site-footer">
-  <small>
-    © 2025 Asesoría en Mecánica Automotriz – Advisor ·
-    <a href="#portal">Portal del Cliente</a> ·
-    <a href="./condiciones-del-servicio.html" rel="nofollow">Condiciones del Servicio</a> ·
-    <a href="./politica-de-privacidad.html" rel="nofollow">Política de Privacidad</a> ·
-    <a href="./eliminacion-de-datos.html" rel="nofollow">Eliminación de Datos</a>
-  </small>
-</footer>
-
-  
+    <footer class="site-footer">
+      <small>
+        © 2025 Asesoría en Mecánica Automotriz – Advisor ·
+        <a href="./condiciones-del-servicio.html" rel="nofollow">Condiciones del Servicio</a> ·
+        <a href="./politica-de-privacidad.html" rel="nofollow">Política de Privacidad</a> ·
+        <a href="./eliminacion-de-datos.html" rel="nofollow">Eliminación de Datos</a>
+      </small>
+    </footer>
 
   </div>
 
-  <!-- Stripe.js (para redirectToCheckout si tu backend devuelve sessionId) -->
-  
-<!-- Stripe (cárgalo SOLO una vez) -->
-<script src="https://js.stripe.com/v3"></script>
-
-<!-- PARCHE DE DEPURACIÓN: fuerza e instrumenta el checkout -->
-<script>
-(function () {
-  function log() { console.log('[checkout]', ...arguments); }
-
-  async function startCheckout(priceId) {
-    try {
-      const ref = localStorage.getItem('ref') || '';
-      const url = `${API_BASE}/create-checkout-session`;
-      log('POST', url, { priceId, ref });
-
-      const r = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ priceId, ref })
-      });
-
-      const j = await r.json();
-      log('HTTP', r.status, j);
-
-      if (r.ok && j.url) {
-        location.href = j.url;
-      } else {
-        alert(`No se pudo iniciar el pago (${r.status}): ${j.error || 'sin detalle'}`);
-      }
-    } catch (e) {
-      console.error('Fallo creando la sesión', e);
-      alert('Error de red al crear la sesión de pago');
-    }
-  }
-
-  // Enlaza los botones Stripe de la página
-  document.querySelectorAll('.btn-pay-stripe').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const priceId = btn.getAttribute('data-price-id');
-      log('click', priceId, btn);
-      if (!priceId) return alert('Falta data-price-id');
-      startCheckout(priceId);
-    }, { passive: false });
-  });
-
-  log('parche cargado');
-})();
-</script>
-  
-  
-<script>
-// ====== CONFIG ======
-const PHONE    = "523338219109";
-const API_BASE = "https://api2-ixy4sbioma-uc.a.run.app";  // sin "/api2"
-
-// Guardar ?ref= si llega en la URL
-try {
-  const p = new URLSearchParams(location.search);
-  const r = p.get('ref'); if (r) localStorage.setItem('ref', r);
-} catch (_) {}
-</script>
-
-<!-- 1) Post-checkout: si volvemos con ?session_id, leer datos del cliente -->
-<script>
-(async () => {
-  try {
-    const params = new URLSearchParams(location.search);
-    const sid = params.get('session_id');
-    if (sid) {
-      const r = await fetch(`${API_BASE}/checkout-session?session_id=${encodeURIComponent(sid)}`);
-      const s = await r.json();
-      if (s?.customer) {
-        localStorage.setItem('stripe_customer_id',     s.customer);
-        localStorage.setItem('stripe_subscription_id', s.subscription || '');
-        localStorage.setItem('customer_email',         s.customer_email || '');
-        console.log('[stripe] customer guardado:', s.customer);
-      }
-    }
-  } catch (e) { console.warn(e); }
-})();
-</script>
-
-
-
-<script>
-(() => {
-  console.log('[checkout] parche3 (guardar customer)');
-
-  // Usa tu backend ya definido en CONFIG/parche2
-  const API = (window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app').replace(/\/+$/,'');
-
-  const params    = new URLSearchParams(location.search);
-  const isSuccess = params.get('success') === 'true';
-  const sid       = params.get('session_id');
-
-  // Solo actuamos al volver de Stripe con ?success=true&session_id=...
-  if (!isSuccess || !sid) return;
-
-  fetch(`${API}/checkout-session?session_id=${encodeURIComponent(sid)}`)
-    .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
-    .then(data => {
-      // Guarda datos útiles para el portal del cliente
-      if (data.customer)        localStorage.setItem('stripe_customer_id',       data.customer);
-      if (data.subscription)    localStorage.setItem('stripe_subscription_id',   data.subscription);
-      if (data.customer_email)  localStorage.setItem('customer_email',           data.customer_email);
-
-      console.log('[stripe] customer guardado:', data.customer);
-
-      // Toast rápido (opcional)
-      try {
-        const t = document.createElement('div');
-        t.textContent = '¡Listo! Suscripción creada. Redirigiendo…';
-        t.style.cssText = 'position:fixed;left:50%;top:18px;transform:translateX(-50%);background:#111;color:#fff;padding:10px 14px;border-radius:8px;z-index:99999;font:600 14px/1 system-ui';
-        document.body.appendChild(t);
-        setTimeout(() => t.remove(), 3500);
-      } catch {}
-
-      // Limpia la query y vuelve al home
-      const url = new URL(location.href);
-      url.search = '';
-      setTimeout(() => location.replace(url.toString()), 700);
-    })
-    .catch(err => console.error('[checkout] no se pudo leer la sesión:', err));
-})();
-</script>
-
-
-  <!-- ===== Portal del Cliente (Stripe Billing Portal): listeners para .btn-portal ===== -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const API = (window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app').replace(/\/+$/,'');
-  const CUST_KEY = 'stripe_customer_id';
-
-  document.querySelectorAll('.btn-portal').forEach((el) => {
-    if (el.dataset.wired) return;
-    el.dataset.wired = '1';
-
-    el.addEventListener('click', async (e) => {
-      e.preventDefault(); // evita saltar al inicio
-      const customerId = localStorage.getItem(CUST_KEY);
-      if (!customerId){
-        alert('Aún no hay cliente en este navegador. Suscríbete o usa “Restaurar acceso”.');
-        return;
-      }
-      try{
-        const r = await fetch(`${API}/create-portal-session`, {
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body: JSON.stringify({ customerId })
-        });
-        const j = await r.json();
-        if (!r.ok || !j.url) throw new Error(j.error || `HTTP ${r.status}`);
-        location.href = j.url; // o window.open(j.url,'_blank','noopener')
-      }catch(err){
-        console.error('[portal]', err);
-        alert('Error al abrir el portal del cliente.');
-      }
-    }, { passive:false });
-  });
-});
-</script>
-
-  
-<!-- ===== Suscripción: UI (mostrar/ocultar) + Portal del Cliente (Stripe) + Borrar datos locales ===== -->
-<script>
-(function () {
-  console.log('[checkout] ui suscripción');
-
-  const cid   = localStorage.getItem('stripe_customer_id');
-  const email = localStorage.getItem('customer_email');
-
-  const seccionMiSub = document.getElementById('mi-suscripcion'); // tu <section id="mi-suscripcion">
-  const ctaTrial     = document.getElementById('cta-trial');       // tu botón “Probar 3 asesorías (7 días)”
-  const btnPortal    = document.getElementById('btn-portal');      // botón “Gestionar mi suscripción”
-  const btnLogout    = document.getElementById('btn-logout');      // botón “Borrar datos locales”
-
-  // 1) Mostrar/ocultar secciones según si hay suscriptor
-  if (cid || email) {
-    if (seccionMiSub) seccionMiSub.style.display = 'block';
-    if (ctaTrial)     ctaTrial.style.display     = 'none';
-  } else {
-    if (seccionMiSub) seccionMiSub.style.display = 'none';
-    if (ctaTrial)     ctaTrial.style.display     = 'inline-block';
-  }
-
-  // 2) Abrir Portal de clientes
-  document.querySelectorAll('.btn-portal').forEach((btn) => {
-  if (btn.dataset.wired) return;
-  btn.dataset.wired = '1';
-
-  btn.addEventListener('click', async (e) => {
-    e.preventDefault();
-
-    const customerId = localStorage.getItem('stripe_customer_id');
-    if (!customerId) {
-      alert('Aún no hay cliente en este navegador. Suscríbete o usa "Restaurar acceso".');
-      return;
-    }
-
-    try {
-      const r = await fetch(`${API_BASE}/create-portal-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ customerId })
-      });
-      const j = await r.json();
-      if (!r.ok || !j.url) throw new Error(j.error || 'portal_error');
-      window.open(j.url, '_blank', 'noopener'); // o location.href = j.url;
-    } catch (err) {
-      console.error('[portal] error', err);
-      alert('Error al abrir el portal del cliente.');
-    }
-  }, { passive: false });
-});
-
-
-  // 3) Borrar datos locales (para pruebas)
-  if (btnLogout) {
-    btnLogout.addEventListener('click', () => {
-      localStorage.removeItem('stripe_customer_id');
-      localStorage.removeItem('stripe_subscription_id');
-      localStorage.removeItem('customer_email');
-      location.reload();
-    });
-  }
-})();
-
-
-  // === Restaurar acceso: recompone localStorage con el email ===
-  const btnRestore = document.getElementById('btn-restore');
-  if (btnRestore) {
-    btnRestore.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const email = prompt('Escribe el correo con el que te suscribiste:');
-      if (!email) return;
-
-      try {
-        const r = await fetch(`${API_BASE}/lookup-customer?email=${encodeURIComponent(email)}`);
-        const data = await r.json();
-        if (!r.ok) throw new Error(data?.error || 'No se pudo restaurar');
-
-        if (data.customerId)      localStorage.setItem('stripe_customer_id', data.customerId);
-        if (data.subscriptionId)  localStorage.setItem('stripe_subscription_id', data.subscriptionId);
-        localStorage.setItem('customer_email', email);
-
-        alert('Listo. Ya puedes usar “Gestionar mi suscripción”.');
-        location.reload();
-      } catch (err) {
-        console.error(err);
-        alert('No se pudo restaurar: ' + err.message);
-      }
-    });
-  }
-<script>
-
-</script>
-
-  
-<script>
-// ====== WhatsApp: links reales (blindado) ======
-(function () {
-  const waHref = (t) => `https://wa.me/${PHONE}?text=${encodeURIComponent(t)}`;
-
-  // CTA principal (hero)
-  const cta = document.getElementById("cta-whatsapp");
-  if (cta) {
-    cta.href = waHref(
-      "Hola, quiero comenzar. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad] [Año, Marca, Modelo, Motor, Códigos/DTC, síntoma]."
-    );
-  }
-
-  // CTA de prueba (3 asesorías en 7 días)
-  const trial = document.getElementById("cta-trial");
-  if (trial) {
-    trial.href = waHref(
-      "Solicito PRUEBA: 3 asesorías gratis (7 días). Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]."
-    );
-  }
-
-  // Botones de cada plan (Básico/Avanzado/PRO)
-  document.querySelectorAll(".wa-plan").forEach((btn) => {
-    const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
-    btn.href = waHref(
-      `Quiero contratar el plan ${plan}. Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]. ` +
-      `[Año/Marca/Modelo/Motor] [Descripción del caso / síntoma].`
-    );
-  });
-})();
-</script>
-
-<script>
-// Pago con Stripe: envía teléfono + plan + código de referido
-(() => {
-  console.log('[checkout] pago Stripe con metadata');
-
-  const API_BASE =
-    (window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app').replace(/\/+$/, '');
-
-  function normalizarTelefono(raw) {
-    if (!raw) return '';
-    const solo = String(raw).replace(/\D/g, '');
-    if (solo.length >= 10) return solo.slice(-10);
-    return solo;
-  }
-
-  async function createCheckout(opts) {
-    const { priceId, plan, telefono, ref, fallbackUrl } = opts || {};
-    if (!priceId) {
-      alert('Falta el identificador del plan. Intenta recargar la página.');
-      return;
-    }
-
-    const telNorm = normalizarTelefono(telefono);
-    if (!telNorm) {
-      alert('Necesito un número de WhatsApp válido (solo números).');
-      return;
-    }
-
-    try {
-      const res = await fetch(`${API_BASE}/create-checkout-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          priceId,
-          plan: (plan || '').toLowerCase(),
-          telefono: telNorm,
-          ref: (ref || '').trim()
-        })
-      });
-
-      const data = await res.json().catch(() => ({}));
-
-      if (!res.ok || !data.url) {
-        console.error('[checkout] respuesta inválida', data);
-        alert('No se pudo iniciar el pago. Intenta de nuevo.');
-        if (fallbackUrl && /^https?:\/\//i.test(fallbackUrl)) {
-          window.location.href = fallbackUrl;
-        }
-        return;
-      }
-
-      window.location.href = data.url;
-    } catch (err) {
-      console.error('[checkout] error', err);
-      alert('Error de red al crear la sesión de pago.');
-      if (fallbackUrl && /^https?:\/\//i.test(fallbackUrl)) {
-        window.location.href = fallbackUrl;
-      }
-    }
-  }
-
-  // Captura TODOS los clics en botones .btn-pay-stripe
-  document.addEventListener(
-    'click',
-    async (ev) => {
-      const btn = ev.target.closest('.btn-pay-stripe');
-      if (!btn) return;
-
-      ev.preventDefault();
-      ev.stopPropagation();
-
-      const priceId    = (btn.dataset.priceId || '').trim();
-      const fallbackUrl= (btn.dataset.fallbackUrl || '').trim();
-      let   plan       = (btn.dataset.plan || '').trim().toLowerCase();
-
-      // Por si algún botón no trae data-plan, lo deducimos del título
-      if (!plan) {
-        const card  = btn.closest('.price-card');
-        const title = card?.querySelector('h3')?.textContent?.toLowerCase() || '';
-        if (title.includes('básico') || title.includes('basico')) plan = 'basico';
-        else if (title.includes('avanzado')) plan = 'avanzado';
-        else if (title.includes('pro'))      plan = 'pro';
-      }
-
-      const telInput = prompt(
-        'Escribe el número de WhatsApp con el que usarás la asesoría (solo números, sin espacios):'
-      );
-      if (!telInput) return;
-
-      let refCode = (localStorage.getItem('ref') || '').trim();
-      if (!refCode) {
-        refCode =
-          prompt(
-            'Si alguien te compartió un código de referido, escríbelo aquí (opcional). Si no, deja vacío:'
-          ) || '';
-      }
-
-      await createCheckout({
-        priceId,
-        plan,
-        telefono: telInput,
-        ref: refCode,
-        fallbackUrl
-      });
-    },
-    { passive: false }
-  );
-})();
-</script>
-
-  
+  <!-- ============================= -->
+  <!-- SECCIÓN SCRIPTS: SOLO WHATSAPP -->
+  <!-- ============================= -->
   <script>
-/** Ajusta si no lo declaraste antes en el archivo */
-const API_BASE = window.API_BASE || 'https://api2-ixy4sbioma-uc.a.run.app';
+    // Número BOT (Botpress WABA) y Soporte humano (WhatsApp directo)
+    const PHONE_BOT   = "523338219109";
+    const PHONE_HUMAN = "523311571619";
 
-document.addEventListener('DOMContentLoaded', () => {
-  const CUST_KEY = 'stripe_customer_id';
-  const SUB_KEY  = 'stripe_subscription_id';
-  const EMAIL_KEY= 'customer_email';
+    // Guardar ?ref= si llega en la URL (para anexarlo al mensaje)
+    (function persistRef(){
+      try {
+        const p = new URLSearchParams(location.search);
+        const r = (p.get('ref') || '').trim();
+        if (r) localStorage.setItem('ref', r);
+      } catch (_) {}
+    })();
 
-  async function postJSON(url, body){
-    const r = await fetch(url, {
-      method:'POST', headers:{'Content-Type':'application/json'},
-      body: JSON.stringify(body||{})
-    });
-    const j = await r.json().catch(()=> ({}));
-    return { ok: r.ok, ...j };
-  }
+    function waHref(phone, text){
+      return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+    }
 
-  // --- Abrir Portal ---
-  const btnPortal = document.getElementById('btn-portal');
-  if (btnPortal){
-    btnPortal.addEventListener('click', async (e) => {
-      e.preventDefault();    // evita que la página salte arriba
-      const customerId = localStorage.getItem(CUST_KEY);
-      if (!customerId){
-        alert('Aún no tenemos tu cliente de Stripe en este navegador. Completa una compra o pulsa “Restaurar acceso”.');
-        return;
+    function appendRef(baseText){
+      const ref = (localStorage.getItem('ref') || '').trim();
+      if (!ref) return baseText;
+      return `${baseText}\n\nCódigo/Ref: ${ref}`;
+    }
+
+    // Wire links
+    (function wireWhatsApp(){
+      const cta = document.getElementById("cta-whatsapp");
+      if (cta) {
+        const msg = appendRef(
+          "Hola, quiero comenzar.\n" +
+          "Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\n" +
+          "Vehículo: [Año, Marca, Modelo, Motor]\n" +
+          "Caso: [Códigos/DTC si hay] [Síntoma]"
+        );
+        cta.href = waHref(PHONE_BOT, msg);
       }
-      try{
-        const {ok, url, error} = await postJSON(`${API_BASE}/create-portal-session`, { customerId });
-        if (!ok || !url) throw new Error(error || 'portal_error');
-        location.href = url;
-      }catch(err){
-        console.error('[portal]', err);
-        alert('Error al abrir el portal del cliente.');
-      }
-    }, { passive:false });
-  }
 
-  // --- Restaurar acceso con email (opcional) ---
-  const btnRestore = document.getElementById('btn-restore');
-  if (btnRestore){
-    btnRestore.addEventListener('click', async (e) => {
-      e.preventDefault();
-      const email = prompt('Escribe el correo con el que te suscribiste:');
-      if (!email) return;
-      try{
-        const r = await fetch(`${API_BASE}/lookup-customer?email=${encodeURIComponent(email)}`);
-        const data = await r.json();
-        if (!r.ok) throw new Error(data?.error || 'No encontrado');
-        if (data.customerId)     localStorage.setItem(CUST_KEY, data.customerId);
-        if (data.subscriptionId) localStorage.setItem(SUB_KEY, data.subscriptionId);
-        localStorage.setItem(EMAIL_KEY, email);
-        alert('Listo. Ahora sí, pulsa “Abrir Portal del Cliente”.');
-      }catch(err){
-        alert('No se pudo restaurar: ' + err.message);
+      const trial = document.getElementById("cta-trial");
+      if (trial) {
+        const msg = appendRef(
+          "Solicito PRUEBA: 3 asesorías gratis (7 días).\n" +
+          "Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]"
+        );
+        trial.href = waHref(PHONE_BOT, msg);
       }
-    });
-  }
 
-  // --- Borrar datos locales (para pruebas) ---
-  const btnLogout = document.getElementById('btn-logout');
-  if (btnLogout){
-    btnLogout.addEventListener('click', (e) => {
-      e.preventDefault();
-      [CUST_KEY, SUB_KEY, EMAIL_KEY].forEach(k => localStorage.removeItem(k));
-      location.reload();
-    });
-  }
-});
-</script>
+      const gestionar = document.getElementById("cta-gestionar");
+      if (gestionar) {
+        const msg = appendRef(
+          "Quiero gestionar mi suscripción (cambiar plan, cancelar, facturas o pago).\n" +
+          "Mi WhatsApp es este número. Gracias."
+        );
+        gestionar.href = waHref(PHONE_BOT, msg);
+      }
+
+      const soporte = document.getElementById("cta-soporte-humano");
+      if (soporte) {
+        soporte.href = waHref(PHONE_HUMAN, "Hola, necesito soporte humano. Vengo del sistema Advisor.");
+      }
+
+      document.querySelectorAll(".wa-plan").forEach((btn) => {
+        const plan = (btn.getAttribute("data-plan") || "BÁSICO").trim();
+        const msg = appendRef(
+          `Quiero contratar el plan ${plan}.\n` +
+          "Mis datos: [Nombre/Taller] [País] [Estado/Región] [Ciudad]\n" +
+          "Vehículo: [Año/Marca/Modelo/Motor]\n" +
+          "Caso: [Descripción del síntoma]"
+        );
+        btn.href = waHref(PHONE_BOT, msg);
+      });
+    })();
+  </script>
 </body>
 </html>
